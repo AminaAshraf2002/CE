@@ -1,0 +1,694 @@
+/* =============================================================================
+   Careers Page - Complete CSS Styles (Conflict-Free)
+   Capricorn Elevators - Professional Careers Design
+   Font: Playfair Display for headings, Inter for body
+   Theme: Gold (#d4b347) and Dark
+============================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* CSS Variables */
+:root {
+  --cap-primary-gold: #d4b347;
+  --cap-gold-light: #f0d482;
+  --cap-gold-dark: #c2a032;
+  --cap-white: #ffffff;
+  --cap-cream: #faf9f7;
+  --cap-gray-100: #f5f5f5;
+  --cap-gray-200: #e5e5e5;
+  --cap-gray-600: #525252;
+  --cap-gray-700: #404040;
+  --cap-gray-800: #262626;
+  --cap-gray-900: #171717;
+  --cap-dark: #1a1a1a;
+  --cap-black: #000000;
+
+  /* Shadows */
+  --cap-shadow-elegant: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --cap-shadow-luxury: 0 8px 40px rgba(0, 0, 0, 0.12);
+  --cap-shadow-premium: 0 16px 60px rgba(0, 0, 0, 0.15);
+  --cap-shadow-gold: 0 10px 40px rgba(212, 179, 71, 0.2);
+  --cap-shadow-gold-hover: 0 20px 60px rgba(212, 179, 71, 0.3);
+
+  /* Typography */
+  --cap-font-heading: 'Playfair Display', serif;
+  --cap-font-body: 'Inter', sans-serif;
+}
+
+/* Reset and Base Styles */
+.cap-careers-page {
+  min-height: 100vh;
+  background: var(--cap-black);
+  overflow-x: hidden;
+}
+
+.cap-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .cap-container {
+    padding: 0 1rem;
+  }
+}
+
+/* =============================================================================
+   Hero Section with Video Background
+============================================================================= */
+.cap-careers-hero-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--cap-black);
+}
+
+.cap-video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.cap-hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cap-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.6) 100%);
+  z-index: 2;
+}
+
+.cap-hero-bg-elements {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+.cap-floating-element {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, var(--cap-primary-gold), var(--cap-gold-light));
+  border-radius: 50%;
+  opacity: 0.4;
+  box-shadow: 0 0 10px rgba(212, 179, 71, 0.3);
+  animation: cap-float 6s ease-in-out infinite;
+}
+
+@keyframes cap-float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-20px) rotate(180deg); 
+  }
+}
+
+.cap-hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  padding-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .cap-hero-content {
+    padding-top: 6rem;
+  }
+}
+
+/* Hero Stats */
+.cap-hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  opacity: 0.8;
+  animation: cap-stats-slide 1s ease-out 1.6s both;
+}
+
+@keyframes cap-stats-slide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+}
+
+.cap-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(212, 179, 71, 0.8);
+  font-size: 0.85rem;
+  font-weight: 500;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px 16px;
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 179, 71, 0.2);
+}
+
+/* Scroll Indicator */
+.cap-scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--cap-primary-gold);
+  animation: cap-bounce 2s infinite;
+  z-index: 10;
+  opacity: 0.8;
+}
+
+@keyframes cap-bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-15px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-8px);
+  }
+}
+
+/* =============================================================================
+   Section Headers (Shared)
+============================================================================= */
+.cap-section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.cap-section-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(212, 179, 71, 0.15);
+  border: 1px solid rgba(212, 179, 71, 0.4);
+  border-radius: 25px;
+  font-size: 0.70rem;
+  font-weight: 600;
+  color: var(--cap-primary-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.cap-section-title {
+  font-family: var(--cap-font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--cap-white);
+  line-height: 1.2;
+  margin-bottom: 15px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cap-section-title .cap-highlight {
+  color: var(--cap-primary-gold);
+  font-weight: 800;
+}
+
+.cap-section-subtitle {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  max-width: 600px;
+  font-weight: 400;
+  margin: 0 auto;
+}
+
+/* =============================================================================
+   Why Choose Us Section
+============================================================================= */
+.cap-why-choose-us-section {
+  background: linear-gradient(135deg, #1b1b1b 0%, #1f1f1f 50%, #1c1c1c 100%);
+  color: var(--cap-white);
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
+
+.cap-why-choose-us-section.cap-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cap-why-us-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.cap-why-us-card {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.8));
+  border: 2px solid rgba(212, 179, 71, 0.3);
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: cap-card-slide-in 0.6s ease-out forwards;
+}
+
+@keyframes cap-card-slide-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cap-why-us-card:hover {
+  border-color: var(--cap-primary-gold);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(212, 179, 71, 0.3);
+}
+
+.cap-card-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--cap-primary-gold), var(--cap-gold-light));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cap-black);
+  margin: 0 auto 20px auto;
+  transition: all 0.3s ease;
+}
+
+.cap-why-us-card:hover .cap-card-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 0 20px rgba(212, 179, 71, 0.5);
+}
+
+.cap-card-title {
+  font-family: var(--cap-font-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--cap-primary-gold);
+  margin-bottom: 15px;
+}
+
+.cap-card-description {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+/* =============================================================================
+   Process Section
+============================================================================= */
+.cap-process-section {
+  background: linear-gradient(135deg, #1b1b1b 0%, #1f1f1f 50%, #1c1c1c 100%);
+  color: var(--cap-white);
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
+
+.cap-process-section.cap-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cap-process-timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.cap-process-timeline::before {
+  content: '';
+  position: absolute;
+  left: 30px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--cap-primary-gold), transparent);
+}
+
+.cap-process-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 50px;
+  position: relative;
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: cap-step-slide-in 0.6s ease-out forwards;
+}
+
+@keyframes cap-step-slide-in {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.cap-step-number {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--cap-primary-gold), var(--cap-gold-light));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cap-black);
+  font-weight: 800;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.cap-step-content {
+  flex: 1;
+  padding-top: 8px;
+}
+
+.cap-step-title {
+  font-family: var(--cap-font-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--cap-primary-gold);
+  margin-bottom: 10px;
+}
+
+.cap-step-description {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+/* =============================================================================
+   Application Section
+============================================================================= */
+.cap-application-section {
+  background: #282727;
+  color: var(--cap-white);
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cap-application-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.cap-contact-info {
+  margin-top: 40px;
+}
+
+.cap-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 25px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  border: 1px solid rgba(212, 179, 71, 0.2);
+}
+
+.cap-contact-item svg {
+  color: var(--cap-primary-gold);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.cap-contact-item strong {
+  display: block;
+  color: var(--cap-primary-gold);
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.cap-contact-item span {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+}
+
+.cap-application-form {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(20, 20, 20, 0.9));
+  border: 2px solid rgba(212, 179, 71, 0.3);
+  border-radius: 20px;
+  padding: 40px;
+  backdrop-filter: blur(20px);
+}
+
+.cap-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.cap-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cap-form-group label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.cap-form-group input,
+.cap-form-group select,
+.cap-form-group textarea {
+  padding: 12px 15px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(212, 179, 71, 0.2);
+  border-radius: 8px;
+  color: var(--cap-white);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  font-family: var(--cap-font-body);
+}
+
+.cap-form-group input:focus,
+.cap-form-group select:focus,
+.cap-form-group textarea:focus {
+  outline: none;
+  border-color: var(--cap-primary-gold);
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 20px rgba(212, 179, 71, 0.3);
+}
+
+.cap-form-group input::placeholder,
+.cap-form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.cap-submit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--cap-primary-gold), var(--cap-gold-light));
+  color: var(--cap-black);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.cap-submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 179, 71, 0.4);
+  background: linear-gradient(135deg, var(--cap-gold-light), var(--cap-primary-gold));
+}
+
+.cap-submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.cap-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top: 2px solid var(--cap-black);
+  border-radius: 50%;
+  animation: cap-spin 1s linear infinite;
+}
+
+@keyframes cap-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.cap-success-message {
+  text-align: center;
+  padding: 40px 20px;
+  animation: cap-success-slide-in 0.6s ease-out;
+}
+
+@keyframes cap-success-slide-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.cap-success-icon {
+  color: var(--cap-primary-gold);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.cap-success-message h3 {
+  font-family: var(--cap-font-heading);
+  font-size: 1.5rem;
+  color: var(--cap-primary-gold);
+  margin-bottom: 10px;
+}
+
+.cap-success-message p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+/* =============================================================================
+   Responsive Design
+============================================================================= */
+@media (max-width: 1024px) {
+  .cap-application-content {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  
+  .cap-form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .cap-why-us-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .cap-process-timeline::before {
+    left: 20px;
+  }
+  
+  .cap-process-step {
+    gap: 20px;
+  }
+  
+  .cap-step-number {
+    width: 50px;
+    height: 50px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cap-careers-hero-section {
+    height: 90vh;
+  }
+  
+  .cap-hero-content {
+    padding-top: 8rem;
+  }
+  
+  .cap-hero-stats {
+    gap: 1rem;
+  }
+  
+  .cap-stat-item {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+  
+  .cap-why-choose-us-section,
+  .cap-process-section,
+  .cap-application-section {
+    padding: 60px 0;
+  }
+  
+  .cap-why-us-card {
+    padding: 30px 20px;
+  }
+  
+  .cap-card-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .cap-application-form {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cap-hero-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .cap-why-us-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cap-process-step {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .cap-process-timeline::before {
+    display: none;
+  }
+  
+  .cap-step-number {
+    align-self: center;
+  }
+}
