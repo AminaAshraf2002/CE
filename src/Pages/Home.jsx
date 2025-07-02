@@ -611,7 +611,7 @@ const Home = () => {
             <strong>Welcome to Capricorn Elevators!</strong>
           </p>
           <div className="hero-buttons">
-            <Link to="/products"><button className="btn-primary-large">Explore Collection</button></Link>
+            <Link to="/services"><button className="btn-primary-large">Explore Collection</button></Link>
             <Link to="/contact"><button className="btn-secondary-large">Get Quote</button></Link>
           </div>
         </div>

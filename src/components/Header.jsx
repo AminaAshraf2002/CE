@@ -9,6 +9,9 @@ const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Debug log to see state changes
+  console.log('Current activeDropdown state:', activeDropdown);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -20,7 +23,33 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (activeDropdown && !event.target.closest('.nav-dropdown') && !event.target.closest('.mobile-dropdown')) {
+        setActiveDropdown(null);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [activeDropdown]);
+
+  // Close mobile menu on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024 && isMenuOpen) {
+        setIsMenuOpen(false);
+        setActiveDropdown(null);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMenuOpen]);
+
   const toggleDropdown = (dropdown) => {
+    console.log('Dropdown clicked:', dropdown); // Debug log
     setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
   };
 
@@ -31,6 +60,10 @@ const Header = () => {
   const closeMenu = () => {
     setIsMenuOpen(false);
     closeDropdowns();
+  };
+
+  const toggleMobileDropdown = (dropdown) => {
+    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
   };
 
   return (
@@ -56,11 +89,14 @@ const Header = () => {
               About
             </Link>
 
-            {/* Products Dropdown */}
+            {/* Products Dropdown - SIMPLIFIED */}
             <div className="nav-dropdown">
               <button
                 className="nav-dropdown-trigger"
-                onClick={() => toggleDropdown('products')}
+                onClick={() => {
+                  console.log('Dropdown clicked!');
+                  setActiveDropdown(activeDropdown === 'products' ? null : 'products');
+                }}
               >
                 Products
                 <ChevronDown
@@ -68,12 +104,13 @@ const Header = () => {
                   className={`dropdown-icon ${activeDropdown === 'products' ? 'rotated' : ''}`}
                 />
               </button>
+              {console.log('Should show dropdown:', activeDropdown === 'products')}
               {activeDropdown === 'products' && (
                 <div className="nav-dropdown-menu">
-                  <Link to="/products/home" className="dropdown-item" onClick={closeDropdowns}>
+                  <Link to="/products/home" className="dropdown-item" onClick={() => setActiveDropdown(null)}>
                     Home Lifts
                   </Link>
-                  <Link to="/products/commercial" className="dropdown-item" onClick={closeDropdowns}>
+                  <Link to="/products/commercial" className="dropdown-item" onClick={() => setActiveDropdown(null)}>
                     Commercial
                   </Link>
                 </div>
@@ -100,6 +137,7 @@ const Header = () => {
           <button
             className="mobile-menu-btn"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle mobile menu"
           >
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -115,19 +153,35 @@ const Header = () => {
             <Link to="/about" onClick={closeMenu}>About</Link>
 
             <div className="mobile-dropdown">
-              <span className="mobile-dropdown-title">Products</span>
-              <div className="mobile-dropdown-items">
-                <Link to="/products/home" onClick={closeMenu}>Home Lift</Link>
-                <Link to="/products/commercial" onClick={closeMenu}>Commercial</Link>
-              </div>
+              <button 
+                className="mobile-dropdown-trigger"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  toggleMobileDropdown('products');
+                }}
+              >
+                <span className="mobile-dropdown-title">Products</span>
+                <ChevronDown
+                  size={16}
+                  className={`mobile-dropdown-icon ${activeDropdown === 'products' ? 'rotated' : ''}`}
+                />
+              </button>
+              {activeDropdown === 'products' && (
+                <div className="mobile-dropdown-items">
+                  <Link to="/products/home" onClick={closeMenu}>Home Lift</Link>
+                  <Link to="/products/commercial" onClick={closeMenu}>Commercial</Link>
+                </div>
+              )}
             </div>
 
-            
-            <Link to="/services" className="nav-link" onClick={closeMenu}>
-              Services
-            </Link>
+            <Link to="/services" onClick={closeMenu}>Services</Link>
             <Link to="/contact" onClick={closeMenu}>Contact</Link>
             <Link to="/careers" onClick={closeMenu}>Careers</Link>
+
+            <Link to="/contact" onClick={closeMenu}>
+              <button className="btn-secondary mobile-get-quote">Get Quote</button>
+            </Link>
           </div>
         </div>
       )}
