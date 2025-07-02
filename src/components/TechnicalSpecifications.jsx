@@ -13,19 +13,19 @@ const TechnicalSpecifications = () => {
       type: "MRL Gearless - Rope Driven",
       description: "Premium elevator solution with advanced features and luxury finishes",
       badge: "Premium"
-    },
-    comfort: {
-      name: "Capricorn Comfort 4+1", 
-      type: "Hydraulic - Oil Driven",
-      description: "Reliable and smooth operation with customizable interior options",
-      badge: "Popular"
-    },
-    essential: {
-      name: "Capricorn Essential 3+1",
-      type: "MRL Traction - Energy Efficient", 
-      description: "Cost-effective solution with essential safety features",
-      badge: "Essential"
-    }
+     }
+    // comfort: {
+    //   name: "Capricorn Comfort 4+1", 
+    //   type: "Hydraulic - Oil Driven",
+    //   description: "Reliable and smooth operation with customizable interior options",
+    //   badge: "Popular"
+    // },
+    // essential: {
+    //   name: "Capricorn Essential 3+1",
+    //   type: "MRL Traction - Energy Efficient", 
+    //   description: "Cost-effective solution with essential safety features",
+    //   badge: "Essential"
+    // }
   };
 
   const specifications = {
