@@ -196,9 +196,7 @@ const Home = () => {
   const locations = [
     { id: 'india', name: 'India', city: 'Mumbai', x: 72, y: 45, flag: '🇮🇳', flagImage: indiaFlag, offices: 5, projects: 250, code: 'IN' },
     { id: 'uae', name: 'UAE', city: 'Dubai', x: 65, y: 40, flag: '🇦🇪', flagImage: uaeFlag, offices: 2, projects: 80, code: 'AE' },
-    { id: 'south-africa', name: 'South Africa', city: 'Cape Town', x: 55, y: 70, flag: '🇿🇦', flagImage: africaFlag, offices: 1, projects: 35, code: 'ZA' },
-    { id: 'saudi-arabia', name: 'Saudi Arabia', city: 'Riyadh', x: 60, y: 40, flag: '🇸🇦', flagImage: saudiFlag, offices: 1, projects: 40, code: 'SA' },
-    { id: 'qatar', name: 'Qatar', city: 'Doha', x: 62, y: 42, flag: '🇶🇦', flagImage: qatarFlag, offices: 1, projects: 25, code: 'QA' }
+   
   ];
 
   const contactInfo = [
