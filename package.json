@@ -3,6 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "overrides": {
+    "react-image-hotspots": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -13,6 +19,7 @@
     "aos": "^2.3.4",
     "gsap": "^3.13.0",
     "lucide-react": "^0.518.0",
+    "prop-types": "^15.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-image-hotspots": "^2.3.2",
