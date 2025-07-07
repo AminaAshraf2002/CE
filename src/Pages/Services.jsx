@@ -92,7 +92,7 @@ const Services = () => {
       description: 'Our certified technical specialists conduct a thorough on-site evaluation to assess structural requirements, space constraints, and technical feasibility for optimal elevator installation.',
       icon: <Settings size={20} />,
       link: '/technical-assessment',
-      buttonText: 'Learn About Assessment'
+     
     },
     {
       id: 'design-approval',
@@ -102,7 +102,7 @@ const Services = () => {
       description: 'Our design team creates comprehensive technical drawings and 3D visualizations, ensuring every detail meets your requirements and receives your complete approval before proceeding.',
       icon: <Monitor size={20} />,
       link: '/design-process',
-      buttonText: 'View Design Process'
+     
     },
     {
       id: 'customer-support',
@@ -122,7 +122,7 @@ const Services = () => {
       description: 'Your elevator enters our state-of-the-art manufacturing facility where skilled craftsmen build your lift with precision engineering, quality materials, and rigorous quality control standards.',
       icon: <Building size={20} />,
       link: '/manufacturing',
-      buttonText: 'View Manufacturing'
+      
     },
     {
       id: 'pre-installation',
@@ -132,7 +132,7 @@ const Services = () => {
       description: 'Our technical team conducts a final pre-installation inspection to verify site readiness, confirm measurements, and ensure all preparations are complete for smooth installation.',
       icon: <Shield size={20} />,
       link: '/pre-installation',
-      buttonText: 'Learn More'
+      
     },
     {
       id: 'installation',
@@ -142,7 +142,7 @@ const Services = () => {
       description: 'Experience professional installation by our certified technicians who ensure precise setup, thorough testing, and complete commissioning of your new elevator system.',
       icon: <Wrench size={20} />,
       link: '/installation',
-      buttonText: 'Installation Details'
+     
     },
     {
       id: 'testing',
@@ -152,7 +152,7 @@ const Services = () => {
       description: 'Comprehensive testing and commissioning ensure your elevator meets all safety standards, operates smoothly, and performs optimally before final handover and certification.',
       icon: <Award size={20} />,
       link: '/testing',
-      buttonText: 'Testing Process'
+      
     },
     {
       id: 'ongoing-support',
@@ -162,7 +162,7 @@ const Services = () => {
       description: 'Enjoy peace of mind with our comprehensive maintenance program featuring regular service visits, 24/7 support, and proactive care to ensure your elevator\'s optimal performance for years to come.',
       icon: <Heart size={20} />,
       link: '/support',
-      buttonText: 'Support Services'
+     
     }
   ];
 
@@ -550,10 +550,7 @@ const Services = () => {
                   Get Quote
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-                <button className="services-btn-secondary">
-                  Learn More
-                  <MessageSquare className="w-4 h-4" />
-                </button>
+              
               </div>
             </div>
           </div>
@@ -732,10 +729,7 @@ const Services = () => {
                     <h4 className="timeline-content-subtitle">{step.subtitle}</h4>
                   </div>
                   <p className="timeline-content-description">{step.description}</p>
-                  <Link to={step.link} className="timeline-cta-button">
-                    {step.buttonText}
-                    <ArrowRight size={16} />
-                  </Link>
+                 
                 </div>
                 <div className="timeline-step-circle">
                   <div className="timeline-step-number">{String(index + 1).padStart(2, '0')}</div>

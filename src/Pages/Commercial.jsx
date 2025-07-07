@@ -292,10 +292,7 @@ const Commercial = () => {
                   <ArrowRight size={16} />
                 </Link>
                 
-                <button className="comm-model-btn-secondary">
-                  View Specifications
-                  <Settings size={16} />
-                </button>
+                
               </div>
             </div>
           </div>
@@ -368,7 +365,7 @@ const Commercial = () => {
               <MessageSquare size={18} />
               Get Professional Quote
             </Link>
-            <a href="tel:+919876543210" className="comm-cta-btn-secondary">
+            <a href="tel:7593000222" className="comm-cta-btn-secondary">
               <Phone size={18} />
               Call Sales Team
             </a>

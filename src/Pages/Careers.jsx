@@ -334,21 +334,21 @@ const Careers = () => {
                   <Mail size={20} />
                   <div>
                     <strong>Email</strong>
-                    <span>careers@capricornelevators.com</span>
+                    <span>hr@capricornelevators.com</span>
                   </div>
                 </div>
                 <div className="cap-contact-item">
                   <Phone size={20} />
                   <div>
                     <strong>Phone</strong>
-                    <span>+91 98765 43210</span>
+                    <span>+971509169002</span>
                   </div>
                 </div>
                 <div className="cap-contact-item">
                   <MapPin size={20} />
                   <div>
                     <strong>Office</strong>
-                    <span>Mumbai, India | Dubai, UAE</span>
+                    <span>Unit 03, 11th Floor, Jomer Symphony, Ponnurunni East, Vyttila, Ernakulam, Kerala 682028</span>
                   </div>
                 </div>
               </div>

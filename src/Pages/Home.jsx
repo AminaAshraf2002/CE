@@ -80,7 +80,7 @@ const Home = () => {
     {
       icon: <Phone size={20} />,
       title: 'Call Us',
-      details: ['+91 98765 43210', '+971 50 123 4567'],
+      details: ['+971-50-916-9002', '+91-759-3000-222'],
       subtitle: 'Mon - Sat, 9:00 AM - 6:00 PM'
     },
     {

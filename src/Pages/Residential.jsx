@@ -291,10 +291,7 @@ const Residential = () => {
                   <ArrowRight size={16} />
                 </Link>
                 
-                <button className="residential-model-btn-secondary">
-                  View Specifications
-                  <Settings size={16} />
-                </button>
+                
               </div>
             </div>
           </div>
@@ -336,7 +333,7 @@ const Residential = () => {
               <MessageSquare size={18} />
               Start Consultation
             </Link>
-            <a href="tel:+919876543210" className="residential-cta-btn-secondary">
+            <a href="tel:7593000222" className="residential-cta-btn-secondary">
               <Phone size={18} />
               Call Now
             </a>

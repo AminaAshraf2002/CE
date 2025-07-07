@@ -484,7 +484,7 @@ const Contact = () => {
                     <Phone size={20} />
                     <div>
                       <strong>Phone Numbers</strong>
-                      <p>+91 8943777000</p>
+                      <p>+971-50-916-9002</p>
                       <p>+91 7593000222</p>
                     </div>
                   </div>
@@ -510,7 +510,7 @@ const Contact = () => {
                 <div className="contact-quick-actions" data-aos="fade-left" data-aos-delay="500">
                   <h4>Quick Actions</h4>
                   <div className="contact-action-buttons">
-                    <a href="tel:+919876543210" className="contact-action-btn contact-action-primary">
+                    <a href="tel:+ 7593000222" className="contact-action-btn contact-action-primary">
                       <Phone size={16} />
                       Call Now
                     </a>
@@ -518,7 +518,7 @@ const Contact = () => {
                       <Mail size={16} />
                       Email Us
                     </a>
-                    <a href="https://wa.me/919876543210" className="contact-action-btn contact-action-whatsapp" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/917593000222" className="contact-action-btn contact-action-whatsapp" target="_blank" rel="noopener noreferrer">
                       <MessageSquare size={16} />
                       WhatsApp
                     </a>
