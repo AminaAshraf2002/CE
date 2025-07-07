@@ -1,8 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowDown, ChevronRight, CheckCircle, Building, Home, Zap, Settings, Shield } from 'lucide-react';
-import './ShaftSelectionSection.css';
+import { Building, Home, Zap, Settings, Shield, CheckCircle, Star, Award, Users, Eye } from 'lucide-react';
 
-const ShaftSelectionSection = () => {
+// Import elevator images for WITH SHAFT
+import withShaft1 from '../assets/5.jpg';
+import withShaft2 from '../assets/2-1.jpg';
+import withShaft3 from '../assets/with1.jpeg';
+import withShaft4 from '../assets/with.jpg';
+
+// Import elevator images for WITHOUT SHAFT
+import withoutShaft1 from '../assets/without.jpg';
+import withoutShaft2 from '../assets/out.jpeg';
+import withoutShaft3 from '../assets/out1.jpeg';
+import withoutShaft4 from '../assets/out3.jpeg';
+
+import './ShaftSelection.css';
+
+const ShaftSelection = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
@@ -24,82 +37,93 @@ const ShaftSelectionSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const elevatorOptions = {
-    yes: {
-      title: "Traditional Elevator Solutions",
-      subtitle: "Perfect for existing shafts with full customization",
-      options: [
-        {
-          id: 'hydraulic',
-          title: 'Hydraulic Elevator',
-          description: 'Smooth, reliable operation with multiple door configurations and premium customization options.',
-          features: [
-            'Multiple door openings possible',
-            'Silver, Gold, Rose Gold finishes',
-            'Marble & wooden textures',
-            'Custom ceiling with CE Logo',
-            'Premium interior customization'
-          ],
-          icon: <Building size={32} />,
-          image: '/api/placeholder/300/200'
-        },
-        {
-          id: 'traction',
-          title: 'Traction MRL Elevator',
-          description: 'Energy-efficient machine room-less design with advanced control systems and luxury finishes.',
-          features: [
-            'No machine room required',
-            'Energy efficient operation',
-            'Smart control systems', 
-            'Any color powder coating',
-            'Advanced safety features'
-          ],
-          icon: <Zap size={32} />,
-          image: '/api/placeholder/300/200'
-        }
-      ]
+  // Separate image arrays for different options
+  const withShaftImages = [
+    {
+      src: withShaft1
+     
     },
-    no: {
-      title: "Shaft-Free Solutions",
-      subtitle: "Innovative elevators with minimal structural requirements",
-      options: [
-        {
-          id: 'structure',
-          title: 'Elevator with Structure',
-          description: 'Self-supporting elevator with integrated framework requiring minimal modifications.',
-          features: [
-            'No shaft required',
-            'Self-supporting structure',
-            'Head room: Only 2.8m required',
-            'Pit: Just 15cm needed',
-            'Quick 2-3 day installation'
-          ],
-          icon: <Shield size={32} />,
-          image: '/api/placeholder/300/200'
-        },
-        {
-          id: 'wall-mounted',
-          title: 'Wall Mounted Elevator',
-          description: 'Space-saving wall-mounted design with royal customization options.',
-          features: [
-            'Wall mounted design',
-            'Minimal home modifications',
-            'Same customization as traditional',
-            'Royal finish options available',
-            'Compact footprint'
-          ],
-          icon: <Home size={32} />,
-          image: '/api/placeholder/300/200'
-        }
-      ]
+    {
+      src: withShaft2
+   
+    },
+    {
+      src: withShaft3
+    },
+    {
+      src: withShaft4
     }
+  ];
+
+  const withoutShaftImages = [
+    {
+      src: withoutShaft1
+    },
+    {
+      src: withoutShaft2
+    },
+    {
+      src: withoutShaft3
+    },
+    {
+      src: withoutShaft4
+    }
+  ];
+
+  // Get current images based on selected option
+  const getCurrentImages = () => {
+    if (selectedOption === 'with-shaft') return withShaftImages;
+    if (selectedOption === 'without-shaft') return withoutShaftImages;
+    return [];
   };
 
-  const services = {
-    warranty: '2 years free AMC included',
-    motorWarranty: 'Motor and corrosion warranty for 10 years',
-    specifications: 'All current square lift specifications available'
-  };
+  const currentImages = getCurrentImages();
+
+  const withShaftFeatures = [
+    {
+      icon: <Building size={24} />,
+      title: 'Upto G+15 Floor',
+      description: 'Suitable for high-rise buildings with multi-floor capacity'
+    },
+    {
+      icon: <Users size={24} />,
+      title: 'Upto 24 Passenger Capacity',
+      description: 'High capacity elevators for busy commercial and residential buildings'
+    },
+    {
+      icon: <Settings size={24} />,
+      title: 'Customisable Cabin Size',
+      description: 'Tailor-made cabin dimensions to fit your specific requirements'
+    },
+    {
+      icon: <Star size={24} />,
+      title: 'Tailor Made Designs',
+      description: 'Bespoke elevator designs crafted to match your architectural vision'
+    }
+  ];
+
+  const withoutShaftFeatures = [
+    {
+      icon: <Eye size={24} />,
+      title: '3 Sides View Panoramic Glass Shaft',
+      description: 'Stunning 360-degree views with transparent glass shaft construction'
+    },
+    {
+      icon: <CheckCircle size={24} />,
+      title: 'No Pit Required',
+      description: 'Easy installation without the need for excavation or pit construction'
+    },
+    {
+      icon: <Zap size={24} />,
+      title: 'Minimum Overhead Space of Only 2.8m',
+      description: 'Compact design requiring minimal ceiling height clearance'
+    },
+    {
+      icon: <Home size={24} />,
+      title: 'Upto G+4',
+      description: 'Perfect for low to mid-rise buildings up to 4 floors above ground'
+    }
+  ];
 
   return (
     <section 
@@ -111,118 +135,79 @@ const ShaftSelectionSection = () => {
       <div className="shaft-container">
         {/* Section Header */}
         <div className="shaft-header">
-          <div className="shaft-badge">Find Your Perfect Solution</div>
+          <div className="shaft-badge">Do you have Shaft?</div>
           <h2 className="shaft-title">
-            Choose Your <span className="highlight">Elevator Type</span>
+            Build With or <span className="highlight">Without Shaft</span>
           </h2>
-          <p className="shaft-subtitle">
-            Let us guide you to the perfect elevator solution based on your specific requirements and space constraints.
-          </p>
+          {/* <p className="shaft-subtitle">
+            Select your preferred installation type and explore our premium elevator solutions
+          </p> */}
         </div>
 
-        {/* Interactive Flowchart */}
-        <div className="flowchart-container">
-          {/* Main Question */}
-          <div className="question-box">
-            <div className="question-icon">?</div>
-            <h3 className="question-text">Do You Have a Shaft?</h3>
-            <p className="question-subtext">
-              This will help us recommend the perfect elevator solution for you
-            </p>
+        {/* Main Selection Tabs */}
+        <div className="selection-tabs">
+          <div 
+            className={`selection-tab ${selectedOption === 'with-shaft' ? 'active' : ''}`}
+            onClick={() => setSelectedOption('with-shaft')}
+          >
+            <div className="tab-icon">
+              <Building size={32} />
+            </div>
+            <h3 className="tab-title">With Shaft</h3>
           </div>
 
-          {/* Arrow */}
-          <div className="arrow-down">
-            <ArrowDown size={40} />
-          </div>
-
-          {/* Yes/No Options */}
-          <div className="options-container">
-            {/* YES Option */}
-            <div 
-              className={`option-button ${selectedOption === 'yes' ? 'selected' : ''}`}
-              onClick={() => setSelectedOption('yes')}
-            >
-              <div className="option-icon yes">
-                <CheckCircle size={40} />
-              </div>
-              <h3 className="option-title yes">YES</h3>
-              <p className="option-description">
-                I have an existing shaft or space for traditional elevator installation
-              </p>
+          <div 
+            className={`selection-tab ${selectedOption === 'without-shaft' ? 'active' : ''}`}
+            onClick={() => setSelectedOption('without-shaft')}
+          >
+            <div className="tab-icon">
+              <Home size={32} />
             </div>
-
-            {/* NO Option */}
-            <div 
-              className={`option-button ${selectedOption === 'no' ? 'selected' : ''}`}
-              onClick={() => setSelectedOption('no')}
-            >
-              <div className="option-icon no">✕</div>
-              <h3 className="option-title no">NO</h3>
-              <p className="option-description">
-                I need a shaft-free solution with minimal structural modifications
-              </p>
-            </div>
+            <h3 className="tab-title">Without Shaft</h3>
           </div>
         </div>
 
-        {/* Selected Option Details */}
+        {/* Content Based on Selection */}
         {selectedOption && (
-          <div className="selected-details">
-            <div className="details-header">
-              <h3 className="details-title">
-                {elevatorOptions[selectedOption].title}
-              </h3>
-              <p className="details-subtitle">
-                {elevatorOptions[selectedOption].subtitle}
-              </p>
-            </div>
-
-            {/* Elevator Options Grid */}
-            <div className="elevator-options-grid">
-              {elevatorOptions[selectedOption].options.map((option) => (
-                <div key={option.id} className="elevator-option-card">
-                  <div className="card-header">
-                    <div className="card-icon">
-                      {option.icon}
-                    </div>
-                    <div>
-                      <h4 className="card-title">{option.title}</h4>
+          <div className="selection-content">
+            {/* Image Cards Grid - No Slider */}
+            <div className="image-cards-container">
+              
+              
+              <div className="image-cards-grid">
+                {currentImages.map((elevator, index) => (
+                  <div key={index} className="image-card">
+                    <img 
+                      src={elevator.src} 
+                      alt={elevator.title}
+                      onError={(e) => {
+                        e.target.src = `https://via.placeholder.com/300x200/2a2a2a/d4b347?text=${elevator.title}`;
+                      }}
+                    />
+                    <div className="card-overlay">
+                      <h4>{elevator.title}</h4>
+                      <p>{elevator.description}</p>
                     </div>
                   </div>
-
-                  <p className="card-description">{option.description}</p>
-
-                  <div className="features-section">
-                    <h5 className="features-title">Key Features:</h5>
-                    <ul className="features-list">
-                      {option.features.map((feature, idx) => (
-                        <li key={idx} className="feature-item">
-                          <div className="feature-bullet" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
-            {/* Services Info */}
-            <div className="services-info">
-              <h4 className="services-title">Included Services</h4>
-              <div className="services-grid">
-                <div className="service-item">
-                  <p className="service-text">{services.warranty}</p>
-                </div>
-                <div className="service-item">
-                  <p className="service-text">{services.motorWarranty}</p>
-                </div>
-                <div className="service-item">
-                  <p className="service-text">{services.specifications}</p>
-                </div>
+            {/* Features Grid with Icons on Top Center */}
+            <div className="features-section">
+              <h3 className="features-title">Key Features</h3>
+              <div className="features-grid-top-icons">
+                {(selectedOption === 'with-shaft' ? withShaftFeatures : withoutShaftFeatures).map((feature, index) => (
+                  <div key={index} className="feature-card-top-icon">
+                    <div className="feature-icon-top">
+                      {feature.icon}
+                    </div>
+                    <div className="feature-content-center">
+                      <h4 className="feature-title">{feature.title}</h4>
+                      <p className="feature-description">{feature.description}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -232,4 +217,4 @@ const ShaftSelectionSection = () => {
   );
 };
 
-export default ShaftSelectionSection;
+export default ShaftSelection;

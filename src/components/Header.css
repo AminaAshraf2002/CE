@@ -1,5 +1,5 @@
 /* =============================================================================
-   Header Component Styles - Complete Responsive Version with Circular Logo
+   Header Component Styles - Fixed Navigation Spacing & Logo Size
 ============================================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
@@ -91,14 +91,17 @@ body {
   position: relative;
 }
 
+/* FIXED: Proper flex distribution for equal spacing */
 .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-}
+  gap: 2rem; /* Add gap between logo and nav */
+} /* Add gap between logo and nav */
 
-/* Logo Styles - UPDATED FOR CIRCULAR DESIGN */
+
+/* Logo Styles - ENLARGED & IMPROVED */
 .header-logo {
   display: flex;
   align-items: center;
@@ -107,6 +110,7 @@ body {
   transition: all 0.3s ease;
   animation: logoFloat 0.8s ease-out 0.2s both;
   z-index: 99999999;
+  flex-shrink: 0; /* Prevent logo from shrinking */
 }
 
 @keyframes logoFloat {
@@ -124,9 +128,10 @@ body {
   transform: scale(1.05);
 }
 
+/* ENLARGED LOGO CONTAINER */
 .logo-container {
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 5.5rem; /* Increased from 4.5rem */
+  height: 5.5rem; /* Increased from 4.5rem */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -136,6 +141,7 @@ body {
   backdrop-filter: blur(10px);
   border: none;
   outline: none;
+  position: relative;
 }
 
 .logo-container::before {
@@ -151,18 +157,18 @@ body {
 }
 
 .header-scrolled .logo-container {
-  width: 4rem;
-  height: 4rem;
+  width: 5rem; /* Increased from 4rem */
+  height: 5rem; /* Increased from 4rem */
   background: rgba(229, 195, 96, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* IMPROVED LOGO IMAGE - Larger and better visibility */
 .logo-image {
-  width: 70%;
-  height: 70%;
+  width: 85%; /* Increased from 70% for better CE visibility */
+  height: 85%; /* Increased from 70% for better CE visibility */
   object-fit: contain;
   transition: all 0.3s ease;
   will-change: transform;
@@ -198,13 +204,15 @@ body {
   font-size: 2.2rem;
 }
 
-/* Navigation Styles */
+/* FIXED: Navigation Styles - Equal space distribution */
 .header-nav {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  justify-content: space-between; /* Distribute items evenly with space between */
   animation: navSlide 0.8s ease-out 0.4s both;
   min-height: 40px;
+  flex: 1; /* Take up all available space */
+  max-width: 100%; /* Ensure it uses full width */
 }
 
 @keyframes navSlide {
@@ -510,6 +518,7 @@ button.nav-dropdown-trigger:visited {
   z-index: 99999999;
   min-width: 44px;
   min-height: 44px;
+  flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .mobile-menu-btn:focus {
@@ -688,7 +697,7 @@ a:active,
 }
 
 /* =============================================================================
-   RESPONSIVE BREAKPOINTS
+   RESPONSIVE BREAKPOINTS - UPDATED FOR LARGER LOGO
 ============================================================================= */
 
 /* Desktop and Large Screens (1024px and above) */
@@ -733,6 +742,17 @@ a:active,
     align-items: center;
     justify-content: center;
   }
+  
+  /* Adjust logo size for mobile */
+  .logo-container {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+  
+  .header-scrolled .logo-container {
+    width: 4rem;
+    height: 4rem;
+  }
 }
 
 /* Extra Large Desktop (1400px+) */
@@ -748,6 +768,17 @@ a:active,
   
   .header-container {
     padding: 0 3rem;
+  }
+  
+  /* Even larger logo for large screens */
+  .logo-container {
+    width: 6rem;
+    height: 6rem;
+  }
+  
+  .header-scrolled .logo-container {
+    width: 5.5rem;
+    height: 5.5rem;
   }
 }
 
@@ -789,16 +820,6 @@ a:active,
     padding: 0 1.5rem;
   }
   
-  .logo-container {
-    width: 4rem;
-    height: 4rem;
-  }
-  
-  .header-scrolled .logo-container {
-    width: 3.5rem;
-    height: 3.5rem;
-  }
-  
   .mobile-menu-content {
     gap: 2rem;
     padding: 3rem 2rem;
@@ -834,13 +855,13 @@ a:active,
   }
   
   .logo-container {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 4rem;
+    height: 4rem;
   }
   
   .header-scrolled .logo-container {
-    width: 3rem;
-    height: 3rem;
+    width: 3.5rem;
+    height: 3.5rem;
   }
   
   .mobile-menu-btn {
@@ -884,13 +905,13 @@ a:active,
   }
   
   .logo-container {
-    width: 3.2rem;
-    height: 3.2rem;
+    width: 3.5rem;
+    height: 3.5rem;
   }
   
   .header-scrolled .logo-container {
-    width: 2.8rem;
-    height: 2.8rem;
+    width: 3rem;
+    height: 3rem;
   }
   
   .mobile-menu-btn {
@@ -944,13 +965,13 @@ a:active,
   }
   
   .logo-container {
-    width: 3rem;
-    height: 3rem;
+    width: 3.2rem;
+    height: 3.2rem;
   }
   
   .header-scrolled .logo-container {
-    width: 2.6rem;
-    height: 2.6rem;
+    width: 2.8rem;
+    height: 2.8rem;
   }
   
   .logo-text {
@@ -1004,13 +1025,13 @@ a:active,
   }
   
   .logo-container {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.8rem;
+    height: 2.8rem;
   }
   
   .header-scrolled .logo-container {
-    width: 2.3rem;
-    height: 2.3rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
   
   .logo-text {

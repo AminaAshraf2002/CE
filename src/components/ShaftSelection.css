@@ -1,0 +1,731 @@
+/* =============================================================================
+   ShaftSelection Component CSS - Updated Version
+   Capricorn Elevators - Modern Tab-Based Selection with 4-Card Grid
+============================================================================= */
+
+.shaft-selection-section {
+  background: linear-gradient(135deg, #1b1b1b 0%, #1f1f1f 50%, #1c1c1c 100%);
+  color: white;
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
+
+.shaft-selection-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Background Pattern */
+.shaft-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(212, 179, 71, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(212, 179, 71, 0.03) 0%, transparent 50%),
+    repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(212, 179, 71, 0.01) 50px, rgba(212, 179, 71, 0.01) 52px);
+  opacity: 0.8;
+}
+
+.shaft-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* Section Header */
+.shaft-header {
+  text-align: center;
+  margin-bottom: 60px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease-out 0.2s;
+}
+
+.shaft-selection-section.visible .shaft-header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.shaft-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(212, 179, 71, 0.15);
+  border: 1px solid rgba(212, 179, 71, 0.4);
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #d4b347;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.shaft-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212, 179, 71, 0.2), transparent);
+  transition: left 2s ease;
+}
+
+.shaft-selection-section.visible .shaft-badge::before {
+  left: 100%;
+}
+
+.shaft-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 15px;
+}
+
+.shaft-title .highlight {
+  color: #d4b347;
+  font-weight: 800;
+  position: relative;
+  display: inline-block;
+}
+
+.shaft-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #d4b347, #f0d482);
+  transition: width 1.5s ease 0.8s;
+}
+
+.shaft-selection-section.visible .shaft-title .highlight::after {
+  width: 100%;
+}
+
+.shaft-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Selection Tabs */
+.selection-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 50px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease-out 0.4s;
+}
+
+.shaft-selection-section.visible .selection-tabs {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.selection-tab {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.8));
+  border: 2px solid rgba(212, 179, 71, 0.3);
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.selection-tab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212, 179, 71, 0.1), transparent);
+  transition: left 0.8s ease;
+}
+
+.selection-tab:hover::before {
+  left: 100%;
+}
+
+.selection-tab:hover {
+  border-color: rgba(212, 179, 71, 0.5);
+  transform: translateY(-5px);
+}
+
+.selection-tab.active {
+ 
+  border: 3px solid #d4b347;
+  transform: translateY(-10px);
+}
+
+.tab-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #d4b347, #f0d482);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+.selection-tab:hover .tab-icon {
+  transform: scale(1.1) rotate(5deg);
+  /* box-shadow: 0 10px 30px rgba(212, 179, 71, 0.4); */
+}
+
+.tab-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #d4b347;
+  margin-bottom: 10px;
+}
+
+.tab-description {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+/* Selection Content */
+.selection-content {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: contentSlideUp 0.6s ease-out forwards;
+}
+
+@keyframes contentSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Image Cards Container - No Slider */
+.image-cards-container {
+  margin-bottom: 50px;
+}
+
+.slider-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.slider-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #d4b347;
+  margin-bottom: 10px;
+}
+
+.slider-header p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+}
+
+/* Image Cards Grid - 4 Cards Layout */
+.image-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.image-card {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(212, 179, 71, 0.2);
+  transition: all 0.4s ease;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.8));
+}
+
+.image-card:hover {
+  border-color: #d4b347;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(212, 179, 71, 0.3);
+}
+
+.image-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.image-card:hover img {
+  transform: scale(1.05);
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+.card-overlay h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #d4b347;
+}
+
+.card-overlay p {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.3;
+}
+
+/* Features Section with Top Center Icons */
+.features-section {
+  margin-bottom: 50px;
+}
+
+.features-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #d4b347;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* New Features Grid with Top Center Icons - 4 Cards in One Row */
+.features-grid-top-icons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.feature-card-top-icon {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.8));
+  border: 2px solid rgba(212, 179, 71, 0.2);
+  border-radius: 15px;
+  padding: 25px 20px;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 240px;
+}
+
+.feature-card-top-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212, 179, 71, 0.05), transparent);
+  transition: left 0.8s ease;
+}
+
+.feature-card-top-icon:hover::before {
+  left: 100%;
+}
+
+.feature-card-top-icon:hover {
+  border-color: rgba(212, 179, 71, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(212, 179, 71, 0.2);
+}
+
+.feature-icon-top {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #d4b347, #f0d482);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.feature-card-top-icon:hover .feature-icon-top {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 8px 20px rgba(212, 179, 71, 0.4);
+}
+
+.feature-content-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.feature-content-center .feature-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #d4b347;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.feature-content-center .feature-description {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  text-align: center;
+  max-width: 200px;
+}
+
+/* Legacy Features Grid (kept for compatibility) */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.feature-card {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.8));
+  border: 2px solid rgba(212, 179, 71, 0.2);
+  border-radius: 15px;
+  padding: 25px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212, 179, 71, 0.05), transparent);
+  transition: left 0.8s ease;
+}
+
+.feature-card:hover::before {
+  left: 100%;
+}
+
+.feature-card:hover {
+  border-color: rgba(212, 179, 71, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(212, 179, 71, 0.2);
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #d4b347, #f0d482);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 5px 15px rgba(212, 179, 71, 0.4);
+}
+
+.feature-content {
+  flex: 1;
+}
+
+.feature-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #d4b347;
+  margin-bottom: 8px;
+}
+
+.feature-description {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+/* CTA Buttons */
+.cta-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #d4b347, #f0d482);
+  color: #000;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 179, 71, 0.4);
+}
+
+.cta-btn.secondary {
+  background: transparent;
+  color: #d4b347;
+  border: 2px solid rgba(212, 179, 71, 0.6);
+}
+
+.cta-btn.secondary:hover {
+  background: rgba(212, 179, 71, 0.1);
+  border-color: #d4b347;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 179, 71, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .shaft-selection-section {
+    padding: 60px 0;
+  }
+  
+  .selection-tabs {
+    gap: 20px;
+  }
+  
+  .image-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .image-card img {
+    height: 200px;
+  }
+  
+  .features-grid-top-icons {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    max-width: 600px;
+  }
+  
+  .feature-card-top-icon {
+    min-height: 200px;
+    padding: 20px 15px;
+    max-width: none;
+  }
+  
+  .feature-icon-top {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .feature-content-center .feature-title {
+    font-size: 1rem;
+  }
+  
+  .feature-content-center .feature-description {
+    font-size: 0.8rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .shaft-container {
+    padding: 0 1rem;
+  }
+  
+  .selection-tabs {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .shaft-header {
+    margin-bottom: 40px;
+  }
+  
+  .image-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .image-card img {
+    height: 160px;
+  }
+  
+  .features-grid-top-icons {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    max-width: 500px;
+  }
+  
+  .feature-card-top-icon {
+    min-height: 180px;
+    padding: 18px 12px;
+  }
+  
+  .feature-icon-top {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+  }
+  
+  .feature-content-center .feature-title {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+  
+  .feature-content-center .feature-description {
+    font-size: 0.75rem;
+    max-width: 180px;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .feature-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .selection-tab {
+    padding: 30px 25px;
+  }
+  
+  .tab-icon {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .card-overlay h4 {
+    font-size: 0.8rem;
+  }
+  
+  .card-overlay p {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .shaft-selection-section {
+    padding: 40px 0;
+  }
+  
+  .selection-tab {
+    padding: 25px 20px;
+  }
+  
+  .tab-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .image-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .image-card img {
+    height: 200px;
+  }
+  
+  .features-grid-top-icons {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    max-width: 300px;
+  }
+  
+  .feature-card-top-icon {
+    min-height: 160px;
+    padding: 15px 10px;
+  }
+  
+  .feature-icon-top {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .feature-content-center .feature-title {
+    font-size: 0.9rem;
+  }
+  
+  .feature-content-center .feature-description {
+    font-size: 0.7rem;
+    max-width: 250px;
+  }
+  
+  .card-overlay {
+    padding: 12px;
+  }
+  
+  .card-overlay h4 {
+    font-size: 0.85rem;
+  }
+  
+  .card-overlay p {
+    font-size: 0.7rem;
+  }
+  
+  .features-title {
+    font-size: 1.5rem;
+  }
+  
+  .feature-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .feature-title {
+    font-size: 1rem;
+  }
+  
+  .feature-description {
+    font-size: 0.85rem;
+  }
+}

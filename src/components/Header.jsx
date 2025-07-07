@@ -120,6 +120,9 @@ const Header = () => {
             <Link to="/services" className="nav-link" onClick={closeMenu}>
               Services
             </Link>
+            <Link to="/gallery" className="nav-link" onClick={closeMenu}>
+              Gallery
+            </Link>
 
             <Link to="/contact" className="nav-link" onClick={closeMenu}>
               Contact
