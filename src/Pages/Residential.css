@@ -1,5 +1,5 @@
 /* =============================================================================
-   Residential Elevators Page CSS
+   Residential Elevators Page CSS - Updated with Image Slider
    Capricorn Elevators - Premium Residential Collection
 ============================================================================= */
 
@@ -243,7 +243,7 @@
   margin: 0 auto;
 }
 
-/* Model Navigation */
+/* Model Navigation - FIXED HOVER BACKGROUND */
 .residential-model-nav {
   display: flex;
   justify-content: center;
@@ -271,9 +271,12 @@
   border-color: var(--primary-gold);
 }
 
+/* FIXED: Hover background color showing properly */
 .residential-model-nav-btn:hover:not(.active) {
-  border-color: rgba(212, 179, 71, 0.6);
-  background: rgba(212, 179, 71, 0.1);
+  background: var(--primary-gold) !important; /* Force the gold background */
+  color: var(--black) !important; /* Change text to black for contrast */
+  border-color: var(--primary-gold) !important;
+  transform: translateY(-2px);
 }
 
 /* Model Display */
@@ -293,13 +296,101 @@
   box-shadow: var(--shadow-luxury);
 }
 
-.residential-model-image {
+/* =============================================================================
+   Image Slider Styles
+============================================================================= */
+.image-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slider-images {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
+.slider-image.active {
+  opacity: 1;
+}
+
+/* Navigation Arrows */
+.slider-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid var(--primary-gold);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-gold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+.slider-nav:hover {
+  background: var(--primary-gold);
+  color: var(--black);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-nav.prev {
+  left: 20px;
+}
+
+.slider-nav.next {
+  right: 20px;
+}
+
+/* Slide Indicators */
+.slider-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-gold);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background: var(--primary-gold);
+}
+
+.indicator:hover {
+  transform: scale(1.2);
+}
+
+/* Model Badge */
 .residential-model-badge {
   position: absolute;
   top: 20px;
@@ -312,6 +403,7 @@
   color: var(--primary-gold);
   font-size: 0.8rem;
   font-weight: 600;
+  z-index: 15;
 }
 
 /* Model Details */
@@ -534,6 +626,11 @@
   cursor: pointer;
 }
 
+.residential-cta-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-gold-hover);
+}
+
 .residential-cta-btn-secondary {
   padding: 10px 30px;
   background: transparent;
@@ -570,9 +667,43 @@
   }
 }
 
+/* Auto-play slider animation */
+@keyframes slideChange {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Smooth fade transitions for slider */
+.slider-image {
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+
 /* =============================================================================
    Responsive Design
 ============================================================================= */
+
+/* Large Desktop */
+@media (max-width: 1400px) {
+  .residential-models-container {
+    max-width: 1200px;
+  }
+}
+
+/* Desktop */
+@media (max-width: 1200px) {
+  .residential-model-display {
+    gap: 60px;
+  }
+  
+  .residential-model-image-container {
+    height: 500px;
+  }
+}
+
+/* Tablet */
 @media (max-width: 1024px) {
   .residential-model-display {
     grid-template-columns: 1fr !important;
@@ -583,8 +714,26 @@
     grid-template-columns: 1fr !important;
     gap: 10px !important;
   }
+  
+  .residential-model-image-container {
+    height: 450px;
+  }
+  
+  .slider-nav {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .slider-nav.prev {
+    left: 15px;
+  }
+  
+  .slider-nav.next {
+    right: 15px;
+  }
 }
 
+/* Mobile Large */
 @media (max-width: 768px) {
   .residential-hero-title {
     font-size: 2.5rem !important;
@@ -597,6 +746,13 @@
   .residential-model-nav {
     flex-direction: column !important;
     align-items: center !important;
+    gap: 15px !important;
+  }
+  
+  .residential-model-nav-btn {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
   }
   
   .residential-model-image-container {
@@ -615,8 +771,31 @@
     flex-direction: column !important;
     align-items: center !important;
   }
+  
+  .slider-nav {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .slider-nav.prev {
+    left: 10px;
+  }
+  
+  .slider-nav.next {
+    right: 10px;
+  }
+  
+  .slider-indicators {
+    bottom: 15px;
+  }
+  
+  .indicator {
+    width: 10px;
+    height: 10px;
+  }
 }
 
+/* Mobile Small */
 @media (max-width: 480px) {
   .residential-hero-content {
     padding: 0 1rem !important;
@@ -634,4 +813,93 @@
     flex-direction: column !important;
     align-items: center !important;
   }
+  
+  .residential-model-image-container {
+    height: 300px !important;
+  }
+  
+  .residential-model-badge {
+    top: 10px;
+    right: 10px;
+    padding: 8px 12px;
+    font-size: 0.7rem;
+  }
+  
+  .slider-nav {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .residential-btn-primary,
+  .residential-btn-secondary,
+  .residential-cta-btn-primary,
+  .residential-cta-btn-secondary {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
 }
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+  .residential-model-image-container {
+    height: 250px !important;
+  }
+  
+  .slider-indicators {
+    gap: 8px;
+  }
+  
+  .indicator {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .slider-image,
+  .residential-model-nav-btn,
+  .slider-nav,
+  .indicator {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .residential-scroll-indicator {
+    animation: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .residential-model-nav-btn:hover:not(.active) {
+    background: var(--primary-gold) !important;
+    color: var(--black) !important;
+    border-color: var(--primary-gold) !important;
+  }
+  
+  .slider-nav {
+    border-width: 3px;
+  }
+  
+  .indicator {
+    border-width: 3px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .residential-hero-video-container,
+  .slider-nav,
+  .slider-indicators {
+    display: none !important;
+  }
+  
+  .residential-elevators-page {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* End of CSS */

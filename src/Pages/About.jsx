@@ -126,7 +126,7 @@ const About = () => {
       icon: <Globe size={24} />,
       title: 'Global Presence',
       description: 'International expertise with local support, ensuring world-class service wherever you are.',
-      stats: '9 Countries'
+      stats: '2 Countries'
     }
   ];
 
@@ -248,7 +248,7 @@ const About = () => {
           <p className="about-hero-description">
             With over 25 years of excellence in vertical transportation, we are committed to 
             delivering premium elevator solutions that combine safety, innovation, and reliability 
-            across 9 countries worldwide.
+            across 2 countries worldwide.
           </p>
           <div className="about-hero-stats">
             <div className="hero-stat">
@@ -256,11 +256,11 @@ const About = () => {
               <div className="stat-label">Years Experience</div>
             </div>
             <div className="hero-stat">
-              <div className="stat-number">500+</div>
+              <div className="stat-number">200+</div>
               <div className="stat-label">Installations</div>
             </div>
             <div className="hero-stat">
-              <div className="stat-number">9</div>
+              <div className="stat-number">2</div>
               <div className="stat-label">Countries</div>
             </div>
             <div className="hero-stat">

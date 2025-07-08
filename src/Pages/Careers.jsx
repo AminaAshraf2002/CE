@@ -88,7 +88,7 @@ const Careers = () => {
     {
       icon: <Globe size={32} />,
       title: 'Global Presence',
-      description: 'Work across 9 countries with international project opportunities and cultural diversity.'
+      description: 'Work across 2 countries with international project opportunities and cultural diversity.'
     },
     {
       icon: <Award size={32} />,
@@ -107,34 +107,7 @@ const Careers = () => {
     }
   ];
 
-  // Application process steps
-  const applicationProcess = [
-    {
-      step: 1,
-      title: 'Submit Application',
-      description: 'Send your resume and cover letter for the position you\'re interested in.'
-    },
-    {
-      step: 2,
-      title: 'Initial Screening',
-      description: 'Our HR team reviews your application and conducts a phone screening.'
-    },
-    {
-      step: 3,
-      title: 'Technical Interview',
-      description: 'Meet with our technical team to discuss your skills and experience.'
-    },
-    {
-      step: 4,
-      title: 'Final Interview',
-      description: 'Final discussion with department heads and team leads.'
-    },
-    {
-      step: 5,
-      title: 'Welcome Aboard',
-      description: 'Join the Capricorn Elevators family and start your journey with us.'
-    }
-  ];
+ 
 
   // Event handlers
   const handleInputChange = (e) => {
@@ -239,11 +212,11 @@ const Careers = () => {
           <div className="cap-hero-stats">
             <div className="cap-stat-item">
               <Globe size={20} />
-              <span>9 Countries</span>
+              <span>2 Countries</span>
             </div>
             <div className="cap-stat-item">
               <Building size={20} />
-              <span>500+ Projects</span>
+              <span>200+ Projects</span>
             </div>
             <div className="cap-stat-item">
               <Award size={20} />
@@ -286,33 +259,7 @@ const Careers = () => {
         </div>
       </section>
 
-      {/* Application Process Section */}
-      <section ref={processRef} className={`cap-process-section ${processVisible ? 'cap-visible' : ''}`}>
-        <div className="cap-container">
-          <div className="cap-section-header">
-            <div className="cap-section-badge">How to Apply</div>
-            <h2 className="cap-section-title">
-              Application <span className="cap-highlight">Process</span>
-            </h2>
-            <p className="cap-section-subtitle">
-              Our streamlined hiring process ensures we find the right fit for both you and our team.
-            </p>
-          </div>
-
-          <div className="cap-process-timeline">
-            {applicationProcess.map((step, index) => (
-              <div key={step.step} className="cap-process-step" style={{ animationDelay: `${index * 0.2}s` }}>
-                <div className="cap-step-number">{step.step}</div>
-                <div className="cap-step-content">
-                  <h3 className="cap-step-title">{step.title}</h3>
-                  <p className="cap-step-description">{step.description}</p>
-                </div>
-                {index < applicationProcess.length - 1 && <div className="cap-step-connector"></div>}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+    
 
       {/* Application Form Section */}
       <section id="application-form" className="cap-application-section">
@@ -342,6 +289,7 @@ const Careers = () => {
                   <div>
                     <strong>Phone</strong>
                     <span>+971509169002</span>
+                   
                   </div>
                 </div>
                 <div className="cap-contact-item">

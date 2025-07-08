@@ -1,248 +1,303 @@
-/* =============================================================================
-   PVE Style Interactive Hotspot Section - CSS - REDUCED SIZE
-   Capricorn Elevators - Professional Design Like PVE Reference
-============================================================================= */
+/* PVEHotspotSection.css */
 
 .pve-hotspot-section {
-  background: #2a2929fb;
-  color: white;
-  padding: 80px 0; /* Reduced from 100px */
   position: relative;
+  padding: 120px 0;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
   overflow: hidden;
 }
 
-/* Background Pattern */
 .pve-bg-pattern {
   position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at 25% 25%, rgba(212, 179, 71, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(212, 179, 71, 0.05) 0%, transparent 50%);
-  opacity: 0.7;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(212, 179, 71, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(212, 179, 71, 0.1) 0%, transparent 50%),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(212,179,71,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.6;
 }
 
-/* Section Header */
 .pve-section-header {
-  text-align: left;
-  margin-bottom: 48px; /* Reduced from 60px */
-  padding-left: 32px; /* Reduced from 40px */
-  transform: translateY(30px);
+  text-align: center;
+  margin-bottom: 80px;
   opacity: 0;
-  transition: all 1s ease-out;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
 }
 
 .pve-section-header.visible {
-  transform: translateY(0);
   opacity: 1;
+  transform: translateY(0);
 }
 
 .pve-badge {
   display: inline-block;
-  padding: 6.4px 16px; /* Reduced from 8px 20px */
-  background: rgba(212, 179, 71, 0.15);
-  border: 1px solid rgba(212, 179, 71, 0.4);
+  background: linear-gradient(135deg, #d4b347 0%, #f4d03f 100%);
+  color: #1a1a2e;
+  padding: 8px 20px;
   border-radius: 25px;
-  font-size: 0.56rem; /* Reduced from 0.70rem */
+  font-size: 14px;
   font-weight: 600;
-  color: #d4b347;
+  margin-bottom: 20px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 16px; /* Reduced from 20px */
+  letter-spacing: 0.5px;
 }
 
 .pve-main-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.2rem, 3vw, 2rem); /* Reduced from clamp(1.5rem, 3vw, 2.5rem) */
+  font-size: 3.5rem;
   font-weight: 700;
-  color: white;
+  color: #ffffff;
+  margin-bottom: 20px;
   line-height: 1.2;
-  margin-bottom: 12px; /* Reduced from 15px */
-  max-width: 480px; /* Reduced from 600px */
 }
 
 .pve-main-title .highlight {
-  color: #d4b347;
-  font-weight: 800;
+  background: linear-gradient(135deg, #d4b347 0%, #f4d03f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .pve-subtitle {
-  font-size: .72rem; /* Reduced from .9rem */
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.2rem;
+  color: #a0a0a0;
+  max-width: 600px;
+  margin: 0 auto;
   line-height: 1.6;
-  max-width: 400px; /* Reduced from 500px */
-  font-weight: 400;
 }
 
-/* Main Content Grid */
 .pve-main-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px; /* Reduced from 80px */
-  align-items: center;
-  transform: translateY(30px);
+  gap: 60px;
+  align-items: start;
   opacity: 0;
-  transition: all 1s ease-out 0.3s;
+  transform: translateY(30px);
+  transition: all 0.8s ease 0.3s;
 }
 
 .pve-main-content.visible {
-  transform: translateY(0);
   opacity: 1;
+  transform: translateY(0);
 }
 
-/* Elevator Image Section */
 .pve-elevator-section {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .pve-elevator-container {
-  width: 100%;
-  max-width: 360px; /* Reduced from 450px */
-  height: 480px; /* Reduced from 600px */
   position: relative;
-  background: #1a1a1a;
+  width: 100%;
+  height: 600px;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.5),
-    0 0 80px rgba(212, 179, 71, 0.1);
-  border: 2px solid rgba(212, 179, 71, 0.3);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(212, 179, 71, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.pve-elevator-image {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: brightness(0.9) contrast(1.1);
+.pve-elevator-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
 }
 
 .pve-elevator-overlay {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg,
-      rgba(0, 0, 0, 0.1) 0%,
-      rgba(0, 0, 0, 0.05) 50%,
-      rgba(0, 0, 0, 0.15) 100%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(135deg, rgba(15, 15, 35, 0.1) 0%, transparent 30%, rgba(212, 179, 71, 0.1) 100%),
+    radial-gradient(circle at 85% 50%, rgba(212, 179, 71, 0.15) 0%, transparent 60%);
+  pointer-events: none;
 }
 
-/* PVE Style Hotspots */
 .pve-hotspot {
   position: absolute;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
-  z-index: 20;
   transform: translate(-50%, -50%);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 10;
 }
+
+.pve-hotspot:hover {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.pve-hotspot.active {
+  transform: translate(-50%, -50%) scale(1.25);
+}
+
+
 
 .pve-hotspot-dot {
-  width: 11.2px; /* Reduced from 14px */
-  height: 11.2px; /* Reduced from 14px */
-  background: linear-gradient(135deg, #d4b347, #f0d482);
-  border-radius: 50%;
-  position: relative;
-  transition: all 0.3s ease;
-  box-shadow:
-    0 0 0 3px rgba(212, 179, 71, 0.3),
-    0 0 15px rgba(212, 179, 71, 0.5);
-  animation: pveHotspotPulse 2s infinite;
-}
-
-.pve-hotspot:hover .pve-hotspot-dot,
-.pve-hotspot.active .pve-hotspot-dot {
-  width: 14.4px; /* Reduced from 18px */
-  height: 14.4px; /* Reduced from 18px */
-  background: linear-gradient(135deg, #f0d482, #d4b347);
-  box-shadow:
-    0 0 0 4px rgba(212, 179, 71, 0.4),
-    0 0 20px rgba(212, 179, 71, 0.7);
-  animation: pveHotspotActive 1s infinite;
-}
-
-.pve-hotspot-number {
   position: absolute;
-  top: -6.4px; /* Reduced from -8px */
-  right: -6.4px; /* Reduced from -8px */
-  width: 12.8px; /* Reduced from 16px */
-  height: 12.8px; /* Reduced from 16px */
-  background: #d4b347;
-  color: #000;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #d4b347 0%, #f4d03f 100%);
   border-radius: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 7.2px; /* Reduced from 9px */
-  font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  color: #1a1a2e;
+  box-shadow: 
+    0 4px 15px rgba(212, 179, 71, 0.4),
+    0 0 0 3px rgba(255, 255, 255, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
-/* Feature Details Panel - PVE Style */
+.pve-hotspot:hover .pve-hotspot-dot {
+  box-shadow: 
+    0 6px 20px rgba(212, 179, 71, 0.6),
+    0 0 0 4px rgba(255, 255, 255, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, #f4d03f 0%, #d4b347 100%);
+}
+
+.pve-hotspot.active .pve-hotspot-dot {
+  background: linear-gradient(135deg, #ffffff 0%, #f4d03f 100%);
+  color: #1a1a2e;
+  box-shadow: 
+    0 8px 25px rgba(212, 179, 71, 0.8),
+    0 0 0 5px rgba(255, 255, 255, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 1;
+  }
+  80%, 100% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
+}
+
 .pve-feature-panel {
-  background: linear-gradient(135deg,
-      rgba(0, 0, 0, 0.9) 0%,
-      rgba(20, 20, 20, 0.95) 100%);
-  border: 2px solid rgba(212, 179, 71, 0.3);
-  border-radius: 20px;
-  padding: 32px; /* Reduced from 40px */
-  min-height: 400px; /* Reduced from 500px */
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(20px);
+  background: 
+    linear-gradient(135deg, #1e1e3f 0%, #2a2a4a 50%, #1e1e3f 100%),
+    radial-gradient(circle at 20% 20%, rgba(212, 179, 71, 0.1) 0%, transparent 50%);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(212, 179, 71, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.pve-feature-panel:hover {
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(212, 179, 71, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .pve-feature-content {
-  animation: pveContentSlide 0.5s ease-out;
+  width: 100%;
 }
 
 .pve-feature-header {
-  margin-bottom: 20px; /* Reduced from 25px */
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.pve-feature-image-container {
+  flex-shrink: 0;
+  width: 140px;
+  height: 140px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.4),
+    0 0 0 2px rgba(212, 179, 71, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.pve-feature-image-container:hover {
+  transform: scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 0 0 3px rgba(212, 179, 71, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.pve-feature-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+.pve-feature-image-container:hover .pve-feature-image {
+  transform: scale(1.05);
+}
+
+.pve-feature-text {
+  flex: 1;
 }
 
 .pve-feature-title {
-  font-size: 1.6rem; /* Reduced from 2rem */
+  font-size: 1.8rem;
   font-weight: 700;
-  color: #d4b347;
-  font-family: 'Playfair Display', serif;
-  margin-bottom: 6.4px; /* Reduced from 8px */
+  color: #ffffff;
+  margin-bottom: 8px;
   line-height: 1.3;
 }
 
 .pve-feature-subtitle {
-  font-size: 0.8rem; /* Reduced from 1rem */
-  color: rgba(212, 179, 71, 0.8);
+  font-size: 1.1rem;
+  color: #d4b347;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 16px; /* Reduced from 20px */
+  margin-bottom: 0;
 }
 
 .pve-feature-description {
-  font-size: 0.84rem; /* Reduced from 1.05rem */
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 24px; /* Reduced from 30px */
-  font-weight: 400;
+  font-size: 1rem;
+  color: #b0b0b0;
+  line-height: 1.6;
+  margin-bottom: 30px;
 }
 
-/* Feature Lists */
 .pve-feature-lists {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px; /* Reduced from 30px */
-  margin-bottom: 24px; /* Reduced from 30px */
+  gap: 30px;
+  margin-bottom: 30px;
 }
 
 .pve-feature-list h5,
 .pve-specs-list h5 {
-  font-size: 0.8rem; /* Reduced from 1rem */
+  font-size: 1rem;
   font-weight: 600;
-  color: #f0d482;
-  margin-bottom: 12px; /* Reduced from 15px */
+  color: #ffffff;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
-  gap: 6.4px; /* Reduced from 8px */
+  gap: 8px;
 }
 
 .pve-feature-items {
@@ -254,16 +309,16 @@
 .pve-feature-item {
   display: flex;
   align-items: center;
-  gap: 8px; /* Reduced from 10px */
-  margin-bottom: 8px; /* Reduced from 10px */
-  font-size: 0.72rem; /* Reduced from 0.9rem */
-  color: rgba(255, 255, 255, 0.85);
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  color: #c0c0c0;
 }
 
 .pve-feature-bullet {
-  width: 4px; /* Reduced from 5px */
-  height: 4px; /* Reduced from 5px */
-  background: #d4b347;
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, #d4b347 0%, #f4d03f 100%);
   border-radius: 50%;
   flex-shrink: 0;
 }
@@ -271,241 +326,176 @@
 .pve-specs-grid {
   display: flex;
   flex-direction: column;
-  gap: 9.6px; /* Reduced from 12px */
+  gap: 12px;
 }
 
 .pve-spec-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 9.6px; /* Reduced from 10px 12px */
-  background: rgba(212, 179, 71, 0.08);
-  border-radius: 6px;
-  border: 1px solid rgba(212, 179, 71, 0.2);
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .pve-spec-label {
-  font-size: 0.68rem; /* Reduced from 0.85rem */
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  color: #a0a0a0;
   font-weight: 500;
 }
 
 .pve-spec-value {
-  font-size: 0.68rem; /* Reduced from 0.85rem */
-  color: #d4b347;
+  font-size: 0.9rem;
+  color: #ffffff;
   font-weight: 600;
 }
 
-/* CTA Button */
 .pve-cta-button {
   display: inline-flex;
   align-items: center;
-  gap: 6.4px; /* Reduced from 8px */
-  padding: 9.6px 19.2px; /* Reduced from 12px 24px */
-  background: linear-gradient(135deg, #d4b347, #f0d482);
-  color: #000;
-  border: none;
-  border-radius: 25px;
-  font-size: 0.72rem; /* Reduced from 0.9rem */
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  gap: 8px;
+  background: linear-gradient(135deg, #d4b347 0%, #f4d03f 50%, #d4b347 100%);
+  color: #1a1a2e;
+  padding: 14px 28px;
+  border-radius: 30px;
   text-decoration: none;
-  transform: translateY(0);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 
+    0 6px 20px rgba(212, 179, 71, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.pve-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s;
+}
+
+.pve-cta-button:hover::before {
+  left: 100%;
 }
 
 .pve-cta-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(212, 179, 71, 0.3);
-  background: linear-gradient(135deg, #f0d482, #d4b347);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 10px 30px rgba(212, 179, 71, 0.6),
+    0 0 0 2px rgba(255, 255, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, #f4d03f 0%, #d4b347 50%, #f4d03f 100%);
 }
 
-/* Default State */
+.pve-cta-button:active {
+  transform: translateY(-1px) scale(1.01);
+}
+
 .pve-default-state {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  height: 100%;
-  text-align: left;
+  text-align: center;
+  padding: 40px 20px;
 }
 
 .pve-default-icon {
-  padding: 16px; /* Reduced from 20px */
-  background: linear-gradient(135deg, rgba(212, 179, 71, 0.1), rgba(240, 212, 130, 0.1));
-  border-radius: 12px;
-  margin-bottom: 20px; /* Reduced from 25px */
+  margin-bottom: 20px;
 }
 
 .pve-default-title {
-  font-size: 1.12rem; /* Reduced from 1.4rem */
+  font-size: 1.5rem;
   font-weight: 600;
-  color: #d4b347;
-  margin-bottom: 9.6px; /* Reduced from 12px */
-  font-family: 'Playfair Display', serif;
+  color: #ffffff;
+  margin-bottom: 16px;
 }
 
 .pve-default-text {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.76rem; /* Reduced from 0.95rem */
+  font-size: 1rem;
+  color: #a0a0a0;
   line-height: 1.6;
-  max-width: 280px; /* Reduced from 350px */
-}
-
-/* Animations */
-@keyframes pveHotspotPulse {
-  0% {
-    box-shadow:
-      0 0 0 3px rgba(212, 179, 71, 0.3),
-      0 0 15px rgba(212, 179, 71, 0.5);
-  }
-
-  50% {
-    box-shadow:
-      0 0 0 6px rgba(212, 179, 71, 0.2),
-      0 0 20px rgba(212, 179, 71, 0.6);
-  }
-
-  100% {
-    box-shadow:
-      0 0 0 3px rgba(212, 179, 71, 0.3),
-      0 0 15px rgba(212, 179, 71, 0.5);
-  }
-}
-
-@keyframes pveHotspotActive {
-  0% {
-    box-shadow:
-      0 0 0 4px rgba(212, 179, 71, 0.4),
-      0 0 20px rgba(212, 179, 71, 0.7);
-  }
-
-  50% {
-    box-shadow:
-      0 0 0 8px rgba(212, 179, 71, 0.3),
-      0 0 25px rgba(212, 179, 71, 0.8);
-  }
-
-  100% {
-    box-shadow:
-      0 0 0 4px rgba(212, 179, 71, 0.4),
-      0 0 20px rgba(212, 179, 71, 0.7);
-  }
-}
-
-@keyframes pveContentSlide {
-  0% {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
   .pve-main-content {
-    gap: 48px; /* Reduced from 60px */
-  }
-
-  .pve-elevator-container {
-    max-width: 320px; /* Reduced from 400px */
-    height: 440px; /* Reduced from 550px */
-  }
-
-  .pve-feature-panel {
-    padding: 28px; /* Reduced from 35px */
-  }
-}
-
-@media (max-width: 1024px) {
-  .pve-hotspot-section {
-    padding: 64px 0; /* Reduced from 80px */
-  }
-
-  .pve-main-content {
     grid-template-columns: 1fr;
-    gap: 40px; /* Reduced from 50px */
+    gap: 40px;
   }
-
-  .pve-section-header {
-    text-align: center;
-    padding-left: 0;
-  }
-
+  
   .pve-elevator-container {
-    max-width: 304px; /* Reduced from 380px */
-    height: 400px; /* Reduced from 500px */
+    height: 500px;
   }
-
+  
   .pve-feature-lists {
     grid-template-columns: 1fr;
-    gap: 16px; /* Reduced from 20px */
-  }
-
-  .pve-feature-panel {
-    padding: 24px; /* Reduced from 30px */
+    gap: 20px;
   }
 }
 
 @media (max-width: 768px) {
   .pve-hotspot-section {
-    padding: 48px 0; /* Reduced from 60px */
+    padding: 80px 0;
   }
-
-  .pve-section-header {
-    margin-bottom: 32px; /* Reduced from 40px */
-  }
-
+  
   .pve-main-title {
-    font-size: clamp(1.6rem, 6vw, 2rem); /* Reduced from clamp(2rem, 6vw, 2.5rem) */
+    font-size: 2.5rem;
   }
-
+  
+  .pve-subtitle {
+    font-size: 1.1rem;
+  }
+  
   .pve-elevator-container {
-    max-width: 256px; /* Reduced from 320px */
-    height: 360px; /* Reduced from 450px */
+    height: 400px;
   }
-
+  
   .pve-feature-panel {
-    padding: 20px; /* Reduced from 25px */
+    padding: 24px;
   }
-
-  .pve-feature-title {
-    font-size: 1.28rem; /* Reduced from 1.6rem */
+  
+  .pve-feature-header {
+    flex-direction: column;
+    text-align: center;
   }
-
+  
+  .pve-feature-image-container {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+  }
+  
+  .pve-hotspot {
+    width: 40px;
+    height: 40px;
+  }
+  
   .pve-hotspot-dot {
-    width: 9.6px; /* Reduced from 12px */
-    height: 9.6px; /* Reduced from 12px */
+    width: 28px;
+    height: 28px;
   }
-
-  .pve-hotspot:hover .pve-hotspot-dot,
-  .pve-hotspot.active .pve-hotspot-dot {
-    width: 12.8px; /* Reduced from 16px */
-    height: 12.8px; /* Reduced from 16px */
-  }
-
-  .pve-hotspot-number {
-    width: 11.2px; /* Reduced from 14px */
-    height: 11.2px; /* Reduced from 14px */
-    font-size: 6.4px; /* Reduced from 8px */
+  
+  .pve-hotspot-pulse-ring {
+    width: 40px;
+    height: 40px;
   }
 }
 
 @media (max-width: 480px) {
-  .pve-elevator-container {
-    max-width: 224px; /* Reduced from 280px */
-    height: 320px; /* Reduced from 400px */
+  .pve-main-title {
+    font-size: 2rem;
   }
-
-  .pve-feature-panel {
-    padding: 16px; /* Reduced from 20px */
+  
+  .pve-feature-title {
+    font-size: 1.4rem;
   }
-
-  .pve-feature-description {
-    font-size: 0.76rem; /* Reduced from 0.95rem */
+  
+  .pve-feature-subtitle {
+    font-size: 1rem;
   }
 }

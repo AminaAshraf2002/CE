@@ -492,7 +492,7 @@ const Contact = () => {
                     <Mail size={20} />
                     <div>
                       <strong>Email Addresses</strong>
-                      <p>accounts@capricornelevators.com</p>
+                      <p>sales@capriconelevators.com</p>
                      
                     </div>
                   </div>
@@ -527,11 +527,11 @@ const Contact = () => {
 
                 <div className="contact-company-stats" data-aos="fade-left" data-aos-delay="600">
                   <div className="contact-company-stat">
-                    <span className="contact-stat-value">500+</span>
+                    <span className="contact-stat-value">200+</span>
                     <span className="contact-stat-label">Projects Completed</span>
                   </div>
                   <div className="contact-company-stat">
-                    <span className="contact-stat-value">9</span>
+                    <span className="contact-stat-value">2</span>
                     <span className="contact-stat-label">Countries Served</span>
                   </div>
                   <div className="contact-company-stat">

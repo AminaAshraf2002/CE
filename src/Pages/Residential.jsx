@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Check, ArrowRight, Phone, Mail, Settings, MessageSquare } from 'lucide-react';
+import { ChevronDown, Check, ArrowRight, Phone, Mail, Settings, MessageSquare, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -9,28 +9,38 @@ import './Residential.css';
 import bannerVideo from '../assets/home.mp4';
 
 // Import residential elevator images - Update these paths to match your actual image locations
-import classicImage from '../assets/classic.jpeg';
-import grandeurImage from '../assets/grand2.jpeg';
-import grandeurSignatureImage from '../assets/grand.jpeg';
-import royaleImage from '../assets/royal.jpeg';
+import classicImage1 from '../assets/class.jpeg';
+import classicImage2 from '../assets/class0.jpeg';
+import classicImage3 from '../assets/classic3.jpeg';
 
+import grandeurImage1 from '../assets/grandeur.jpeg';
+import grandeurImage2 from '../assets/grandeur2.jpeg';
+import grandeurImage3 from '../assets/grandeur.jpeg';
 
+import grandeurSignatureImage1 from '../assets/sign.jpeg';
+import grandeurSignatureImage2 from '../assets/sign2.jpeg';
+import grandeurSignatureImage3 from '../assets/sign3.jpeg';
+
+import royaleImage1 from '../assets/royalee.jpeg';
+import royaleImage2 from '../assets/royale2.jpeg';
+import royaleImage3 from '../assets/royale3.jpeg';
 
 const Residential = () => {
   const [scrollY, setScrollY] = useState(0);
   const [activeElevator, setActiveElevator] = useState('classic');
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const videoRef = useRef(null);
   const heroRef = useRef(null);
 
-  // Elevator models data with imported images
+  // Elevator models data with multiple images for each model
   const elevatorModels = {
     classic: {
       id: 'classic',
       name: 'Capricorn Classic',
       subtitle: 'Elegant Design with Superior Safety',
       description: 'The Capricorn Classic is designed with cutting-edge technology and a focus on safety, comfort, and durability. Featuring a sleek stainless steel cabin with both glossy and hairline finishes, this model offers a sophisticated touch to any space.',
-      image: classicImage, // Using imported image
+      images: [classicImage1, classicImage2, classicImage3], // Multiple images
       specifications: {
         cabin: 'SS 304 Silver- Glossy & Hairline finish',
         door: 'SS 304 Covered',
@@ -53,7 +63,7 @@ const Residential = () => {
       name: 'Capricorn Grandeur',
       subtitle: 'Luxury Meets Advanced Technology',
       description: 'Experience the pinnacle of elevator luxury with the Capricorn Grandeur. This premium model combines sophisticated aesthetics with cutting-edge technology, featuring customizable cabin options and advanced safety systems.',
-      image: grandeurImage, // Using imported image
+      images: [grandeurImage1, grandeurImage2, grandeurImage3], // Multiple images
       specifications: {
         cabin: 'SS 304\nSilver cabin with one back panel as\nRAL – White, Cream, Black, Grey, any RGB\nColoured SS – Gold, Rose Gold, Bronze, Black, etc.',
         door: 'SS 304 Half Vision & Full Vision',
@@ -76,7 +86,7 @@ const Residential = () => {
       name: 'Capricorn Grandeur Signature',
       subtitle: 'The Ultimate in Elevator Excellence',
       description: 'The Capricorn Grandeur Signature represents the ultimate in elevator luxury and technology. With premium materials, advanced control systems, and comprehensive safety features, this model sets new standards in residential elevator excellence.',
-      image: grandeurSignatureImage, // Using imported image
+      images: [grandeurSignatureImage1, grandeurSignatureImage2, grandeurSignatureImage3], // Multiple images
       specifications: {
         cabin: 'SS 304\nColoured Cabin with options of\nRAL – White, Cream, Black,\nGrey, any RGB\nColoured SS – Gold, Rose\nGold, Bronze, Black, etc.\nDesigner SS\nWooden Finish MDF\nLeather Finish\nMirror',
         door: 'SS 304 Full Vision\nWith & without Door Frame\nRAL\nSS Coloured\nTinted option also',
@@ -99,7 +109,7 @@ const Residential = () => {
       name: 'Capricorn Royale',
       subtitle: 'Glass Elegance with Smart Technology',
       description: 'The Capricorn Royale features stunning glass shaft design with 3-side glass opening, offering unparalleled views and natural light. This model combines aesthetic beauty with advanced technology for the ultimate residential elevator experience.',
-      image: royaleImage, // Using imported image
+      images: [royaleImage1, royaleImage2, royaleImage3], // Multiple images
       specifications: {
         cabin: '3 Side Glass Opening with\nGlass Shaft\nPlain Glass, blurred Glass,\nTinted Glass\nback panel in\nRAL – White, Cream,\nBlack, Grey, any RGB\nColoured SS – Gold, Rose\nGold, Bronze, Black, etc.\nDesigner SS\nWooden Finish MDF\nLeather Finish\nMirror',
         door: 'SS 304 Full Vision\nWith & without Door\nFrame\nRAL\nSS Coloured\nTinted option also',
@@ -132,7 +142,29 @@ const Residential = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Reset slide index when changing elevator model
+  useEffect(() => {
+    setCurrentSlideIndex(0);
+  }, [activeElevator]);
+
   const currentElevator = elevatorModels[activeElevator];
+
+  // Image slider functions
+  const nextSlide = () => {
+    setCurrentSlideIndex((prevIndex) => 
+      (prevIndex + 1) % currentElevator.images.length
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentSlideIndex((prevIndex) => 
+      prevIndex === 0 ? currentElevator.images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlideIndex(index);
+  };
 
   return (
     <div className="residential-elevators-page">
@@ -230,26 +262,53 @@ const Residential = () => {
 
           {/* Active Model Display */}
           <div className="residential-model-display">
-            {/* Model Image */}
+            {/* Model Image Slider */}
             <div className="residential-model-image-container">
-              <img 
-                src={currentElevator.image}
-                alt={currentElevator.name}
-                className="residential-model-image"
-                onError={(e) => {
-                  // Enhanced fallback styling for better appearance
-                  e.target.style.background = 'linear-gradient(135deg, #2c2c2c, #4a4a4a)';
-                  e.target.style.display = 'flex';
-                  e.target.style.alignItems = 'center';
-                  e.target.style.justifyContent = 'center';
-                  e.target.style.color = '#d4b347';
-                  e.target.style.fontSize = '1.2rem';
-                  e.target.style.fontWeight = '600';
-                  e.target.style.textAlign = 'center';
-                  e.target.style.padding = '20px';
-                  e.target.innerHTML = `<div>${currentElevator.name}<br><small style="color: #888; font-size: 0.9rem;">Image Loading...</small></div>`;
-                }}
-              />
+              <div className="image-slider">
+                <div className="slider-images">
+                  {currentElevator.images.map((image, index) => (
+                    <img
+                      key={index}
+                      src={image}
+                      alt={`${currentElevator.name} - Image ${index + 1}`}
+                      className={`slider-image ${index === currentSlideIndex ? 'active' : ''}`}
+                      onError={(e) => {
+                        // Enhanced fallback styling for better appearance
+                        e.target.style.background = 'linear-gradient(135deg, #2c2c2c, #4a4a4a)';
+                        e.target.style.display = 'flex';
+                        e.target.style.alignItems = 'center';
+                        e.target.style.justifyContent = 'center';
+                        e.target.style.color = '#d4b347';
+                        e.target.style.fontSize = '1.2rem';
+                        e.target.style.fontWeight = '600';
+                        e.target.style.textAlign = 'center';
+                        e.target.style.padding = '20px';
+                        e.target.innerHTML = `<div>${currentElevator.name}<br><small style="color: #888; font-size: 0.9rem;">Image Loading...</small></div>`;
+                      }}
+                    />
+                  ))}
+                </div>
+
+                {/* Navigation Arrows */}
+                <button className="slider-nav prev" onClick={prevSlide}>
+                  <ChevronLeft size={24} />
+                </button>
+                <button className="slider-nav next" onClick={nextSlide}>
+                  <ChevronRight size={24} />
+                </button>
+
+                {/* Slide Indicators */}
+                <div className="slider-indicators">
+                  {currentElevator.images.map((_, index) => (
+                    <button
+                      key={index}
+                      className={`indicator ${index === currentSlideIndex ? 'active' : ''}`}
+                      onClick={() => goToSlide(index)}
+                    />
+                  ))}
+                </div>
+              </div>
+
               <div className="residential-model-badge">
                 {currentElevator.name.replace('Capricorn ', '')}
               </div>
@@ -290,8 +349,6 @@ const Residential = () => {
                   Get Started
                   <ArrowRight size={16} />
                 </Link>
-                
-                
               </div>
             </div>
           </div>

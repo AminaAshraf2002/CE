@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Check, ArrowRight, Phone, Mail, Settings, MessageSquare, Building, Users, Shield, Zap } from 'lucide-react';
+import { ChevronDown, Check, ArrowRight, Phone, Mail, Settings, MessageSquare, Building, Users, Shield, Zap, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -8,26 +8,31 @@ import './Commercial.css';
 // Import video
 import bannerVideo from '../assets/commerce.mp4';
 
-// Import elevator images - Update these paths to match your actual image locations
-import vertexImage from '../assets/ver.jpeg';
-import presidentialImage from '../assets/pres.jpeg';
+// Import elevator images with multiple images for each model
+import vertexImage1 from '../assets/ver.jpeg';
+import vertexImage2 from '../assets/vertex1.jpeg';
+import vertexImage3 from '../assets/vertex2.jpeg';
 
+import presidentialImage1 from '../assets/press.jpeg';
+import presidentialImage2 from '../assets/press4.jpeg';
+import presidentialImage3 from '../assets/press2.jpeg';
 
 const Commercial = () => {
   const [scrollY, setScrollY] = useState(0);
   const [activeElevator, setActiveElevator] = useState('vertex');
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const videoRef = useRef(null);
   const heroRef = useRef(null);
 
-  // Commercial elevator models data with imported images
+  // Commercial elevator models data with multiple images
   const elevatorModels = {
     vertex: {
       id: 'vertex',
       name: 'Capricorn Vertex',
       subtitle: 'Professional Grade Commercial Solution',
       description: 'The Capricorn Vertex is engineered for high-traffic commercial environments, offering reliability, efficiency, and sleek design. Perfect for office buildings, retail centers, and commercial complexes.',
-      image: vertexImage, // Using imported image
+      images: [vertexImage1, vertexImage2, vertexImage3], // Multiple images
       specifications: {
         cabin: 'SS 304 Silver- Glossy & Hairline finish',
         door: 'SS 304 Covered',
@@ -51,7 +56,7 @@ const Commercial = () => {
       name: 'Capricorn Presidential',
       subtitle: 'Luxury Commercial Elevator Solution',
       description: 'The Capricorn Presidential represents the pinnacle of commercial elevator luxury. Featuring premium materials, advanced technology, and sophisticated design for prestigious commercial buildings.',
-      image: presidentialImage, // Using imported image
+      images: [presidentialImage1, presidentialImage2, presidentialImage3], // Multiple images
       specifications: {
         cabin: 'With & Without Shaft\n3 Side Glass Opening with Glass Shaft\nPlain Glass, blurred Glass, Tinted Glass\nback panel in\nRAL – White, Cream, Black,\nGrey, any RGB\nColoured SS – Gold, Rose Gold,\nBronze, Black, etc.\nDesigner SS\nWooden Finish MDF\nLeather Finish\nMirror',
         door: 'SS 304 Full Vision\nWith & without Door Frame\nRAL\nSS Coloured\nTinted option also',
@@ -85,7 +90,29 @@ const Commercial = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Reset slide index when changing elevator model
+  useEffect(() => {
+    setCurrentSlideIndex(0);
+  }, [activeElevator]);
+
   const currentElevator = elevatorModels[activeElevator];
+
+  // Image slider functions
+  const nextSlide = () => {
+    setCurrentSlideIndex((prevIndex) => 
+      (prevIndex + 1) % currentElevator.images.length
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentSlideIndex((prevIndex) => 
+      prevIndex === 0 ? currentElevator.images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlideIndex(index);
+  };
 
   return (
     <div className="comm-elevators-page">
@@ -233,24 +260,53 @@ const Commercial = () => {
 
           {/* Active Model Display */}
           <div className="comm-model-display">
-            {/* Model Image */}
+            {/* Model Image Slider */}
             <div className="comm-model-image-container">
-              <img 
-                src={currentElevator.image}
-                alt={currentElevator.name}
-                className="comm-model-image"
-                onError={(e) => {
-                  // Fallback if image fails to load
-                  e.target.style.background = 'linear-gradient(135deg, #333, #555)';
-                  e.target.style.display = 'flex';
-                  e.target.style.alignItems = 'center';
-                  e.target.style.justifyContent = 'center';
-                  e.target.style.color = '#d4b347';
-                  e.target.style.fontSize = '1.2rem';
-                  e.target.style.fontWeight = '600';
-                  e.target.innerHTML = `<div>${currentElevator.name}</div>`;
-                }}
-              />
+              <div className="image-slider">
+                <div className="slider-images">
+                  {currentElevator.images.map((image, index) => (
+                    <img
+                      key={index}
+                      src={image}
+                      alt={`${currentElevator.name} - Image ${index + 1}`}
+                      className={`slider-image ${index === currentSlideIndex ? 'active' : ''}`}
+                      onError={(e) => {
+                        // Enhanced fallback styling for better appearance
+                        e.target.style.background = 'linear-gradient(135deg, #2c2c2c, #4a4a4a)';
+                        e.target.style.display = 'flex';
+                        e.target.style.alignItems = 'center';
+                        e.target.style.justifyContent = 'center';
+                        e.target.style.color = '#d4b347';
+                        e.target.style.fontSize = '1.2rem';
+                        e.target.style.fontWeight = '600';
+                        e.target.style.textAlign = 'center';
+                        e.target.style.padding = '20px';
+                        e.target.innerHTML = `<div>${currentElevator.name}<br><small style="color: #888; font-size: 0.9rem;">Image Loading...</small></div>`;
+                      }}
+                    />
+                  ))}
+                </div>
+
+                {/* Navigation Arrows */}
+                <button className="slider-nav prev" onClick={prevSlide}>
+                  <ChevronLeft size={24} />
+                </button>
+                <button className="slider-nav next" onClick={nextSlide}>
+                  <ChevronRight size={24} />
+                </button>
+
+                {/* Slide Indicators */}
+                <div className="slider-indicators">
+                  {currentElevator.images.map((_, index) => (
+                    <button
+                      key={index}
+                      className={`indicator ${index === currentSlideIndex ? 'active' : ''}`}
+                      onClick={() => goToSlide(index)}
+                    />
+                  ))}
+                </div>
+              </div>
+
               <div className="comm-model-badge">
                 {currentElevator.name.replace('Capricorn ', '')}
               </div>
@@ -291,8 +347,6 @@ const Commercial = () => {
                   Request Quote
                   <ArrowRight size={16} />
                 </Link>
-                
-                
               </div>
             </div>
           </div>

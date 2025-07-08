@@ -20,6 +20,7 @@ const TechnicalSpecifications = () => {
         { label: "Rated Load", value: "Upto 24 Pax / 1632 kg" },
         { label: "Maximum Speed", value: "Upto 2 m/s" },
         { label: "Minimum Floor Height", value: "2.4 m" },
+        { label: "Minimum head room ", value: "2.8 m" },
         { label: "Drive System", value: "AC VVVF (Variable Voltage Variable Frequency)" },
         { label: "Control System", value: "Microprocessor-based fully automatic control" }
       ]
@@ -47,10 +48,10 @@ const TechnicalSpecifications = () => {
         { label: "Emergency Stop", value: "Red emergency button instantly stops the elevator in any dangerous situation" },
         { label: "Emergency Communication", value: "Built-in alarm system to call for help during emergencies" },
         { label: "Emergency Lighting", value: "Automatic backup lights turn on during power failures for passenger safety" },
-        { label: "Power Failure Protection", value: "Backup system automatically brings elevator to nearest floor during power cuts" },
+        { label: "Automatic Rescue Device", value: "Backup system automatically brings elevator to nearest floor during power failures." },
         { label: "Speed Safety Control", value: "Automatic system prevents elevator from going too fast for passenger safety" },
         { label: "Weight Protection", value: "Smart sensor detects overloading and prevents operation until weight is reduced" },
-        { label: "Fall Prevention", value: "Multiple safety systems prevent elevator from falling even if cables break" },
+        { label: "Fall Prevention", value: "Multiple safety systems prevent elevator from falling even if cables break. Magnetic driven controls actually helps the elevator for a smooth and safe landing without any jerk and prevent hard impacts" },
         { label: "Smooth Landing System", value: "Special buffers ensure gentle stops and prevent hard impacts" },
         { label: "Fire Safety Mode", value: "Special emergency mode allows firefighters to control elevator during emergencies" }
       ]

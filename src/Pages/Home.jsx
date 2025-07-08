@@ -72,7 +72,7 @@ const Home = () => {
 
   // Data Arrays
   const locations = [
-    { id: 'india', name: 'India', city: 'Kerala', x: 72, y: 45, flag: '🇮🇳', flagImage: indiaFlag, offices: 5, projects: 250, code: 'IN' },
+    { id: 'india', name: 'India', city: 'Kerala', x: 80, y: 51, flag: '🇮🇳', flagImage: indiaFlag, offices: 5, projects: 250, code: 'IN' },
     { id: 'uae', name: 'UAE', city: 'Dubai', x: 65, y: 40, flag: '🇦🇪', flagImage: uaeFlag, offices: 2, projects: 80, code: 'AE' },
   ];
 
@@ -375,10 +375,7 @@ const Home = () => {
                   <h4 className="elite-content-subtitle-gold">{products[0].subtitle}</h4>
                   <p className="elite-content-description">{products[0].description}</p>
                   <div className="elite-read-more-section">
-                    <Link to="/products/home" className="elite-read-more-btn">
-                      Explore Home Lifts
-                      <ArrowRight size={16} />
-                    </Link>
+                    
                   </div>
                 </div>
               </div>
@@ -390,10 +387,7 @@ const Home = () => {
                   <h4 className="elite-content-subtitle-gold">{products[1].subtitle}</h4>
                   <p className="elite-content-description">{products[1].description}</p>
                   <div className="elite-read-more-section">
-                    <Link to="/products/commercial" className="elite-read-more-btn">
-                      Explore Commercial
-                      <ArrowRight size={16} />
-                    </Link>
+                    
                   </div>
                 </div>
               </div>
@@ -518,7 +512,7 @@ const Home = () => {
               <span className="highlight">Elevator Excellence</span>
             </h2>
             <p className="global-subtitle">
-              From India to the UAE, we deliver premium elevator solutions
+              From Kerala to the UAE, we deliver premium elevator solutions
               that connect communities and elevate experiences globally.
             </p>
           </div>

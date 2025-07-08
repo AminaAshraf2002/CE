@@ -1,5 +1,5 @@
 /* =============================================================================
-   Commercial Elevators Page CSS
+   Commercial Elevators Page CSS - Updated with Image Slider
    Capricorn Elevators - Professional Commercial Solutions
 ============================================================================= */
 
@@ -369,7 +369,7 @@
   margin: 0 auto;
 }
 
-/* Model Navigation */
+/* Model Navigation - FIXED HOVER BACKGROUND */
 .comm-model-nav {
   display: flex;
   justify-content: center;
@@ -397,9 +397,12 @@
   border-color: var(--primary-gold);
 }
 
+/* FIXED: Hover background color showing properly */
 .comm-model-nav-btn:hover:not(.active) {
-  border-color: rgba(212, 179, 71, 0.6);
-  background: rgba(212, 179, 71, 0.1);
+  background: var(--primary-gold) !important; /* Force the gold background */
+  color: var(--black) !important; /* Change text to black for contrast */
+  border-color: var(--primary-gold) !important;
+  transform: translateY(-2px);
 }
 
 /* Model Display */
@@ -419,13 +422,101 @@
   box-shadow: var(--shadow-luxury);
 }
 
-.comm-model-image {
+/* =============================================================================
+   Image Slider Styles
+============================================================================= */
+.image-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slider-images {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
+.slider-image.active {
+  opacity: 1;
+}
+
+/* Navigation Arrows */
+.slider-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid var(--primary-gold);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-gold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+.slider-nav:hover {
+  background: var(--primary-gold);
+  color: var(--black);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-nav.prev {
+  left: 20px;
+}
+
+.slider-nav.next {
+  right: 20px;
+}
+
+/* Slide Indicators */
+.slider-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-gold);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background: var(--primary-gold);
+}
+
+.indicator:hover {
+  transform: scale(1.2);
+}
+
+/* Model Badge */
 .comm-model-badge {
   position: absolute;
   top: 20px;
@@ -438,6 +529,7 @@
   color: var(--primary-gold);
   font-size: 0.8rem;
   font-weight: 600;
+  z-index: 15;
 }
 
 /* Model Details */
@@ -787,9 +879,44 @@
   }
 }
 
+/* Auto-play slider animation */
+@keyframes slideChange {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Smooth fade transitions for slider */
+.slider-image {
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+
 /* =============================================================================
    Responsive Design
 ============================================================================= */
+
+/* Large Desktop */
+@media (max-width: 1400px) {
+  .comm-models-container,
+  .comm-benefits-container {
+    max-width: 1200px;
+  }
+}
+
+/* Desktop */
+@media (max-width: 1200px) {
+  .comm-model-display {
+    gap: 60px;
+  }
+  
+  .comm-model-image-container {
+    height: 500px;
+  }
+}
+
+/* Tablet */
 @media (max-width: 1024px) {
   .comm-model-display {
     grid-template-columns: 1fr !important;
@@ -805,8 +932,26 @@
   .applications-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
+  
+  .comm-model-image-container {
+    height: 450px;
+  }
+  
+  .slider-nav {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .slider-nav.prev {
+    left: 15px;
+  }
+  
+  .slider-nav.next {
+    right: 15px;
+  }
 }
 
+/* Mobile Large */
 @media (max-width: 768px) {
   .comm-hero-title {
     font-size: 2.5rem !important;
@@ -821,48 +966,16 @@
   .comm-model-nav {
     flex-direction: column !important;
     align-items: center !important;
+    gap: 15px !important;
+  }
+  
+  .comm-model-nav-btn {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
   }
   
   .comm-model-image-container {
     height: 400px !important;
-  }
-  
-  .comm-model-name {
-    font-size: 2rem !important;
-  }
-  
-  .comm-features-grid {
-    grid-template-columns: 1fr !important;
-  }
-  
-  .comm-cta-buttons {
-    flex-direction: column !important;
-    align-items: center !important;
-  }
-
-  .benefits-grid,
-  .applications-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .comm-hero-content {
-    padding: 0 1rem !important;
-  }
-  
-  .comm-models-container,
-  .comm-benefits-container,
-  .applications-container {
-    padding: 0 1rem !important;
-  }
-  
-  .comm-specifications {
-    padding: 20px !important;
-  }
-  
-  .comm-hero-buttons {
-    flex-direction: column !important;
-    align-items: center !important;
   }
 }

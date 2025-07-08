@@ -984,7 +984,7 @@
 .contact-select-wrapper select {
   width: 100%;
   padding: 15px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(19, 19, 19, 0.973);
   border: 2px solid rgba(212, 179, 71, 0.2);
   border-radius: 12px;
   color: white;
@@ -1008,7 +1008,7 @@
 .contact-select-wrapper select:focus {
   outline: none;
   border-color: #d4b347;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgb(9, 9, 9);
   box-shadow: 0 0 0 3px rgba(212, 179, 71, 0.1);
 }
 

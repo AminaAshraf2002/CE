@@ -5,6 +5,7 @@ import About from './Pages/About';
 import Residential from './Pages/Residential';
 import Commercial from './Pages/Commercial';
 import Services from './Pages/Services';
+import Gallery from './Pages/Gallery';
 import Contact from './Pages/Contact';
 import Careers from './Pages/Careers';
 import './App.css';
@@ -29,6 +30,7 @@ function App() {
           {/* Main Pages */}
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} /> 
+          <Route path="/gallery" element={<Gallery />} /> 
           <Route path="/contact" element={<Contact />} /> 
           <Route path="/careers" element={<Careers />} /> 
           

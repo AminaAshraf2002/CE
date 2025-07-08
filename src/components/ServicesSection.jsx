@@ -11,29 +11,27 @@ import doorTypesMainImage from '../assets/door.png';
 // Import Interior Finishes feature images (4 images)
 import woodenPanelImage from '../assets/wooden.png';
 import stainlessSteelImage from '../assets/steel.jpeg';
-import naturalStoneImage from '../assets/with1.jpeg';
+import woodImage from '../assets/woo.jpg';
 import glassPanelsImage from '../assets/glass.jpeg';
 
 // Import Flooring Solutions feature images (4 images)
-import naturalStoneFloorImage from '../assets/with1.jpeg';
-import premiumVinylImage from '../assets/with1.jpeg';
+import graniteImage from '../assets/granite.jpg';
+import marblelImage from '../assets/floorm.jpg';
 import luxuryCarpetImage from '../assets/carpet.jpeg';
 import antiSlipSurfaceImage from '../assets/nonslip.jpeg';
 
 // Import Control Systems feature images (3 images)
 import buttonControlImage from '../assets/button.jpeg';
 import touchPanelImage from '../assets/touch.jpeg';
-import lcdDisplayImage from '../assets/lcd.jpg';
+import lcdDisplayImage from '../assets/tab.jpeg';
 
 // Import Lighting Design feature images (4 images)
-import ledStripsImage from '../assets/strips.jpeg';
+import ledStripsImage from '../assets/class.jpeg';
 import moodLightingImage from '../assets/mood.png';
-
-import emergencyLedImage from '../assets/lcs.jpeg';
 
 // Import Multiple Door Access feature images (4 images)
 import frontDoorEntryImage from '../assets/front.png';
-import sideDoorAccessImage from '../assets/side.png';
+import sideDoorAccessImage from '../assets/adjacent.jpeg';
 import dualDoorSystemImage from '../assets/double.png';
 // Import Door Types feature images (4 images)
 import fullVisionDoorImage from '../assets/full.jpeg';
@@ -41,10 +39,60 @@ import framelessDoorImage from '../assets/frameless.png';
 import noVisionDoorImage from '../assets/no.png';
 import automaticSwingDoorImage from '../assets/swing.jpeg';
 
+// Import Steel Color images (6 images)
+import silverSteelImage from '../assets/silver.jpg';
+import roseGoldSteelImage from '../assets/rose.jpg';
+import goldSteelImage from '../assets/gold.jpg';
+import bronzeSteelImage from '../assets/bro.jpg';
+import blackSteelImage from '../assets/black.jpg';
+import blueSteelImage from '../assets/blue.jpg';
+
 const ServicesSection = () => {
   const [activeService, setActiveService] = useState('interior-finishes');
   const [servicesVisible, setServicesVisible] = useState(false);
+  const [showSteelColors, setShowSteelColors] = useState(false);
+  const [selectedSteelColor, setSelectedSteelColor] = useState('Silver');
   const servicesRef = useRef(null);
+
+  // Steel color options
+  const steelColors = [
+    { 
+      name: 'Silver', 
+      color: '#C0C0C0', 
+      gradient: 'linear-gradient(135deg, #C0C0C0, #E8E8E8)',
+      image: silverSteelImage
+    },
+    { 
+      name: 'Rose Gold', 
+      color: '#E8B4A0', 
+      gradient: 'linear-gradient(135deg, #E8B4A0, #F5D5C8)',
+      image: roseGoldSteelImage
+    },
+    { 
+      name: 'Gold', 
+      color: '#FFD700', 
+      gradient: 'linear-gradient(135deg, #FFD700, #FFF3A0)',
+      image: goldSteelImage
+    },
+    { 
+      name: 'Bronze', 
+      color: '#CD7F32', 
+      gradient: 'linear-gradient(135deg, #CD7F32, #E6A85C)',
+      image: bronzeSteelImage
+    },
+    { 
+      name: 'Black', 
+      color: '#2C2C2C', 
+      gradient: 'linear-gradient(135deg, #2C2C2C, #4A4A4A)',
+      image: blackSteelImage
+    },
+    { 
+      name: 'Blue', 
+      color: '#4169E1', 
+      gradient: 'linear-gradient(135deg, #4169E1, #87CEEB)',
+      image: blueSteelImage
+    }
+  ];
 
   const services = [
     {
@@ -55,9 +103,10 @@ const ServicesSection = () => {
       image: interiorFinishesMainImage,
       description: 'Transform your elevator interior with premium finishes including luxurious wood paneling, sophisticated stainless steel, elegant natural stone, and modern glass panels.',
       features: [
-        { name: 'Wooden Panel', image: woodenPanelImage },
-        { name: 'Stainless Steel', image: stainlessSteelImage },
-        { name: 'Glass Panels', image: glassPanelsImage }
+        { name: 'Marble Panel', image: woodenPanelImage, hasColorOptions: false },
+        { name: 'Wooden Panel', image: woodImage, hasColorOptions: false },
+        { name: 'Stainless Steel', image: stainlessSteelImage, hasColorOptions: true },
+        { name: 'Glass Panels', image: glassPanelsImage, hasColorOptions: false }
       ],
       highlight: 'Premium Materials'
     },
@@ -69,8 +118,10 @@ const ServicesSection = () => {
       image: flooringSolutionsMainImage,
       description: 'Premium flooring solutions that combine durability with aesthetic appeal, featuring natural stone, luxury vinyl, carpeting, and anti-slip surfaces for maximum safety.',
       features: [
-        { name: 'Luxury Carpet', image: luxuryCarpetImage },
-        { name: 'Anti-slip Surface', image: antiSlipSurfaceImage }
+        { name: 'Luxury Carpet', image: luxuryCarpetImage, hasColorOptions: false },
+        { name: 'Anti-slip Surface', image: antiSlipSurfaceImage, hasColorOptions: false },
+        { name: 'Marble', image: marblelImage, hasColorOptions: false },
+        { name: 'Granite', image: graniteImage, hasColorOptions: false }
       ],
       highlight: 'Safety First'
     },
@@ -82,9 +133,9 @@ const ServicesSection = () => {
       image: controlSystemsMainImage,
       description: 'Choose from three advanced control system types: traditional button controls, modern touch panels, and LCD display systems. Each offers unique advantages for different applications and user preferences.',
       features: [
-        { name: 'Button Control', image: buttonControlImage },
-        { name: 'Touch Panel', image: touchPanelImage },
-        { name: 'LCD Display', image: lcdDisplayImage }
+        { name: 'Button Control', image: buttonControlImage, hasColorOptions: false },
+        { name: 'Touch Panel', image: touchPanelImage, hasColorOptions: false },
+        { name: 'LCD Display', image: lcdDisplayImage, hasColorOptions: false }
       ],
       highlight: 'Smart Technology'
     },
@@ -96,10 +147,8 @@ const ServicesSection = () => {
       image: lightingDesignMainImage,
       description: 'Create the perfect ambiance with our advanced lighting systems including LED strips, mood lighting, spotlights, and emergency illumination for safety and aesthetic appeal.',
       features: [
-        { name: 'LED Strips', image: ledStripsImage },
-        { name: 'Mood Lighting', image: moodLightingImage },
-        
-        { name: 'Emergency LED', image: emergencyLedImage }
+        { name: 'LED Strips', image: ledStripsImage, hasColorOptions: false },
+        { name: 'Mood Lighting', image: moodLightingImage, hasColorOptions: false },
       ],
       highlight: 'Energy Efficient'
     },
@@ -111,10 +160,9 @@ const ServicesSection = () => {
       image: multipleDoorsMainImage,
       description: 'Revolutionary multiple door access system allows entry and exit from any side of the elevator. Perfect for busy commercial spaces, hospitals, and high-traffic areas where flexible access is essential.',
       features: [
-        { name: 'Front Door Entry', image: frontDoorEntryImage },
-    
-        { name: 'Side Door Access', image: sideDoorAccessImage },
-        { name: 'Dual Door System', image: dualDoorSystemImage }
+        { name: 'Front Door Entry', image: frontDoorEntryImage, hasColorOptions: false },
+        { name: 'Adjacent Acess', image: sideDoorAccessImage, hasColorOptions: false },
+        { name: 'Opposite Acess', image: dualDoorSystemImage, hasColorOptions: false }
       ],
       highlight: 'Flexible Access'
     },
@@ -126,10 +174,10 @@ const ServicesSection = () => {
       image: doorTypesMainImage,
       description: 'Choose from our comprehensive range of door types including full vision doors for maximum visibility, frameless doors for modern aesthetics, no vision doors for privacy, and automatic swing doors for accessibility.',
       features: [
-        { name: 'Full Vision Door', image: fullVisionDoorImage },
-        { name: 'Frameless Door', image: framelessDoorImage },
-        { name: 'No Vision Door', image: noVisionDoorImage },
-        { name: 'Automatic Swing Door', image: automaticSwingDoorImage }
+        { name: 'Full Vision Door', image: fullVisionDoorImage, hasColorOptions: false },
+        { name: 'Frameless Door', image: framelessDoorImage, hasColorOptions: false },
+        { name: 'No Vision Door', image: noVisionDoorImage, hasColorOptions: false },
+        { name: 'Automatic Swing Door', image: automaticSwingDoorImage, hasColorOptions: false }
       ],
       highlight: 'Design Flexibility'
     }
@@ -154,6 +202,16 @@ const ServicesSection = () => {
 
     return () => servicesObserver.disconnect();
   }, []);
+
+  const handleFeatureClick = (feature) => {
+    if (feature.name === 'Stainless Steel' && feature.hasColorOptions) {
+      setShowSteelColors(!showSteelColors);
+    }
+  };
+
+  const handleSteelColorSelect = (colorName) => {
+    setSelectedSteelColor(colorName);
+  };
 
   return (
     <section
@@ -467,91 +525,240 @@ const ServicesSection = () => {
                 </h4>
                 <div style={{
                   display: 'grid',
-                  gridTemplateColumns: currentService?.features?.length === 3 ? 'repeat(3, 1fr)' : currentService?.features?.length === 4 ? 'repeat(4, 1fr)' : 'repeat(2, 1fr)',
+                  gridTemplateColumns: 'repeat(4, 1fr)',
                   gap: '12px',
-                  maxWidth: currentService?.features?.length === 4 ? '80%' : '100%'
+                  maxWidth: '100%'
                 }}>
                   {(currentService?.features || []).map((feature, index) => (
                     <div key={index} style={{
                       position: 'relative',
-                      height: '160px', // Increased from 120px
+                      minHeight: '160px',
                       background: 'rgba(212, 179, 71, 0.05)',
-                      border: '1px solid rgba(212, 179, 71, 0.2)',
+                      border: feature.hasColorOptions && showSteelColors ? '2px solid rgba(212, 179, 71, 0.6)' : feature.hasColorOptions ? '2px solid rgba(212, 179, 71, 0.4)' : '1px solid rgba(212, 179, 71, 0.2)',
                       borderRadius: '12px',
                       transition: 'all 0.3s ease',
                       cursor: 'pointer',
-                      overflow: 'hidden'
+                      overflow: 'hidden',
+                      transform: feature.hasColorOptions ? 'scale(1.02)' : 'scale(1)'
                     }}
+                    onClick={() => handleFeatureClick(feature)}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = 'rgba(212, 179, 71, 0.4)';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      if (!feature.hasColorOptions || !showSteelColors) {
+                        e.currentTarget.style.borderColor = 'rgba(212, 179, 71, 0.4)';
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                      }
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = 'rgba(212, 179, 71, 0.2)';
-                      e.currentTarget.style.transform = 'translateY(0)';
+                      if (!feature.hasColorOptions || !showSteelColors) {
+                        e.currentTarget.style.borderColor = feature.hasColorOptions ? 'rgba(212, 179, 71, 0.4)' : 'rgba(212, 179, 71, 0.2)';
+                        e.currentTarget.style.transform = feature.hasColorOptions ? 'scale(1.02)' : 'translateY(0)';
+                      }
                     }}
                     >
-                      <img 
-                        src={feature.image} 
-                        alt={feature.name}
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'cover',
-                          transition: 'transform 0.3s ease'
-                        }}
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                          e.target.parentElement.style.display = 'flex';
-                          e.target.parentElement.style.alignItems = 'center';
-                          e.target.parentElement.style.justifyContent = 'center';
-                          e.target.parentElement.innerHTML = `<div style="color: #666; font-size: 0.9rem; text-align: center;">${feature.name}</div>`;
-                        }}
-                      />
-                      <div style={{
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        background: 'linear-gradient(transparent, rgba(0,0,0,0.8))',
-                        padding: '15px 10px 10px',
-                        color: 'white'
-                      }}>
-                        <span style={{
-                          fontSize: '0.8rem',
-                          color: 'rgba(255, 255, 255, 0.9)',
-                          textAlign: 'center',
-                          fontWeight: '500',
-                          display: 'block'
+                      {/* Main Feature Image */}
+                      {!showSteelColors || feature.name !== 'Stainless Steel' ? (
+                        <>
+                          <img 
+                            src={feature.image} 
+                            alt={feature.name}
+                            style={{
+                              width: '100%',
+                              height: '160px',
+                              objectFit: 'cover',
+                              transition: 'transform 0.3s ease'
+                            }}
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                              e.target.parentElement.style.display = 'flex';
+                              e.target.parentElement.style.alignItems = 'center';
+                              e.target.parentElement.style.justifyContent = 'center';
+                              e.target.parentElement.innerHTML = `<div style="color: #666; font-size: 0.9rem; text-align: center;">${feature.name}</div>`;
+                            }}
+                          />
+                          <div style={{
+                            position: 'absolute',
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            background: 'linear-gradient(transparent, rgba(0,0,0,0.8))',
+                            padding: '15px 10px 10px',
+                            color: 'white'
+                          }}>
+                            <span style={{
+                              fontSize: '0.8rem',
+                              color: 'rgba(255, 255, 255, 0.9)',
+                              textAlign: 'center',
+                              fontWeight: '500',
+                              display: 'block'
+                            }}>
+                              {feature.name}
+                              {feature.hasColorOptions && (
+                                <span style={{
+                                  display: 'block',
+                                  fontSize: '0.7rem',
+                                  color: '#d4b347',
+                                  marginTop: '2px'
+                                }}>
+                                  Click for colors
+                                </span>
+                              )}
+                            </span>
+                          </div>
+                          {feature.hasColorOptions && (
+                            <div style={{
+                              position: 'absolute',
+                              top: '10px',
+                              right: '10px',
+                              width: '20px',
+                              height: '20px',
+                              background: '#d4b347',
+                              borderRadius: '50%',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              fontSize: '0.7rem',
+                              color: '#000',
+                              fontWeight: 'bold'
+                            }}>
+                              6
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        /* Steel Color Options Grid - Inline */
+                        <div style={{
+                          padding: '10px',
+                          minHeight: '160px',
+                          display: 'flex',
+                          flexDirection: 'column'
                         }}>
-                          {feature.name}
-                        </span>
-                      </div>
+                          <div style={{
+                            fontSize: '0.8rem',
+                            fontWeight: '600',
+                            color: '#d4b347',
+                            textAlign: 'center',
+                            marginBottom: '10px'
+                          }}>
+                            Steel Colors
+                          </div>
+                          <div style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(3, 1fr)',
+                            gap: '8px',
+                            flex: 1
+                          }}>
+                            {steelColors.map((color, colorIndex) => (
+                              <div
+                                key={colorIndex}
+                                style={{
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  alignItems: 'center',
+                                  gap: '4px',
+                                  cursor: 'pointer',
+                                  padding: '6px',
+                                  borderRadius: '8px',
+                                  border: selectedSteelColor === color.name ? '1px solid #d4b347' : '1px solid transparent',
+                                  background: selectedSteelColor === color.name ? 'rgba(212, 179, 71, 0.1)' : 'transparent',
+                                  transition: 'all 0.3s ease'
+                                }}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleSteelColorSelect(color.name);
+                                }}
+                                onMouseEnter={(e) => {
+                                  if (selectedSteelColor !== color.name) {
+                                    e.currentTarget.style.borderColor = 'rgba(212, 179, 71, 0.4)';
+                                    e.currentTarget.style.background = 'rgba(212, 179, 71, 0.05)';
+                                  }
+                                }}
+                                onMouseLeave={(e) => {
+                                  if (selectedSteelColor !== color.name) {
+                                    e.currentTarget.style.borderColor = 'transparent';
+                                    e.currentTarget.style.background = 'transparent';
+                                  }
+                                }}
+                              >
+                                <div style={{
+                                  width: '30px',
+                                  height: '30px',
+                                  borderRadius: '50%',
+                                  border: '2px solid rgba(255, 255, 255, 0.2)',
+                                  boxShadow: selectedSteelColor === color.name ? '0 0 10px rgba(212, 179, 71, 0.6)' : '0 2px 8px rgba(0, 0, 0, 0.3)',
+                                  transition: 'all 0.3s ease',
+                                  transform: selectedSteelColor === color.name ? 'scale(1.1)' : 'scale(1)',
+                                  overflow: 'hidden',
+                                  position: 'relative'
+                                }}>
+                                  <img
+                                    src={color.image}
+                                    alt={`${color.name} Steel`}
+                                    style={{
+                                      width: '100%',
+                                      height: '100%',
+                                      objectFit: 'cover',
+                                      transition: 'transform 0.3s ease'
+                                    }}
+                                    onError={(e) => {
+                                      // Fallback to gradient if image fails to load
+                                      e.target.style.display = 'none';
+                                      e.target.parentElement.style.background = color.gradient;
+                                    }}
+                                  />
+                                  {selectedSteelColor === color.name && (
+                                    <div style={{
+                                      position: 'absolute',
+                                      top: '50%',
+                                      left: '50%',
+                                      transform: 'translate(-50%, -50%)',
+                                      width: '12px',
+                                      height: '12px',
+                                      background: 'rgba(212, 179, 71, 0.9)',
+                                      borderRadius: '50%',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'center',
+                                      color: '#000',
+                                      fontSize: '0.6rem',
+                                      fontWeight: 'bold',
+                                      backdropFilter: 'blur(5px)'
+                                    }}>
+                                      ✓
+                                    </div>
+                                  )}
+                                </div>
+                                <span style={{
+                                  fontSize: '0.6rem',
+                                  fontWeight: '600',
+                                  color: selectedSteelColor === color.name ? '#d4b347' : 'rgba(255, 255, 255, 0.9)',
+                                  textAlign: 'center',
+                                  transition: 'all 0.3s ease'
+                                }}>
+                                  {color.name}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                          <div style={{
+                            textAlign: 'center',
+                            marginTop: '8px'
+                          }}>
+                            <div style={{
+                              fontSize: '0.6rem',
+                              color: 'rgba(255, 255, 255, 0.7)',
+                              marginBottom: '4px'
+                            }}>
+                              Selected: <span style={{ color: '#d4b347', fontWeight: '600' }}>{selectedSteelColor}</span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
               </div>
 
-              <a href="/services" style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '10px',
-                padding: '12px 25px',
-                background: 'linear-gradient(135deg, #d4b347, #f0d482)',
-                color: '#000',
-                border: 'none',
-                borderRadius: '25px',
-                fontSize: '0.9rem',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                textDecoration: 'none',
-                position: 'relative',
-                overflow: 'hidden'
-              }}>
-                Learn More
-                <ChevronRight size={16} />
-              </a>
+             
             </div>
           </div>
         </div>
