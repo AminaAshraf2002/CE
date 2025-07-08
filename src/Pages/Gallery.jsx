@@ -10,18 +10,23 @@ import './Gallery.css';
 
 // Import assets (you'll need to add these to your assets folder)
 import galleryHeroVideo from '../assets/about.mp4'; // Main hero video
-import galleryProject1 from '../assets/inter.png';
-import galleryProject2 from '../assets/inter.png';
-import galleryProject3 from '../assets/inter.png';
-import galleryProject4 from '../assets/inter.png';
-import galleryProject5 from '../assets/inter.png';
-import galleryProject6 from '../assets/inter.png';
-import galleryProject7 from '../assets/inter.png';
-import galleryProject8 from '../assets/inter.png';
-import galleryProject9 from '../assets/inter.png';
-import galleryProject10 from '../assets/inter.png';
-import galleryProject11 from '../assets/inter.png';
-import galleryProject12 from '../assets/inter.png';
+import galleryProject1 from '../assets/1.jpeg';
+import galleryProject2 from '../assets/2.jpeg';
+import galleryProject3 from '../assets/3.jpeg';
+import galleryProject4 from '../assets/4.jpeg';
+import galleryProject5 from '../assets/5.jpeg';
+import galleryProject6 from '../assets/6.jpeg';
+import galleryProject7 from '../assets/7.jpeg';
+import galleryProject8 from '../assets/8.jpeg';
+import galleryProject9 from '../assets/9.jpeg';
+import galleryProject10 from '../assets/10.jpeg';
+import galleryProject11 from '../assets/11.jpeg';
+import galleryProject12 from '../assets/12.jpeg';
+import galleryProject13 from '../assets/13.jpeg';
+import galleryProject14 from '../assets/14.jpeg';
+import galleryProject15 from '../assets/15.jpeg';
+import galleryProject16 from '../assets/16.jpeg';
+import galleryProject17 from '../assets/17.jpeg';
 
 const Gallery = () => {
   // States
@@ -50,7 +55,13 @@ const Gallery = () => {
     galleryProject9,
     galleryProject10,
     galleryProject11,
-    galleryProject12
+    galleryProject12,
+    galleryProject13,
+    galleryProject14,
+    galleryProject15,
+    galleryProject16,
+    galleryProject17,
+    
   ];
 
   // Effects
