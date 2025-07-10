@@ -179,6 +179,7 @@ const Header = () => {
             </div>
 
             <Link to="/services" onClick={closeMenu}>Services</Link>
+             <Link to="/gallery" onClick={closeMenu}>Gallery</Link>
             <Link to="/contact" onClick={closeMenu}>Contact</Link>
             <Link to="/careers" onClick={closeMenu}>Careers</Link>
 

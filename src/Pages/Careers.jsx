@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Send, Users, Building, Award, Globe, Mail, Phone, MapPin, ArrowRight, CheckCircle, Star, Briefcase, Clock, DollarSign } from 'lucide-react';
+import { ChevronDown, Send, Users, Building, Award, Globe, Mail, Phone, MapPin, ArrowRight, CheckCircle, Star, Briefcase, Clock, DollarSign, AlertTriangle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -27,6 +27,7 @@ const Careers = () => {
   const [whyUsVisible, setWhyUsVisible] = useState(false);
   const [jobsVisible, setJobsVisible] = useState(false);
   const [processVisible, setProcessVisible] = useState(false);
+  const [phoneError, setPhoneError] = useState('');
 
   // Refs
   const heroRef = useRef(null);
@@ -35,51 +36,117 @@ const Careers = () => {
   const jobsRef = useRef(null);
   const processRef = useRef(null);
 
-  // Job positions data
+  // Updated job positions data
   const jobPositions = [
     {
       id: 1,
-      title: 'Elevator Design Engineer',
-      department: 'Engineering',
-      location: 'Mumbai, India',
-      type: 'Full-time',
-      experience: '3-5 years',
-      salary: '₹8-12 LPA',
-      description: 'Design and develop innovative elevator systems with focus on safety and efficiency.',
-      requirements: ['Bachelor\'s in Mechanical/Electrical Engineering', 'CAD software proficiency', 'Elevator system knowledge', 'Problem-solving skills']
-    },
-    {
-      id: 2,
-      title: 'Installation Technician',
-      department: 'Technical',
-      location: 'Dubai, UAE',
-      type: 'Full-time',
-      experience: '2-4 years',
-      salary: 'AED 60-80K',
-      description: 'Install and commission elevator systems ensuring compliance with safety standards.',
-      requirements: ['Technical diploma/certification', 'Elevator installation experience', 'Safety protocols knowledge', 'Physical fitness']
-    },
-    {
-      id: 3,
-      title: 'Regional Sales Manager',
+      title: 'BDM (Business Development Manager)',
       department: 'Sales',
       location: 'Multiple Locations',
       type: 'Full-time',
       experience: '5-8 years',
+      salary: 'Competitive + Incentives',
+      description: 'Lead business development initiatives and drive strategic partnerships for elevator solutions.',
+      requirements: ['Business development experience', 'Strategic planning skills', 'Client relationship management', 'Market analysis abilities']
+    },
+    {
+      id: 2,
+      title: 'BDE (Business Development Executive)',
+      department: 'Sales',
+      location: 'Multiple Locations',
+      type: 'Full-time',
+      experience: '2-4 years',
       salary: 'Competitive + Commission',
-      description: 'Lead sales initiatives and build client relationships across assigned regions.',
-      requirements: ['Sales experience in construction/elevators', 'Client relationship skills', 'Market analysis abilities', 'Leadership experience']
+      description: 'Execute business development strategies and generate new business opportunities.',
+      requirements: ['Sales experience', 'Lead generation skills', 'Communication skills', 'Target-oriented approach']
+    },
+    {
+      id: 3,
+      title: 'Inside Sales Associates',
+      department: 'Sales',
+      location: 'Head Office',
+      type: 'Full-time',
+      experience: '1-3 years',
+      salary: 'Competitive',
+      description: 'Handle inbound sales inquiries and support the sales team with lead qualification.',
+      requirements: ['Sales experience', 'Communication skills', 'CRM knowledge', 'Customer service orientation']
     },
     {
       id: 4,
-      title: 'Project Manager',
+      title: 'Project Coordinator',
       department: 'Operations',
-      location: 'Cape Town, South Africa',
+      location: 'Multiple Locations',
       type: 'Full-time',
-      experience: '4-7 years',
-      salary: 'R 450-650K',
-      description: 'Manage elevator installation projects from planning to completion.',
-      requirements: ['Project management certification', 'Construction industry experience', 'Team leadership skills', 'Risk management abilities']
+      experience: '3-5 years',
+      salary: 'Competitive',
+      description: 'Coordinate elevator installation projects and ensure timely delivery.',
+      requirements: ['Project coordination experience', 'Planning skills', 'Team coordination', 'Problem-solving abilities']
+    },
+    {
+      id: 5,
+      title: 'CRM (Customer Relationship Manager)',
+      department: 'Customer Service',
+      location: 'Head Office',
+      type: 'Full-time',
+      experience: '3-6 years',
+      salary: 'Competitive',
+      description: 'Manage customer relationships and ensure customer satisfaction across all touchpoints.',
+      requirements: ['CRM software expertise', 'Customer service experience', 'Relationship management', 'Data analysis skills']
+    },
+    {
+      id: 6,
+      title: 'Tech Head',
+      department: 'Technical',
+      location: 'Head Office',
+      type: 'Full-time',
+      experience: '8-12 years',
+      salary: 'Competitive',
+      description: 'Lead technical operations and oversee elevator installation and maintenance activities.',
+      requirements: ['Technical leadership experience', 'Elevator systems expertise', 'Team management', 'Safety protocols knowledge']
+    },
+    {
+      id: 7,
+      title: 'Sales Head',
+      department: 'Sales',
+      location: 'Head Office',
+      type: 'Full-time',
+      experience: '10-15 years',
+      salary: 'Competitive',
+      description: 'Lead the sales team and drive overall sales strategy and performance.',
+      requirements: ['Sales leadership experience', 'Strategic planning', 'Team management', 'Market development skills']
+    },
+    {
+      id: 8,
+      title: 'RM (Regional Manager)',
+      department: 'Operations',
+      location: 'Multiple Locations',
+      type: 'Full-time',
+      experience: '6-10 years',
+      salary: 'Competitive',
+      description: 'Manage regional operations and ensure business growth in assigned territories.',
+      requirements: ['Regional management experience', 'Business development', 'Team leadership', 'Market knowledge']
+    },
+    {
+      id: 9,
+      title: 'BUH (Business Unit Head)',
+      department: 'Management',
+      location: 'Head Office',
+      type: 'Full-time',
+      experience: '12-18 years',
+      salary: 'Competitive',
+      description: 'Lead business unit operations and drive strategic business growth.',
+      requirements: ['Business unit management', 'Strategic leadership', 'P&L responsibility', 'Industry expertise']
+    },
+    {
+      id: 10,
+      title: 'Accounts Executive',
+      department: 'Finance',
+      location: 'Head Office',
+      type: 'Full-time',
+      experience: '2-5 years',
+      salary: 'Competitive',
+      description: 'Handle financial accounting, reporting, and ensure compliance with accounting standards.',
+      requirements: ['Accounting degree/certification', 'Financial reporting', 'Tally/ERP knowledge', 'Attention to detail']
     }
   ];
 
@@ -107,13 +174,46 @@ const Careers = () => {
     }
   ];
 
- 
+  // Phone number validation
+  const validatePhoneNumber = (phone) => {
+    // Remove any non-digit characters for validation
+    const digitsOnly = phone.replace(/\D/g, '');
+    
+    // Check if it contains only digits and is of reasonable length (6-15 digits)
+    if (!/^\d+$/.test(digitsOnly)) {
+      return 'Phone number must contain only digits';
+    }
+    
+    if (digitsOnly.length < 6) {
+      return 'Phone number must be at least 6 digits';
+    }
+    
+    if (digitsOnly.length > 15) {
+      return 'Phone number cannot exceed 15 digits';
+    }
+    
+    return '';
+  };
 
   // Event handlers
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
+    
     if (name === 'resume') {
       setFormData(prev => ({ ...prev, [name]: files[0] }));
+    } else if (name === 'phone') {
+      // Allow only digits, spaces, hyphens, parentheses, and plus sign for formatting
+      let cleanValue = value.replace(/[^0-9\s\-\(\)\+]/g, '');
+      
+      setFormData(prev => ({ ...prev, [name]: cleanValue }));
+      
+      // Validate phone number
+      if (cleanValue.trim()) {
+        const error = validatePhoneNumber(cleanValue);
+        setPhoneError(error);
+      } else {
+        setPhoneError('Phone number is required');
+      }
     } else {
       setFormData(prev => ({ ...prev, [name]: value }));
     }
@@ -121,6 +221,41 @@ const Careers = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Reset phone error
+    setPhoneError('');
+    let hasErrors = false;
+    
+    // Validate required fields
+    if (!formData.name?.trim()) {
+      hasErrors = true;
+    }
+    
+    if (!formData.email?.trim()) {
+      hasErrors = true;
+    }
+    
+    if (!formData.phone?.trim()) {
+      setPhoneError('Phone number is required');
+      hasErrors = true;
+    } else {
+      // Validate phone number format
+      const phoneValidationError = validatePhoneNumber(formData.phone);
+      if (phoneValidationError) {
+        setPhoneError(phoneValidationError);
+        hasErrors = true;
+      }
+    }
+    
+    if (!formData.resume) {
+      hasErrors = true;
+    }
+    
+    // Stop submission if there are errors
+    if (hasErrors) {
+      return;
+    }
+    
     setIsSubmitting(true);
     
     // Simulate API call
@@ -136,6 +271,7 @@ const Careers = () => {
         resume: null,
         coverLetter: ''
       });
+      setPhoneError('');
       setTimeout(() => setIsSubmitted(false), 5000);
     }, 2000);
   };
@@ -259,8 +395,6 @@ const Careers = () => {
         </div>
       </section>
 
-    
-
       {/* Application Form Section */}
       <section id="application-form" className="cap-application-section">
         <div className="cap-container">
@@ -289,7 +423,6 @@ const Careers = () => {
                   <div>
                     <strong>Phone</strong>
                     <span>+971509169002</span>
-                   
                   </div>
                 </div>
                 <div className="cap-contact-item">
@@ -342,15 +475,25 @@ const Careers = () => {
 
                   <div className="cap-form-row">
                     <div className="cap-form-group">
-                      <label htmlFor="phone">Phone Number</label>
+                      <label htmlFor="phone">Phone Number *</label>
                       <input
                         type="tel"
                         id="phone"
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
+                        required
                         placeholder="Enter your phone number"
                       />
+                      {phoneError && (
+                        <div className="cap-phone-error-message">
+                          <AlertTriangle size={16} />
+                          <span>{phoneError}</span>
+                        </div>
+                      )}
+                      <div className="cap-phone-help-text">
+                        Only numbers are allowed (6-15 digits)
+                      </div>
                     </div>
                     <div className="cap-form-group">
                       <label htmlFor="position">Position Applied For</label>
@@ -409,7 +552,7 @@ const Careers = () => {
                     ></textarea>
                   </div>
 
-                  <button type="submit" className="cap-submit-button" disabled={isSubmitting}>
+                  <button type="submit" className="cap-submit-button" disabled={isSubmitting || phoneError}>
                     {isSubmitting ? (
                       <>
                         <div className="cap-spinner"></div>

@@ -1,5 +1,5 @@
 /* =============================================================================
-   Contact Page - Complete CSS Styles with REDUCED FONT SIZES
+   Contact Page - Complete CSS Styles - YOUR ORIGINAL DESIGN MADE RESPONSIVE
    Capricorn Elevators - Professional Contact Page Design
    Font: Playfair Display for headings, Inter for body
    Theme: Gold (#d4b347) and White with Dark Background
@@ -47,7 +47,7 @@
 }
 
 /* =============================================================================
-   Contact Hero Section with Video Background - REDUCED FONTS
+   Contact Hero Section with Video Background - MADE RESPONSIVE
 ============================================================================= */
 .contact-hero-section {
   position: relative;
@@ -167,7 +167,7 @@
 
 .contact-hero-subtitle {
   font-family: var(--font-body);
-  font-size: 0.5rem; /* Reduced from 0.6rem */
+  font-size: 0.6rem;
   font-weight: 600;
   color: rgba(212, 179, 71, 0.9);
   letter-spacing: 0.15em;
@@ -181,7 +181,7 @@
   justify-content: center;
   gap: 8px;
   margin-bottom: 1.5rem;
-  font-size: 0.7rem; /* Reduced from 0.8rem */
+  font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.7);
   font-weight: 500;
 }
@@ -192,7 +192,7 @@
 
 .contact-page-title {
   font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 4vw, 2.8rem); /* Reduced from clamp(1.875rem, 5vw, 3.375rem) */
+  font-size: clamp(1.875rem, 5vw, 3.375rem);
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 1.125rem;
@@ -209,7 +209,7 @@
 }
 
 .contact-page-subtitle {
-  font-size: 0.7rem; /* Reduced from 0.825rem */
+  font-size: 0.825rem;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.6;
   margin-bottom: 2.25rem;
@@ -242,7 +242,7 @@
 }
 
 .contact-stat-number {
-  font-size: 1.6rem; /* Reduced from 1.875rem */
+  font-size: 1.875rem;
   font-weight: 800;
   color: var(--primary-gold);
   font-family: var(--font-heading);
@@ -251,7 +251,7 @@
 }
 
 .contact-stat-label {
-  font-size: 0.6rem; /* Reduced from 0.675rem */
+  font-size: 0.675rem;
   color: rgba(255, 255, 255, 0.8);
   font-weight: 500;
 }
@@ -271,415 +271,12 @@
   padding: 15px 30px;
   border: none;
   border-radius: 50px;
-  font-size: 0.85rem; /* Reduced from 1rem */
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
 }
-
-.contact-action-btn.contact-action-primary {
-  background: linear-gradient(135deg, #d4b347, #f0d482);
-  color: #000;
-  border: none;
-}
-
-.contact-action-btn.contact-action-secondary {
-  background: transparent;
-  color: #d4b347;
-  border: 2px solid #d4b347;
-}
-
-.contact-action-btn.contact-action-whatsapp {
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  color: white;
-  border: none;
-}
-
-.contact-action-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(212, 179, 71, 0.3);
-}
-
-.contact-action-btn.contact-action-primary:hover {
-  background: linear-gradient(135deg, #f0d482, #d4b347);
-}
-
-.contact-action-btn.contact-action-secondary:hover {
-  background: rgba(212, 179, 71, 0.1);
-  border-color: #f0d482;
-}
-
-.contact-action-btn.contact-action-whatsapp:hover {
-  background: linear-gradient(135deg, #128c7e, #25d366);
-}
-
-/* Company Stats */
-.contact-company-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 40px;
-}
-
-.contact-company-stat {
-  text-align: center;
-  padding: 20px;
-  background: rgba(212, 179, 71, 0.1);
-  border: 1px solid rgba(212, 179, 71, 0.2);
-  border-radius: 15px;
-  transition: all 0.3s ease;
-}
-
-.contact-company-stat:hover {
-  background: rgba(212, 179, 71, 0.15);
-  border-color: rgba(212, 179, 71, 0.4);
-  transform: translateY(-5px);
-}
-
-.contact-stat-value {
-  font-size: 1.5rem; /* Reduced from 1.8rem */
-  font-weight: 800;
-  color: #d4b347;
-  font-family: var(--font-heading);
-  display: block;
-  margin-bottom: 8px;
-}
-
-.contact-stat-label {
-  font-size: 0.7rem; /* Reduced from 0.8rem */
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 500;
-}
-
-/* =============================================================================
-   CTA Section - REDUCED FONTS
-============================================================================= */
-.contact-cta-section {
-  background: linear-gradient(135deg, #1b1b1b 0%, #1f1f1f 50%, #1c1c1c 100%);
-  padding: 80px 0;
-  position: relative;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 1s ease-out;
-}
-
-.contact-cta-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.contact-cta-bg-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.contact-cta-bg-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.3) contrast(1.2);
-}
-
-.contact-cta-bg-pattern {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg,
-      rgba(0, 0, 0, 0.7) 0%,
-      rgba(0, 0, 0, 0.5) 50%,
-      rgba(0, 0, 0, 0.7) 100%);
-  z-index: 2;
-}
-
-.contact-cta-content {
-  position: relative;
-  z-index: 10;
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-  color: white;
-}
-
-.contact-cta-content h2 {
-  font-family: var(--font-heading);
-  font-size: clamp(1.4rem, 3vw, 2.2rem); /* Reduced from clamp(1.8rem, 4vw, 2.8rem) */
-  font-weight: 700;
-  color: white;
-  margin-bottom: 20px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.contact-cta-content p {
-  font-size: 0.85rem; /* Reduced from 1rem */
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.6;
-  margin-bottom: 40px;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.contact-cta-buttons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.contact-cta-buttons .contact-cta-btn {
-  padding: 15px 30px;
-  font-size: 0.85rem; /* Reduced from 1rem */
-}
-
-/* =============================================================================
-   Responsive Design - REDUCED FONTS
-============================================================================= */
-
-/* Large Desktop */
-@media (max-width: 1400px) {
-  .contact-container {
-    max-width: 1200px;
-  }
-}
-
-/* Desktop */
-@media (max-width: 1200px) {
-  .contact-header-stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-
-  .contact-main-content-grid {
-    gap: 60px;
-  }
-
-  .contact-company-stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-}
-
-/* Tablet */
-@media (max-width: 1024px) {
-  .contact-header-stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .contact-main-content-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .contact-form-row {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-
-  .contact-action-buttons {
-    gap: 10px;
-  }
-
-  .contact-company-stats {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-}
-
-/* Mobile Large */
-@media (max-width: 768px) {
-  .contact-hero-section {
-    padding: 0 1rem;
-  }
-
-  .contact-header-stats {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .contact-stat-item {
-    padding: 1rem;
-  }
-
-  .contact-stat-number {
-    font-size: 1.4rem; /* Reduced from 2rem */
-  }
-
-  .contact-main-section,
-  .contact-cta-section {
-    padding: 60px 0;
-  }
-
-  .contact-container {
-    padding: 0 1rem;
-  }
-
-  .contact-form-container,
-  .contact-simple-contact-info {
-    padding: 30px 25px;
-  }
-
-  .contact-form-header h2 {
-    font-size: 1.5rem; /* Reduced from 1.8rem */
-  }
-
-  .contact-simple-contact-info h3 {
-    font-size: 1.5rem; /* Reduced from 1.8rem */
-  }
-
-  .contact-quick-actions h4 {
-    font-size: 1.1rem; /* Reduced from 1.3rem */
-  }
-
-  .contact-action-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .contact-action-btn {
-    width: 100%;
-    max-width: 200px;
-    justify-content: center;
-  }
-
-  .contact-company-stats {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .contact-stat-value {
-    font-size: 1.2rem; /* Reduced from 1.5rem */
-  }
-}
-
-/* Mobile Small */
-@media (max-width: 480px) {
-  .contact-header-content {
-    padding: 0 1rem;
-  }
-
-  .contact-page-subtitle {
-    font-size: 0.75rem; /* Reduced from 1rem */
-  }
-
-  .contact-header-actions {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .contact-cta-btn {
-    width: 100%;
-    max-width: 250px;
-    justify-content: center;
-  }
-
-  .contact-form-container,
-  .contact-simple-contact-info {
-    padding: 25px 20px;
-  }
-
-  .contact-form-header h2 {
-    font-size: 1.3rem; /* Reduced from 1.5rem */
-  }
-
-  .contact-simple-contact-info h3 {
-    font-size: 1.3rem; /* Reduced from 1.5rem */
-  }
-
-  .contact-detail-item {
-    padding: 20px 15px;
-    gap: 15px;
-  }
-
-  .contact-detail-item div strong {
-    font-size: 0.8rem; /* Reduced from 0.9rem */
-  }
-
-  .contact-detail-item div p {
-    font-size: 0.7rem; /* Reduced from 0.8rem */
-  }
-
-  .contact-cta-content h2 {
-    font-size: clamp(1.2rem, 4vw, 1.8rem); /* Reduced from clamp(1.4rem, 4vw, 2.2rem) */
-  }
-
-  .contact-cta-content p {
-    font-size: 0.8rem; /* Reduced from 0.85rem */
-  }
-}
-
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .contact-hero-section,
-  .contact-form-section,
-  .contact-office-info-section,
-  .contact-cta-section,
-  .contact-info-card,
-  .contact-action-btn,
-  .contact-submit-button {
-    animation: none !important;
-    transition: none !important;
-  }
-
-  .contact-floating-element {
-    animation: none !important;
-  }
-
-  .contact-scroll-indicator {
-    animation: none !important;
-  }
-}
-
-/* Form Validation States */
-.contact-form-group input:invalid:not(:placeholder-shown),
-.contact-select-wrapper select:invalid:not(:placeholder-shown),
-.contact-form-group textarea:invalid:not(:placeholder-shown) {
-  border-color: rgba(255, 85, 85, 0.6);
-  box-shadow: 0 0 10px rgba(255, 85, 85, 0.3);
-}
-
-.contact-form-group input:valid,
-.contact-select-wrapper select:valid,
-.contact-form-group textarea:valid {
-  border-color: rgba(85, 255, 85, 0.4);
-}
-
-/* Loading States */
-.contact-form-group input:disabled,
-.contact-select-wrapper select:disabled,
-.contact-form-group textarea:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Focus States for Better Accessibility */
-.contact-form-group input:focus-visible,
-.contact-select-wrapper select:focus-visible,
-.contact-form-group textarea:focus-visible,
-.contact-submit-button:focus-visible,
-.contact-action-btn:focus-visible {
-  outline: 2px solid var(--primary-gold);
-  outline-offset: 2px;
-}
-
-/* Print Styles */
-@media print {
-  .contact-hero-section,
-  .contact-cta-section {
-    background: white !important;
-    color: black !important;
-  }
-  
-  .contact-video-container,
-  .contact-floating-element,
-  .contact-video-controls {
-    display: none !important;
-  }
-} 
 
 .contact-cta-btn.contact-primary {
   background: linear-gradient(135deg, #d4b347, #f0d482);
@@ -741,7 +338,7 @@
 }
 
 /* =============================================================================
-   Contact Info Grid Section - REDUCED FONTS
+   Contact Info Grid Section - MADE RESPONSIVE
 ============================================================================= */
 .contact-info-grid-section {
   background: linear-gradient(135deg, #1b1b1b 0%, #1f1f1f 50%, #1c1c1c 100%);
@@ -815,21 +412,21 @@
 
 .contact-info-content h3 {
   font-family: var(--font-heading);
-  font-size: 1.2rem; /* Reduced from 1.4rem */
+  font-size: 1.4rem;
   font-weight: 600;
   color: #d4b347;
   margin-bottom: 15px;
 }
 
 .contact-info-detail {
-  font-size: 0.8rem; /* Reduced from 0.95rem */
+  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.9);
   margin: 8px 0;
   font-weight: 500;
 }
 
 .contact-info-subtitle {
-  font-size: 0.7rem; /* Reduced from 0.8rem */
+  font-size: 0.8rem;
   color: rgba(212, 179, 71, 0.8);
   font-weight: 500;
   margin-top: 15px;
@@ -837,7 +434,7 @@
 }
 
 /* =============================================================================
-   Main Contact Section with Form - REDUCED FONTS
+   Main Contact Section with Form - MADE RESPONSIVE
 ============================================================================= */
 .contact-main-section {
   background: #2a2929fb;
@@ -902,14 +499,14 @@
 
 .contact-form-header h2 {
   font-family: var(--font-heading);
-  font-size: 1.8rem; /* Reduced from 2.2rem */
+  font-size: 2.2rem;
   font-weight: 700;
   color: #d4b347;
   margin-bottom: 15px;
 }
 
 .contact-form-header p {
-  font-size: 0.8rem; /* Reduced from 0.95rem */
+  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
 }
@@ -934,7 +531,7 @@
 }
 
 .contact-form-group label {
-  font-size: 0.8rem; /* Reduced from 0.9rem */
+  font-size: 0.9rem;
   font-weight: 600;
   color: rgba(212, 179, 71, 0.9);
   margin-bottom: 5px;
@@ -960,7 +557,7 @@
   border: 2px solid rgba(212, 179, 71, 0.2);
   border-radius: 12px;
   color: white;
-  font-size: 0.8rem; /* Reduced from 0.9rem */
+  font-size: 0.9rem;
   font-family: var(--font-body);
   transition: all 0.3s ease;
 }
@@ -988,7 +585,7 @@
   border: 2px solid rgba(212, 179, 71, 0.2);
   border-radius: 12px;
   color: white;
-  font-size: 0.8rem; /* Reduced from 0.9rem */
+  font-size: 0.9rem;
   font-family: var(--font-body);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1032,7 +629,7 @@
   border: 2px solid rgba(212, 179, 71, 0.2);
   border-radius: 12px;
   color: white;
-  font-size: 0.8rem; /* Reduced from 0.9rem */
+  font-size: 0.9rem;
   font-family: var(--font-body);
   transition: all 0.3s ease;
   resize: vertical;
@@ -1061,7 +658,7 @@
   color: #000;
   border: none;
   border-radius: 50px;
-  font-size: 0.9rem; /* Reduced from 1rem */
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1130,14 +727,14 @@
 
 .contact-success-message h3 {
   font-family: var(--font-heading);
-  font-size: 1.6rem; /* Reduced from 2rem */
+  font-size: 2rem;
   font-weight: 700;
   color: #d4b347;
   margin-bottom: 15px;
 }
 
 .contact-success-message p {
-  font-size: 0.85rem; /* Reduced from 1rem */
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
   margin-bottom: 30px;
@@ -1149,7 +746,7 @@
   color: #d4b347;
   border: 2px solid #d4b347;
   border-radius: 50px;
-  font-size: 0.8rem; /* Reduced from 0.9rem */
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1162,7 +759,7 @@
 }
 
 /* =============================================================================
-   Office Information Section - REDUCED FONTS
+   Office Information Section - MADE RESPONSIVE
 ============================================================================= */
 .contact-office-info-section {
   opacity: 0;
@@ -1198,7 +795,7 @@
 
 .contact-simple-contact-info h3 {
   font-family: var(--font-heading);
-  font-size: 1.8rem; /* Reduced from 2.2rem */
+  font-size: 2.2rem;
   font-weight: 700;
   color: #d4b347;
   margin-bottom: 40px;
@@ -1236,7 +833,7 @@
 }
 
 .contact-detail-item div strong {
-  font-size: 0.9rem; /* Reduced from 1rem */
+  font-size: 1rem;
   font-weight: 600;
   color: #f0d482;
   display: block;
@@ -1244,7 +841,7 @@
 }
 
 .contact-detail-item div p {
-  font-size: 0.8rem; /* Reduced from 0.9rem */
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.5;
   margin: 3px 0;
@@ -1257,7 +854,7 @@
 
 .contact-quick-actions h4 {
   font-family: var(--font-heading);
-  font-size: 1.3rem; /* Reduced from 1.5rem */
+  font-size: 1.5rem;
   font-weight: 600;
   color: #d4b347;
   margin-bottom: 20px;
@@ -1277,8 +874,498 @@
   gap: 8px;
   padding: 12px 20px;
   border-radius: 50px;
-  font-size: 0.75rem; /* Reduced from 0.85rem */
+  font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.contact-action-btn.contact-action-primary {
+  background: linear-gradient(135deg, #d4b347, #f0d482);
+  color: #000;
+  border: none;
+}
+
+.contact-action-btn.contact-action-secondary {
+  background: transparent;
+  color: #d4b347;
+  border: 2px solid #d4b347;
+}
+
+.contact-action-btn.contact-action-whatsapp {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: white;
+  border: none;
+}
+
+.contact-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 179, 71, 0.3);
+}
+
+.contact-action-btn.contact-action-primary:hover {
+  background: linear-gradient(135deg, #f0d482, #d4b347);
+}
+
+.contact-action-btn.contact-action-secondary:hover {
+  background: rgba(212, 179, 71, 0.1);
+  border-color: #f0d482;
+}
+
+.contact-action-btn.contact-action-whatsapp:hover {
+  background: linear-gradient(135deg, #128c7e, #25d366);
+}
+
+/* Company Stats */
+.contact-company-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.contact-company-stat {
+  text-align: center;
+  padding: 20px;
+  background: rgba(212, 179, 71, 0.1);
+  border: 1px solid rgba(212, 179, 71, 0.2);
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.contact-company-stat:hover {
+  background: rgba(212, 179, 71, 0.15);
+  border-color: rgba(212, 179, 71, 0.4);
+  transform: translateY(-5px);
+}
+
+.contact-stat-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #d4b347;
+  font-family: var(--font-heading);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.contact-stat-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+/* =============================================================================
+   CTA Section - MADE RESPONSIVE
+============================================================================= */
+.contact-cta-section {
+  background: linear-gradient(135deg, #1b1b1b 0%, #1f1f1f 50%, #1c1c1c 100%);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
+
+.contact-cta-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-cta-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.contact-cta-bg-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.3) contrast(1.2);
+}
+
+.contact-cta-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0.7) 100%);
+  z-index: 2;
+}
+
+.contact-cta-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  color: white;
+}
+
+.contact-cta-content h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: white;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.contact-cta-content p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin-bottom: 40px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.contact-cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-cta-buttons .contact-cta-btn {
+  padding: 15px 30px;
+  font-size: 1rem;
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN - MAINTAINING YOUR ORIGINAL DESIGN
+============================================================================= */
+
+/* Large Desktop */
+@media (max-width: 1400px) {
+  .contact-container {
+    max-width: 1200px;
+  }
+}
+
+/* Desktop */
+@media (max-width: 1200px) {
+  .contact-header-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .contact-main-content-grid {
+    gap: 60px;
+  }
+
+  .contact-company-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .contact-header-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .contact-main-content-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .contact-form-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .contact-action-buttons {
+    gap: 10px;
+  }
+
+  .contact-company-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .contact-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Mobile Large */
+@media (max-width: 768px) {
+  .contact-hero-section {
+    padding: 0 1rem;
+  }
+
+  .contact-header-content {
+    padding: 0 1rem;
+  }
+
+  .contact-header-stats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .contact-stat-item {
+    padding: 1rem;
+  }
+
+  .contact-stat-number {
+    font-size: 1.5rem;
+  }
+
+  .contact-main-section,
+  .contact-cta-section,
+  .contact-info-grid-section {
+    padding: 60px 0;
+  }
+
+  .contact-container {
+    padding: 0 1rem;
+  }
+
+  .contact-form-container,
+  .contact-simple-contact-info {
+    padding: 30px 25px;
+  }
+
+  .contact-form-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .contact-simple-contact-info h3 {
+    font-size: 1.8rem;
+  }
+
+  .contact-quick-actions h4 {
+    font-size: 1.3rem;
+  }
+
+  .contact-action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-action-btn {
+    width: 100%;
+    max-width: 200px;
+    justify-content: center;
+  }
+
+  .contact-company-stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .contact-stat-value {
+    font-size: 1.5rem;
+  }
+
+  .contact-info-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .contact-info-card {
+    padding: 30px 20px;
+  }
+
+  .contact-video-controls {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .contact-video-control-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+  .contact-header-content {
+    padding: 0 1rem;
+  }
+
+  .contact-page-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .contact-header-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .contact-cta-btn {
+    width: 100%;
+    max-width: 250px;
+    justify-content: center;
+  }
+
+  .contact-form-container,
+  .contact-simple-contact-info {
+    padding: 25px 20px;
+  }
+
+  .contact-form-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .contact-simple-contact-info h3 {
+    font-size: 1.5rem;
+  }
+
+  .contact-detail-item {
+    padding: 20px 15px;
+    gap: 15px;
+  }
+
+  .contact-detail-item div strong {
+    font-size: 0.9rem;
+  }
+
+  .contact-detail-item div p {
+    font-size: 0.8rem;
+  }
+
+  .contact-cta-content h2 {
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+  }
+
+  .contact-cta-content p {
+    font-size: 0.85rem;
+  }
+
+  .contact-info-card {
+    padding: 25px 15px;
+  }
+
+  .contact-info-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .contact-hero-subtitle {
+    font-size: 0.5rem;
+  }
+
+  .contact-breadcrumb {
+    font-size: 0.7rem;
+  }
+
+  .contact-video-controls {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .contact-video-control-btn {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+  .contact-container {
+    padding: 0 0.5rem;
+  }
+
+  .contact-form-container,
+  .contact-simple-contact-info {
+    padding: 20px 15px;
+  }
+
+  .contact-info-card {
+    padding: 20px 12px;
+  }
+
+  .contact-detail-item {
+    padding: 15px 12px;
+    gap: 12px;
+  }
+
+  .contact-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-cta-buttons .contact-cta-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .contact-hero-section,
+  .contact-form-section,
+  .contact-office-info-section,
+  .contact-cta-section,
+  .contact-info-card,
+  .contact-action-btn,
+  .contact-submit-button {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .contact-floating-element {
+    animation: none !important;
+  }
+
+  .contact-scroll-indicator {
+    animation: none !important;
+  }
+
+  .contact-success-icon {
+    animation: none !important;
+  }
+}
+
+/* Form Validation States - REMOVED RED AND GREEN BORDERS */
+.contact-form-group input:focus,
+.contact-select-wrapper select:focus,
+.contact-form-group textarea:focus {
+  outline: none;
+  border-color: #d4b347;
+  box-shadow: 0 0 0 3px rgba(212, 179, 71, 0.1);
+}
+
+/* Loading States */
+.contact-form-group input:disabled,
+.contact-select-wrapper select:disabled,
+.contact-form-group textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Focus States for Better Accessibility */
+.contact-form-group input:focus-visible,
+.contact-select-wrapper select:focus-visible,
+.contact-form-group textarea:focus-visible,
+.contact-submit-button:focus-visible,
+.contact-action-btn:focus-visible {
+  outline: 2px solid var(--primary-gold);
+  outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+  .contact-hero-section,
+  .contact-cta-section {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .contact-video-container,
+  .contact-floating-element,
+  .contact-video-controls {
+    display: none !important;
+  }
 }

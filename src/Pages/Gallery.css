@@ -1,8 +1,6 @@
 /* =============================================================================
-   Images Only Gallery Page - Clean CSS Styles with REDUCED FONT SIZES
-   Capricorn Elevators - Images Only Gallery Design
-   Font: Playfair Display for headings, Inter for body
-   Theme: Gold (#d4b347) and White with Dark Background
+   MOBILE-FIRST RESPONSIVE GALLERY CSS - GUARANTEED IMAGE DISPLAY
+   Capricorn Elevators - Gallery Design with Complete Mobile Fix
 ============================================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
@@ -15,25 +13,83 @@
   --white: #ffffff;
   --dark: #1a1a1a;
   --black: #000000;
-
-  /* Typography */
   --font-heading: 'Playfair Display', serif;
   --font-body: 'Inter', sans-serif;
 }
 
 /* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--black);
+  color: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 .gallery-page {
   min-height: 100vh;
-  background: black;
+  background: var(--black);
   overflow-x: hidden;
 }
 
 /* =============================================================================
-   Gallery Hero Section with Video Background - REDUCED FONTS
+   CRITICAL MOBILE FIXES - DISABLE ALL ANIMATIONS ON MOBILE
+============================================================================= */
+
+/* Mobile-first approach: Show everything by default */
+.gallery-item,
+.gallery-item-image,
+[data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+  display: block !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Only enable animations on larger screens */
+@media (min-width: 769px) {
+  .gallery-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+  }
+  
+  .gallery-item.aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  [data-aos="fade-up"] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  [data-aos="fade-up"].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =============================================================================
+   Gallery Hero Section
 ============================================================================= */
 .gallery-hero-section {
   position: relative;
   height: 100vh;
+  min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,15 +118,18 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .gallery-video-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg,
-      rgba(0, 0, 0, 0.6) 0%,
-      rgba(0, 0, 0, 0.4) 50%,
-      rgba(0, 0, 0, 0.6) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
   z-index: 2;
 }
 
@@ -80,36 +139,35 @@
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
-  padding: 0 1.5rem;
-  color: white;
+  padding: 0 1rem;
+  color: var(--white);
 }
 
 .gallery-hero-badge {
   display: inline-block;
-  margin-bottom: 1.5rem;
-  padding: 0.6rem 1.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1.2rem;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(212, 179, 71, 0.4);
-  border-radius: 60px;
+  border-radius: 30px;
   backdrop-filter: blur(20px);
 }
 
 .gallery-hero-subtitle {
   font-family: var(--font-body);
-  font-size: 0.5rem; /* Reduced */
+  font-size: 0.7rem;
   font-weight: 600;
   color: rgba(212, 179, 71, 0.9);
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .gallery-hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(1.8rem, 5vw, 3.5rem); /* Reduced */
+  font-size: clamp(1.5rem, 5vw, 3rem);
   font-weight: 800;
   line-height: 1.1;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   letter-spacing: -0.02em;
 }
 
@@ -128,18 +186,18 @@
 }
 
 .gallery-hero-description {
-  font-size: 0.9rem; /* Reduced */
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.6;
-  margin-bottom: 2.5rem;
-  max-width: 600px;
+  margin-bottom: 2rem;
+  max-width: 500px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .scroll-indicator-gallery {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
   color: var(--primary-gold);
@@ -153,25 +211,26 @@
     transform: translateX(-50%) translateY(0);
   }
   40% {
-    transform: translateX(-50%) translateY(-15px);
+    transform: translateX(-50%) translateY(-10px);
   }
   60% {
-    transform: translateX(-50%) translateY(-8px);
+    transform: translateX(-50%) translateY(-5px);
   }
 }
 
 /* =============================================================================
-   Gallery Main Section - Images Only
+   Gallery Main Section - MOBILE-FIRST RESPONSIVE
 ============================================================================= */
 .gallery-main-section {
   background: linear-gradient(135deg, #1b1b1b 0%, #1f1f1f 50%, #1c1c1c 100%);
-  color: white;
-  padding: 100px 0;
+  color: var(--white);
+  padding: 60px 0;
   position: relative;
   overflow: hidden;
   opacity: 0;
   transform: translateY(50px);
   transition: all 1s ease-out;
+  min-height: 500px;
 }
 
 .gallery-main-section.visible {
@@ -189,35 +248,56 @@
 }
 
 .gallery-container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
   position: relative;
   z-index: 10;
+  width: 100%;
 }
 
-/* Images Only Gallery Grid */
+/* =============================================================================
+   MOBILE-FIRST GALLERY GRID - GUARANTEED TO WORK ON ALL DEVICES
+============================================================================= */
+
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  margin-top: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  
+  /* Mobile first - single column */
+  grid-template-columns: 1fr;
+  gap: 15px;
 }
 
 .gallery-item {
   position: relative;
-  aspect-ratio: 4/3;
-  border-radius: 15px;
+  width: 100%;
+  border-radius: 12px;
   overflow: hidden;
   border: 2px solid rgba(212, 179, 71, 0.2);
-  transition: all 0.4s ease;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   cursor: pointer;
+  background: var(--dark);
+  
+  /* Mobile dimensions */
+  aspect-ratio: 16/10;
+  min-height: 200px;
+  
+  /* FORCE VISIBILITY ON ALL DEVICES */
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+  display: block !important;
+  
+  /* Only allow hover transitions */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .gallery-item:hover {
-  border-color: #d4b347;
-  transform: translateY(-8px);
+  border-color: var(--primary-gold);
+  transform: translateY(-5px);
   box-shadow: 0 15px 40px rgba(212, 179, 71, 0.3);
 }
 
@@ -225,8 +305,17 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  object-position: center;
   filter: brightness(0.9);
+  
+  /* CRITICAL - FORCE IMAGE DISPLAY */
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  max-width: 100% !important;
+  
+  /* Smooth hover transition */
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .gallery-item:hover .gallery-item-image {
@@ -234,220 +323,292 @@
   filter: brightness(1);
 }
 
-/* Loading Animation for Images */
-.gallery-item-image {
-  opacity: 0;
-  animation: imageLoad 0.5s ease-in-out forwards;
+/* =============================================================================
+   PROGRESSIVE ENHANCEMENT - LARGER SCREENS
+============================================================================= */
+
+/* Small tablets and large phones (576px+) */
+@media (min-width: 576px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  
+  .gallery-item {
+    aspect-ratio: 1;
+    border-radius: 15px;
+  }
+  
+  .gallery-container {
+    padding: 0 1.5rem;
+  }
 }
 
-@keyframes imageLoad {
-  to {
-    opacity: 1;
+/* Medium tablets (768px+) */
+@media (min-width: 768px) {
+  .gallery-hero-section {
+    min-height: 450px;
+  }
+  
+  .gallery-main-section {
+    padding: 50px 0;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .gallery-item {
+    aspect-ratio: 4/3;
+  }
+}
+
+/* Large tablets and small desktops (992px+) */
+@media (min-width: 992px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 22px;
+  }
+  
+  .gallery-main-section {
+    padding: 60px 0;
+  }
+}
+
+/* Large desktops (1200px+) */
+@media (min-width: 1200px) {
+  .gallery-container {
+    max-width: 1400px;
+    padding: 0 2rem;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
   }
 }
 
 /* =============================================================================
-   Responsive Design - Images Only
+   SPECIFIC MOBILE BREAKPOINTS
 ============================================================================= */
 
-/* Large Desktop */
-@media (max-width: 1400px) {
+/* Extra small phones (320px - 479px) */
+@media (max-width: 479px) {
+  .gallery-hero-section {
+    min-height: 300px;
+  }
+  
+  .gallery-main-section {
+    padding: 30px 0;
+  }
+  
   .gallery-container {
-    max-width: 1200px;
+    padding: 0 0.75rem;
   }
   
   .gallery-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  }
-}
-
-/* Desktop */
-@media (max-width: 1200px) {
-  .gallery-grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 18px;
-  }
-}
-
-/* Tablet */
-@media (max-width: 1024px) {
-  .gallery-main-section {
-    padding: 80px 0;
-  }
-
-  .gallery-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 15px;
-  }
-}
-
-/* Mobile Large */
-@media (max-width: 768px) {
-  .gallery-hero-section {
-    padding: 0 1rem;
-  }
-
-  .gallery-main-section {
-    padding: 60px 0;
-  }
-
-  .gallery-container {
-    padding: 0 1rem;
-  }
-
-  .gallery-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 12px;
   }
-}
-
-/* Mobile Medium */
-@media (max-width: 600px) {
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+  
+  .gallery-item {
+    border-radius: 8px;
+    min-height: 180px;
+    aspect-ratio: 16/9;
   }
-}
-
-/* Mobile Small */
-@media (max-width: 480px) {
-  .gallery-hero-content {
-    padding: 0 1rem;
+  
+  .gallery-hero-title {
+    font-size: clamp(1.2rem, 6vw, 1.8rem);
   }
-
+  
   .gallery-hero-description {
-    font-size: 0.8rem; /* Reduced */
+    font-size: 0.75rem;
   }
+}
 
+/* Small phones (480px - 599px) */
+@media (min-width: 480px) and (max-width: 599px) {
+  .gallery-item {
+    aspect-ratio: 3/2;
+    min-height: 200px;
+  }
+  
   .gallery-grid {
-    grid-template-columns: 1fr;
     gap: 15px;
   }
+}
 
+/* =============================================================================
+   ORIENTATION SPECIFIC FIXES
+============================================================================= */
+
+/* Portrait mode on mobile */
+@media (max-width: 768px) and (orientation: portrait) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  
   .gallery-item {
+    max-width: 100%;
+    margin: 0 auto;
     aspect-ratio: 16/10;
   }
 }
 
+/* Landscape mode on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .gallery-hero-section {
+    min-height: 250px;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .gallery-item {
+    aspect-ratio: 4/3;
+  }
+}
+
 /* =============================================================================
-   Accessibility and Performance
+   ACCESSIBILITY AND PERFORMANCE
 ============================================================================= */
 
-/* Reduced Motion */
+/* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  .gallery-hero-section,
-  .gallery-main-section,
-  .gallery-item {
+  * {
     animation: none !important;
     transition: none !important;
   }
-
+  
+  .gallery-item {
+    transition: none !important;
+  }
+  
+  .gallery-item-image {
+    transition: none !important;
+  }
+  
   .scroll-indicator-gallery {
     animation: none !important;
   }
 }
 
-/* High Contrast Mode */
+/* High contrast mode */
 @media (prefers-contrast: high) {
   .gallery-item {
-    border-color: #d4b347 !important;
+    border-color: var(--primary-gold) !important;
+    border-width: 3px;
   }
 }
 
-/* Print Styles */
+/* Print styles */
 @media print {
   .gallery-page {
     background: white !important;
     color: black !important;
   }
-
+  
   .gallery-hero-section,
   .scroll-indicator-gallery {
     display: none !important;
   }
-
+  
+  .gallery-main-section {
+    background: white !important;
+    padding: 20px 0 !important;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  
   .gallery-item {
-    break-inside: avoid;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #ccc !important;
     box-shadow: none !important;
   }
-
-  .gallery-item-image {
-    filter: none !important;
-  }
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Focus states for keyboard navigation */
+.gallery-item:focus-visible {
+  outline: 2px solid var(--primary-gold);
+  outline-offset: 2px;
 }
 
-/* Selection styles */
+/* Text selection styles */
 ::selection {
   background: rgba(212, 179, 71, 0.3);
-  color: white;
+  color: var(--white);
 }
 
-::-moz-selection {
-  background: rgba(212, 179, 71, 0.3);
-  color: white;
+/* =============================================================================
+   CRITICAL OVERRIDES - ENSURE IMAGES ALWAYS DISPLAY
+============================================================================= */
+
+/* Universal image display fix */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
-/* Focus States for Accessibility */
-.gallery-item:focus-visible {
-  outline: 3px solid #d4b347;
-  outline-offset: 3px;
+/* Strongest possible overrides for gallery images */
+.gallery-item-image {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
 }
 
-/* Backdrop blur support fallback */
-@supports not (backdrop-filter: blur(20px)) {
-  .gallery-hero-badge {
-    background: rgba(0, 0, 0, 0.8);
+/* Override any AOS interference */
+.gallery-item[data-aos],
+.gallery-item[data-aos] .gallery-item-image,
+[data-aos] .gallery-item-image {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* Fallback for CSS Grid unsupported browsers */
+@supports not (display: grid) {
+  .gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .gallery-item {
+    flex: 0 1 300px;
+    margin: 10px;
+    max-width: 300px;
   }
 }
 
-/* AOS Animation Support */
-[data-aos="fade-up"] {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+/* =============================================================================
+   DEBUGGING HELPERS (Remove in production)
+============================================================================= */
+
+/* Uncomment these to debug layout issues */
+/*
+.gallery-grid {
+  border: 2px solid red !important;
+  background: rgba(255, 0, 0, 0.1) !important;
 }
 
-[data-aos="fade-up"].aos-animate {
-  opacity: 1;
-  transform: translateY(0);
+.gallery-item {
+  border: 2px solid blue !important;
+  background: rgba(0, 0, 255, 0.1) !important;
 }
 
-/* Masonry-like effect for varied image sizes (optional) */
-.gallery-grid.masonry {
-  columns: 4;
-  column-gap: 20px;
+.gallery-item-image {
+  border: 2px solid green !important;
 }
-
-.gallery-grid.masonry .gallery-item {
-  display: inline-block;
-  margin-bottom: 20px;
-  width: 100%;
-  aspect-ratio: auto;
-}
-
-@media (max-width: 1024px) {
-  .gallery-grid.masonry {
-    columns: 3;
-  }
-}
-
-@media (max-width: 768px) {
-  .gallery-grid.masonry {
-    columns: 2;
-  }
-}
-
-@media (max-width: 480px) {
-  .gallery-grid.masonry {
-    columns: 1;
-  }
-}
-
-/* End of CSS File */
+*/

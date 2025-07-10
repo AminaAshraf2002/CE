@@ -17,7 +17,8 @@ import {
   ArrowRight,
   ChevronDown,
   Play,
-  Pause
+  Pause,
+  AlertTriangle
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
@@ -40,7 +41,7 @@ const Contact = () => {
     name: '',
     email: '',
     phone: '',
-    company: '',
+    country: '',
     projectType: '',
     subject: '',
     message: ''
@@ -50,10 +51,11 @@ const Contact = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [scrollY, setScrollY] = useState(0);
-  const [contactHeroVisible, setContactHeroVisible] = useState(true); // Set to true immediately
-  const [contactFormVisible, setContactFormVisible] = useState(true); // Set to true immediately
-  const [contactInfoVisible, setContactInfoVisible] = useState(true); // Set to true immediately
-  const [contactCtaVisible, setContactCtaVisible] = useState(true); // Set to true immediately
+  const [contactHeroVisible, setContactHeroVisible] = useState(true);
+  const [contactFormVisible, setContactFormVisible] = useState(true);
+  const [contactInfoVisible, setContactInfoVisible] = useState(true);
+  const [contactCtaVisible, setContactCtaVisible] = useState(true);
+  const [phoneError, setPhoneError] = useState('');
   const [animatedContactStats, setAnimatedContactStats] = useState({
     projects: 500,
     countries: 9,
@@ -82,6 +84,89 @@ const Contact = () => {
     'Maintenance Service',
     'Modernization',
     'Other'
+  ];
+
+  const countries = [
+    { 
+      code: '+91', 
+      name: 'India', 
+      pattern: /^[6-9]\d{9}$/, 
+      placeholder: 'Enter 10-digit number (e.g., 9876543210)', 
+      example: '9876543210',
+      description: '10 digits starting with 6-9'
+    },
+    { 
+      code: '+971', 
+      name: 'UAE', 
+      pattern: /^[5]\d{8}$/, 
+      placeholder: 'Enter 9-digit number (e.g., 501234567)', 
+      example: '501234567',
+      description: '9 digits starting with 5'
+    },
+    { 
+      code: '+1', 
+      name: 'USA', 
+      pattern: /^[2-9]\d{9}$/, 
+      placeholder: 'Enter 10-digit number (e.g., 2125551234)', 
+      example: '2125551234',
+      description: '10 digits starting with 2-9'
+    },
+    { 
+      code: '+44', 
+      name: 'UK', 
+      pattern: /^[1-9]\d{9,10}$/, 
+      placeholder: 'Enter 10-11 digit number (e.g., 2012345678)', 
+      example: '2012345678',
+      description: '10-11 digits starting with 1-9'
+    },
+    { 
+      code: '+33', 
+      name: 'France', 
+      pattern: /^[1-9]\d{8}$/, 
+      placeholder: 'Enter 9-digit number (e.g., 123456789)', 
+      example: '123456789',
+      description: '9 digits starting with 1-9'
+    },
+    { 
+      code: '+49', 
+      name: 'Germany', 
+      pattern: /^[1-9]\d{9,11}$/, 
+      placeholder: 'Enter 10-12 digit number (e.g., 1712345678)', 
+      example: '1712345678',
+      description: '10-12 digits starting with 1-9'
+    },
+    { 
+      code: '+81', 
+      name: 'Japan', 
+      pattern: /^[1-9]\d{9,10}$/, 
+      placeholder: 'Enter 10-11 digit number (e.g., 9012345678)', 
+      example: '9012345678',
+      description: '10-11 digits starting with 1-9'
+    },
+    { 
+      code: '+86', 
+      name: 'China', 
+      pattern: /^[1]\d{10}$/, 
+      placeholder: 'Enter 11-digit number (e.g., 13812345678)', 
+      example: '13812345678',
+      description: '11 digits starting with 1'
+    },
+    { 
+      code: '+61', 
+      name: 'Australia', 
+      pattern: /^[4]\d{8}$/, 
+      placeholder: 'Enter 9-digit number (e.g., 412345678)', 
+      example: '412345678',
+      description: '9 digits starting with 4'
+    },
+    { 
+      code: '+65', 
+      name: 'Singapore', 
+      pattern: /^[8-9]\d{7}$/, 
+      placeholder: 'Enter 8-digit number (e.g., 81234567)', 
+      example: '81234567',
+      description: '8 digits starting with 8 or 9'
+    }
   ];
 
   const contactInfoData = [
@@ -130,13 +215,134 @@ const Contact = () => {
     }
   };
 
+  // Enhanced Phone Validation Functions
+  const validatePhoneNumber = (phone, countryCode) => {
+    if (!phone || !countryCode) return false;
+    
+    const selectedCountry = countries.find(c => c.code === countryCode);
+    if (!selectedCountry) return false;
+    
+    // Remove formatting characters
+    const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+    
+    // Must contain only digits
+    if (!/^\d+$/.test(cleanPhone)) {
+      return false;
+    }
+    
+    // Must match country-specific pattern
+    return selectedCountry.pattern.test(cleanPhone);
+  };
+
+  const getSelectedCountryInfo = () => {
+    return countries.find(c => c.code === formData.country);
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    if (name === 'phone') {
+      // Only allow digits, spaces, hyphens, and parentheses
+      let cleanValue = value.replace(/[^\d\s\-\(\)]/g, '');
+      
+      // Additional check: if the input contains letters, show immediate error
+      if (/[a-zA-Z]/.test(value)) {
+        const selectedCountry = getSelectedCountryInfo();
+        setPhoneError(`Phone number must contain only digits. Please enter a valid ${selectedCountry?.name || ''} phone number.`);
+      }
+      
+      setFormData(prev => ({ ...prev, [name]: cleanValue }));
+      
+      // Real-time validation
+      if (formData.country && cleanValue) {
+        const isValid = validatePhoneNumber(cleanValue, formData.country);
+        const selectedCountry = getSelectedCountryInfo();
+        
+        // Check if contains only digits (after removing formatting)
+        const digitsOnly = cleanValue.replace(/[\s\-\(\)]/g, '');
+        if (!/^\d+$/.test(digitsOnly)) {
+          setPhoneError(`Phone number must contain only digits. Please enter a valid ${selectedCountry?.name || ''} phone number.`);
+        } else if (!isValid && selectedCountry) {
+          setPhoneError(`Please enter a valid ${selectedCountry.name} phone number. Example: ${selectedCountry.example}`);
+        } else if (isValid) {
+          setPhoneError(''); // Clear error for valid numbers
+        }
+      } else if (formData.country && !cleanValue) {
+        setPhoneError('Phone number is required');
+      }
+    } else if (name === 'country') {
+      setFormData(prev => ({ ...prev, [name]: value }));
+      setPhoneError(''); // Reset phone error when country changes
+      
+      // Re-validate existing phone number with new country
+      if (formData.phone) {
+        const isValid = validatePhoneNumber(formData.phone, value);
+        const selectedCountry = countries.find(c => c.code === value);
+        
+        const digitsOnly = formData.phone.replace(/[\s\-\(\)]/g, '');
+        if (!/^\d+$/.test(digitsOnly)) {
+          setPhoneError(`Phone number must contain only digits. Please enter a valid ${selectedCountry?.name || ''} phone number.`);
+        } else if (!isValid && selectedCountry) {
+          setPhoneError(`Please enter a valid ${selectedCountry.name} phone number. Example: ${selectedCountry.example}`);
+        } else if (isValid) {
+          setPhoneError('');
+        }
+      }
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Reset errors
+    setPhoneError('');
+    let hasErrors = false;
+    
+    // Validate required fields
+    if (!formData.name?.trim()) {
+      hasErrors = true;
+    }
+    
+    if (!formData.email?.trim()) {
+      hasErrors = true;
+    }
+    
+    if (!formData.message?.trim()) {
+      hasErrors = true;
+    }
+    
+    // Phone validation
+    if (!formData.phone?.trim()) {
+      setPhoneError('Phone number is required');
+      hasErrors = true;
+    } else if (!formData.country) {
+      setPhoneError('Please select a country code');
+      hasErrors = true;
+    } else {
+      // Check if phone contains only digits (after removing formatting)
+      const digitsOnly = formData.phone.replace(/[\s\-\(\)]/g, '');
+      if (!/^\d+$/.test(digitsOnly)) {
+        const selectedCountry = getSelectedCountryInfo();
+        setPhoneError(`Phone number must contain only digits. Please enter a valid ${selectedCountry?.name || ''} phone number.`);
+        hasErrors = true;
+      } else {
+        // Validate against country pattern
+        const isValid = validatePhoneNumber(formData.phone, formData.country);
+        if (!isValid) {
+          const selectedCountry = getSelectedCountryInfo();
+          setPhoneError(`Please enter a valid ${selectedCountry?.name || ''} phone number. Example: ${selectedCountry?.example || ''}`);
+          hasErrors = true;
+        }
+      }
+    }
+    
+    // Stop submission if there are any errors
+    if (hasErrors) {
+      return;
+    }
+    
     setIsSubmitting(true);
     
     // Simulate form submission
@@ -147,11 +353,12 @@ const Contact = () => {
         name: '',
         email: '',
         phone: '',
-        company: '',
+        country: '',
         projectType: '',
         subject: '',
         message: ''
       });
+      setPhoneError('');
       setTimeout(() => setIsSubmitted(false), 5000);
     }, 2000);
   };
@@ -185,6 +392,8 @@ const Contact = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const selectedCountryInfo = getSelectedCountryInfo();
 
   return (
     <div className="contact-page">
@@ -225,87 +434,12 @@ const Contact = () => {
           transform: `translateY(${scrollY * -0.15}px)`,
           opacity: Math.max(0, 1 - scrollY / 700)
         }}>
-          {/* <div className="contact-hero-badge">
-            <span className="contact-hero-subtitle">Get Expert Consultation</span>
-          </div> */}
-          
-          {/* <div className="contact-breadcrumb">
-            <span>Home</span>
-            <ChevronRight size={16} />
-            <span>Contact Us</span>
-          </div>
-           */}
-          {/* <h1 className="contact-page-title">
-            Get In <span className="contact-highlight">Touch</span>
-          </h1>
-          
-          <p className="contact-page-subtitle">
-            Ready to elevate your space? Connect with our elevator experts for personalized solutions. 
-            From consultation to installation, we're here to bring your vision to life.
-          </p> */}
-
-          {/* <div className="contact-header-stats">
-            <div className="contact-stat-item" data-aos="fade-up" data-aos-delay="100">
-              <div className="contact-stat-number">{animatedContactStats.projects}+</div>
-              <div className="contact-stat-label">Projects</div>
-            </div>
-            <div className="contact-stat-item" data-aos="fade-up" data-aos-delay="200">
-              <div className="contact-stat-number">{animatedContactStats.countries}</div>
-              <div className="contact-stat-label">Countries</div>
-            </div>
-            <div className="contact-stat-item" data-aos="fade-up" data-aos-delay="300">
-              <div className="contact-stat-number">{animatedContactStats.clients}+</div>
-              <div className="contact-stat-label">Clients</div>
-            </div>
-            <div className="contact-stat-item" data-aos="fade-up" data-aos-delay="400">
-              <div className="contact-stat-number">{animatedContactStats.satisfaction}%</div>
-              <div className="contact-stat-label">Satisfaction</div>
-            </div>
-          </div> */}
-
-          {/* <div className="contact-header-actions">
-            <button className="contact-cta-btn contact-primary">
-              Schedule Free Consultation
-              <ArrowRight size={18} />
-            </button>
-            <button className="contact-cta-btn contact-secondary">
-              Call Now: +91 98765 43210
-              <Phone size={18} />
-            </button>
-          </div> */}
         </div>
 
         <div className="contact-scroll-indicator">
           <ChevronDown size={28} />
         </div>
       </section>
-
-      {/* Contact Info Cards */}
-      {/* <section className="contact-info-grid-section">
-        <div className="contact-container">
-          <div className="contact-info-grid">
-            {contactInfoData.map((info, index) => (
-              <div 
-                key={index} 
-                className="contact-info-card" 
-                data-aos="fade-up" 
-                data-aos-delay={index * 100}
-              >
-                <div className="contact-info-icon" style={{ backgroundColor: info.color }}>
-                  {info.icon}
-                </div>
-                <div className="contact-info-content">
-                  <h3>{info.title}</h3>
-                  {info.details.map((detail, idx) => (
-                    <p key={idx} className="contact-info-detail">{detail}</p>
-                  ))}
-                  <span className="contact-info-subtitle">{info.subtitle}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       {/* Main Contact Section */}
       <section className="contact-main-section">
@@ -337,6 +471,7 @@ const Contact = () => {
                   </div>
                 ) : (
                   <form className="contact-form" onSubmit={handleSubmit}>
+                    {/* Row 1: Name and Email */}
                     <div className="contact-form-row">
                       <div className="contact-form-group">
                         <label htmlFor="name">Full Name *</label>
@@ -370,9 +505,29 @@ const Contact = () => {
                       </div>
                     </div>
 
+                    {/* Row 2: Country Code and Phone Number */}
                     <div className="contact-form-row">
                       <div className="contact-form-group">
-                        <label htmlFor="phone">Phone Number</label>
+                        <label htmlFor="country">Country Code *</label>
+                        <div className="contact-select-wrapper">
+                          <select
+                            id="country"
+                            name="country"
+                            value={formData.country}
+                            onChange={handleInputChange}
+                            required
+                          >
+                            <option value="">Select country code</option>
+                            {countries.map((country, index) => (
+                              <option key={index} value={country.code}>
+                                {country.code} - {country.name}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                      <div className="contact-form-group">
+                        <label htmlFor="phone">Phone Number *</label>
                         <div className="contact-input-wrapper">
                           <Phone size={18} className="contact-input-icon" />
                           <input
@@ -381,59 +536,44 @@ const Contact = () => {
                             name="phone"
                             value={formData.phone}
                             onChange={handleInputChange}
-                            placeholder="Enter your phone number"
+                            required
+                            placeholder={selectedCountryInfo ? selectedCountryInfo.placeholder : "Select country code first"}
+                            disabled={!formData.country}
                           />
                         </div>
-                      </div>
-                      <div className="contact-form-group">
-                        <label htmlFor="company">Company Name</label>
-                        <div className="contact-input-wrapper">
-                          <Building size={18} className="contact-input-icon" />
-                          <input
-                            type="text"
-                            id="company"
-                            name="company"
-                            value={formData.company}
-                            onChange={handleInputChange}
-                            placeholder="Enter company name"
-                          />
-                        </div>
+                        {phoneError && (
+                          <div className="phone-error-message">
+                            <AlertTriangle size={16} />
+                            <span>{phoneError}</span>
+                          </div>
+                        )}
+                        {selectedCountryInfo && (
+                          <div className="phone-help-text">
+                            Format: {selectedCountryInfo.code} {selectedCountryInfo.example}
+                          </div>
+                        )}
                       </div>
                     </div>
 
-                    <div className="contact-form-row">
-                      <div className="contact-form-group">
-                        <label htmlFor="projectType">Project Type</label>
-                        <div className="contact-select-wrapper">
-                          <select
-                            id="projectType"
-                            name="projectType"
-                            value={formData.projectType}
-                            onChange={handleInputChange}
-                          >
-                            <option value="">Select project type</option>
-                            {projectTypes.map((type, index) => (
-                              <option key={index} value={type}>{type}</option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-                      <div className="contact-form-group">
-                        <label htmlFor="subject">Subject</label>
-                        <div className="contact-input-wrapper">
-                          <MessageSquare size={18} className="contact-input-icon" />
-                          <input
-                            type="text"
-                            id="subject"
-                            name="subject"
-                            value={formData.subject}
-                            onChange={handleInputChange}
-                            placeholder="Subject of your inquiry"
-                          />
-                        </div>
+                    {/* Row 3: Project Type (single column, full width) */}
+                    <div className="contact-form-group">
+                      <label htmlFor="projectType">Project Type</label>
+                      <div className="contact-select-wrapper">
+                        <select
+                          id="projectType"
+                          name="projectType"
+                          value={formData.projectType}
+                          onChange={handleInputChange}
+                        >
+                          <option value="">Select project type</option>
+                          {projectTypes.map((type, index) => (
+                            <option key={index} value={type}>{type}</option>
+                          ))}
+                        </select>
                       </div>
                     </div>
 
+                    {/* Message Field */}
                     <div className="contact-form-group">
                       <label htmlFor="message">Message *</label>
                       <div className="contact-textarea-wrapper">
@@ -450,7 +590,7 @@ const Contact = () => {
                       </div>
                     </div>
 
-                    <button type="submit" className="contact-submit-button" disabled={isSubmitting}>
+                    <button type="submit" className="contact-submit-button" disabled={isSubmitting || phoneError}>
                       {isSubmitting ? (
                         <>
                           <div className="contact-spinner" />
@@ -493,7 +633,6 @@ const Contact = () => {
                     <div>
                       <strong>Email Addresses</strong>
                       <p>sales@capriconelevators.com</p>
-                     
                     </div>
                   </div>
                   <div className="contact-detail-item" data-aos="fade-left" data-aos-delay="400">
@@ -510,11 +649,11 @@ const Contact = () => {
                 <div className="contact-quick-actions" data-aos="fade-left" data-aos-delay="500">
                   <h4>Quick Actions</h4>
                   <div className="contact-action-buttons">
-                    <a href="tel:+ 7593000222" className="contact-action-btn contact-action-primary">
+                    <a href="tel:+917593000222" className="contact-action-btn contact-action-primary">
                       <Phone size={16} />
                       Call Now
                     </a>
-                    <a href="mailto:info@capricornelevators.com" className="contact-action-btn contact-action-secondary">
+                    <a href="mailto:sales@capriconelevators.com" className="contact-action-btn contact-action-secondary">
                       <Mail size={16} />
                       Email Us
                     </a>

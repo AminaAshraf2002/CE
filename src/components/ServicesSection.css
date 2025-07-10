@@ -1,0 +1,1560 @@
+/* =============================================================================
+   Customization Services Section - Complete CSS with Unique Class Names
+============================================================================= */
+
+/* Base Variables */
+:root {
+  --customization-primary-gold: #d4b347;
+  --customization-gold-light: #f0d482;
+  --customization-text-white: #ffffff;
+  --customization-text-gray: rgba(255, 255, 255, 0.8);
+  --customization-bg-dark: #000000;
+  --customization-bg-dark-light: #1a1a1a;
+  --customization-border-gold: rgba(212, 179, 71, 0.4);
+  --customization-border-gold-light: rgba(212, 179, 71, 0.2);
+  --customization-shadow-gold: rgba(212, 179, 71, 0.3);
+}
+
+/* Main Customization Services Section */
+.customization-services-section {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 75%);
+  color: var(--customization-text-white);
+  padding: 75px 0;
+  position: relative;
+  overflow: hidden;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 1s ease-out;
+}
+
+.customization-services-section.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.customization-services-section.animate-out {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Background Pattern */
+.customization-services-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(212, 179, 71, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(212, 179, 71, 0.03) 0%, transparent 50%);
+  opacity: 0.8;
+}
+
+/* Container */
+.customization-services-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+/* Section Header */
+.customization-services-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* Enhanced Services Badge */
+.customization-services-badge {
+  display: inline-block;
+  position: relative;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, rgba(212, 179, 71, 0.15) 0%, rgba(240, 212, 130, 0.1) 100%);
+  border: 1px solid var(--customization-primary-gold);
+  border-radius: 30px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--customization-primary-gold);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 4px 15px rgba(212, 179, 71, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.customization-services-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212, 179, 71, 0.05) 0%, rgba(240, 212, 130, 0.02) 100%);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.customization-services-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 25px rgba(212, 179, 71, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: var(--customization-gold-light);
+}
+
+.customization-services-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--customization-text-white);
+  line-height: 1.2;
+  margin-bottom: 15px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.customization-services-title-highlight {
+  color: var(--customization-primary-gold);
+  font-weight: 800;
+}
+
+.customization-services-description {
+  font-size: 0.9rem;
+  color: var(--customization-text-gray);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Main Interactive Section */
+.customization-services-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+/* Service Navigation */
+.customization-services-nav {
+  width: 100%;
+}
+
+.customization-services-nav-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--customization-primary-gold);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.customization-services-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.customization-service-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.8));
+  border: 2px solid var(--customization-border-gold-light);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  transform: translateX(0);
+}
+
+.customization-service-nav-item.active {
+  background: linear-gradient(135deg, rgba(212, 179, 71, 0.1), rgba(240, 212, 130, 0.05));
+  border-color: var(--customization-primary-gold);
+  transform: translateX(10px);
+  box-shadow: 0 15px 40px var(--customization-shadow-gold);
+}
+
+.customization-service-nav-item:hover:not(.active) {
+  border-color: var(--customization-border-gold);
+  transform: translateX(5px);
+  box-shadow: 0 10px 30px rgba(212, 179, 71, 0.2);
+}
+
+.customization-service-nav-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--customization-primary-gold), var(--customization-gold-light));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.customization-service-nav-content {
+  flex: 1;
+}
+
+.customization-service-nav-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--customization-text-white);
+  margin-bottom: 5px;
+  transition: all 0.3s ease;
+}
+
+.customization-service-nav-item.active .customization-service-nav-title {
+  color: var(--customization-primary-gold);
+}
+
+.customization-service-nav-subtitle {
+  font-size: 0.8rem;
+  color: var(--customization-text-gray);
+  line-height: 1.4;
+  transition: all 0.3s ease;
+}
+
+.customization-service-nav-item.active .customization-service-nav-subtitle {
+  color: rgba(212, 179, 71, 0.9);
+}
+
+.customization-service-nav-arrow {
+  color: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.customization-service-nav-item.active .customization-service-nav-arrow {
+  color: var(--customization-primary-gold);
+  transform: translateX(5px);
+}
+
+/* Service Details */
+.customization-service-details {
+  width: 100%;
+}
+
+.customization-service-image-container {
+  position: relative;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  border: 2px solid rgba(212, 179, 71, 0.3);
+  transition: all 0.4s ease;
+  background: #333;
+}
+
+.customization-service-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  filter: brightness(0.8);
+}
+
+.customization-service-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.customization-service-image-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(26, 26, 26, 0.95));
+  backdrop-filter: blur(20px);
+  border: 2px solid var(--customization-primary-gold);
+  border-radius: 25px;
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--customization-primary-gold);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.customization-service-details-card {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(20, 20, 20, 0.9));
+  border: 2px solid rgba(212, 179, 71, 0.3);
+  border-radius: 20px;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.customization-service-details-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.customization-service-details-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--customization-primary-gold), var(--customization-gold-light));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.customization-service-details-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--customization-primary-gold);
+  margin-bottom: 5px;
+}
+
+.customization-service-details-subtitle {
+  font-size: 0.9rem;
+  color: rgba(212, 179, 71, 0.8);
+  font-weight: 500;
+}
+
+.customization-service-details-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 25px;
+}
+
+/* Features Section */
+.customization-features-section {
+  margin-bottom: 25px;
+}
+
+.customization-features-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--customization-gold-light);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.customization-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  max-width: 100%;
+}
+
+.customization-feature-card {
+  position: relative;
+  height: 150px;
+  min-height: 150px;
+  max-height: 150px;
+  background: rgba(212, 179, 71, 0.05);
+  border: 1px solid var(--customization-border-gold-light);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  transform: scale(1);
+  display: flex;
+  flex-direction: column;
+}
+
+.customization-feature-card.has-color-options {
+  border-color: var(--customization-border-gold);
+  transform: scale(1.02);
+}
+
+.customization-feature-card.color-options-open {
+  border-color: rgba(212, 179, 71, 0.6);
+  border-width: 2px;
+}
+
+.customization-feature-card:hover:not(.color-options-open) {
+  border-color: var(--customization-border-gold);
+  transform: translateY(-2px);
+}
+
+.customization-feature-card.has-color-options:hover {
+  transform: scale(1.02);
+}
+
+.customization-feature-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+  border-radius: inherit;
+}
+
+.customization-feature-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  padding: 15px 10px 10px;
+  color: var(--customization-text-white);
+}
+
+.customization-feature-name {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  font-weight: 500;
+  display: block;
+}
+
+.customization-feature-color-hint {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--customization-primary-gold);
+  margin-top: 2px;
+}
+
+.customization-feature-color-count {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  background: var(--customization-primary-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: #000;
+  font-weight: bold;
+}
+
+/* Color Options Section */
+.customization-color-options-container {
+  padding: 8px;
+  height: 150px;
+  min-height: 150px;
+  max-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.customization-color-options-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--customization-primary-gold);
+  text-align: center;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+
+.customization-color-options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  flex: 1;
+  align-content: start;
+  max-height: calc(100% - 40px);
+}
+
+.customization-color-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: all 0.3s ease;
+  min-height: 0;
+}
+
+.customization-color-option.selected {
+  border-color: var(--customization-primary-gold);
+  background: rgba(212, 179, 71, 0.1);
+}
+
+.customization-color-option:hover:not(.selected) {
+  border-color: rgba(212, 179, 71, 0.4);
+  background: rgba(212, 179, 71, 0.05);
+}
+
+.customization-color-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.customization-color-option.selected .customization-color-swatch {
+  box-shadow: 0 0 10px rgba(212, 179, 71, 0.6);
+  transform: scale(1.1);
+}
+
+.customization-color-swatch-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.customization-color-selected-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: rgba(212, 179, 71, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 0.5rem;
+  font-weight: bold;
+  backdrop-filter: blur(5px);
+}
+
+.customization-color-name {
+  font-size: 0.5rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  transition: all 0.3s ease;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.customization-color-option.selected .customization-color-name {
+  color: var(--customization-primary-gold);
+}
+
+.customization-color-selection-info {
+  text-align: center;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.customization-color-selection-label {
+  font-size: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2px;
+}
+
+.customization-color-selection-value {
+  color: var(--customization-primary-gold);
+  font-weight: 600;
+  font-size: 0.6rem;
+}
+
+/* Background Image for Selected Color */
+.customization-feature-card.with-background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.customization-feature-card.with-background::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.customization-feature-card.with-background .customization-color-options-container {
+  position: relative;
+  z-index: 2;
+}
+
+.customization-feature-card.with-background .customization-color-options-title {
+  color: var(--customization-text-white);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.customization-feature-card.with-background .customization-color-selection-info {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 6px;
+  padding: 2px 6px;
+  backdrop-filter: blur(10px);
+}
+
+.customization-feature-card.with-background .customization-color-selection-label {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN - MOBILE FIRST APPROACH
+============================================================================= */
+
+/* Mobile Extra Small (320px - 374px) */
+@media (max-width: 374px) {
+  .customization-services-badge {
+    padding: 8px 16px;
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    border-radius: 25px;
+  }
+  
+  .customization-services-section {
+    padding: 30px 0;
+  }
+  
+  .customization-services-container {
+    padding: 0 0.5rem;
+  }
+  
+  .customization-services-header {
+    margin-bottom: 25px;
+  }
+  
+  .customization-services-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .customization-services-description {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+  
+  .customization-services-main {
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .customization-services-nav-title {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+  
+  .customization-service-nav-item {
+    padding: 10px;
+    gap: 8px;
+    border-radius: 10px;
+  }
+  
+  .customization-service-nav-icon {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .customization-service-nav-title {
+    font-size: 0.8rem;
+    margin-bottom: 2px;
+  }
+  
+  .customization-service-nav-subtitle {
+    font-size: 0.65rem;
+  }
+  
+  .customization-service-image-container {
+    height: 150px;
+    margin-bottom: 15px;
+  }
+  
+  .customization-service-details-card {
+    padding: 15px;
+  }
+  
+  .customization-service-details-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .customization-service-details-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .customization-service-details-title {
+    font-size: 1.1rem;
+  }
+  
+  .customization-service-details-subtitle {
+    font-size: 0.7rem;
+  }
+  
+  .customization-service-details-description {
+    font-size: 0.8rem;
+  }
+  
+  .customization-features-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .customization-feature-card {
+    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
+  }
+  
+  .customization-color-options-container {
+    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
+    padding: 6px;
+  }
+  
+  .customization-color-options-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+  }
+  
+  .customization-color-swatch {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .customization-color-name {
+    font-size: 0.45rem;
+  }
+}
+
+/* Mobile Small (375px - 479px) */
+@media (min-width: 375px) and (max-width: 479px) {
+  .customization-services-badge {
+    padding: 8px 18px;
+    font-size: 0.68rem;
+    letter-spacing: 1.2px;
+    margin-bottom: 18px;
+    border-radius: 26px;
+  }
+  
+  .customization-services-section {
+    padding: 35px 0;
+  }
+  
+  .customization-services-container {
+    padding: 0 0.75rem;
+  }
+  
+  .customization-services-header {
+    margin-bottom: 28px;
+  }
+  
+  .customization-services-title {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+  }
+  
+  .customization-services-description {
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+  
+  .customization-services-main {
+    gap: 18px;
+    margin-bottom: 35px;
+  }
+  
+  .customization-services-nav-title {
+    font-size: 1.15rem;
+    margin-bottom: 22px;
+  }
+  
+  .customization-service-nav-item {
+    padding: 12px;
+    gap: 10px;
+    border-radius: 12px;
+  }
+  
+  .customization-service-nav-icon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .customization-service-nav-title {
+    font-size: 0.85rem;
+    margin-bottom: 3px;
+  }
+  
+  .customization-service-nav-subtitle {
+    font-size: 0.68rem;
+  }
+  
+  .customization-service-image-container {
+    height: 160px;
+    margin-bottom: 18px;
+  }
+  
+  .customization-service-details-card {
+    padding: 18px;
+  }
+  
+  .customization-service-details-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .customization-service-details-icon {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .customization-service-details-title {
+    font-size: 1.2rem;
+  }
+  
+  .customization-service-details-subtitle {
+    font-size: 0.75rem;
+  }
+  
+  .customization-service-details-description {
+    font-size: 0.85rem;
+  }
+  
+  .customization-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  
+  .customization-feature-card {
+    height: 130px;
+    min-height: 130px;
+    max-height: 130px;
+  }
+  
+  .customization-color-options-container {
+    height: 130px;
+    min-height: 130px;
+    max-height: 130px;
+    padding: 6px;
+  }
+  
+  .customization-color-options-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+  }
+  
+  .customization-color-swatch {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Mobile Medium (480px - 639px) */
+@media (min-width: 480px) and (max-width: 639px) {
+  .customization-services-badge {
+    padding: 9px 20px;
+    font-size: 0.7rem;
+    letter-spacing: 1.3px;
+    margin-bottom: 20px;
+    border-radius: 28px;
+  }
+  
+  .customization-services-section {
+    padding: 40px 0;
+  }
+  
+  .customization-services-container {
+    padding: 0 1rem;
+  }
+  
+  .customization-services-header {
+    margin-bottom: 35px;
+  }
+  
+  .customization-services-title {
+    font-size: 1.4rem;
+    margin-bottom: 14px;
+  }
+  
+  .customization-services-description {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+  
+  .customization-services-main {
+    gap: 22px;
+    margin-bottom: 40px;
+  }
+  
+  .customization-services-nav-title {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+  }
+  
+  .customization-service-nav-item {
+    padding: 15px;
+    gap: 12px;
+    border-radius: 13px;
+  }
+  
+  .customization-service-nav-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .customization-service-nav-title {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+  }
+  
+  .customization-service-nav-subtitle {
+    font-size: 0.7rem;
+  }
+  
+  .customization-service-image-container {
+    height: 180px;
+    margin-bottom: 20px;
+  }
+  
+  .customization-service-details-card {
+    padding: 20px;
+  }
+  
+  .customization-service-details-header {
+    gap: 15px;
+  }
+  
+  .customization-service-details-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .customization-service-details-title {
+    font-size: 1.3rem;
+  }
+  
+  .customization-service-details-subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .customization-service-details-description {
+    font-size: 0.9rem;
+  }
+  
+  .customization-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .customization-feature-card {
+    height: 140px;
+    min-height: 140px;
+    max-height: 140px;
+  }
+  
+  .customization-color-options-container {
+    height: 140px;
+    min-height: 140px;
+    max-height: 140px;
+  }
+  
+  .customization-color-swatch {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Mobile Large to Small Tablet (640px - 767px) */
+@media (min-width: 640px) and (max-width: 767px) {
+  .customization-services-badge {
+    padding: 9px 22px;
+    font-size: 0.72rem;
+    letter-spacing: 1.4px;
+    margin-bottom: 22px;
+    border-radius: 29px;
+  }
+  
+  .customization-services-section {
+    padding: 50px 0;
+  }
+  
+  .customization-services-container {
+    padding: 0 1.5rem;
+  }
+  
+  .customization-services-header {
+    margin-bottom: 45px;
+  }
+  
+  .customization-services-title {
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+  }
+  
+  .customization-services-description {
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+  
+  .customization-services-main {
+    gap: 25px;
+    margin-bottom: 50px;
+  }
+  
+  .customization-services-nav-title {
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+  }
+  
+  .customization-service-nav-item {
+    padding: 18px;
+    gap: 14px;
+    border-radius: 14px;
+  }
+  
+  .customization-service-nav-icon {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .customization-service-nav-title {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+  
+  .customization-service-nav-subtitle {
+    font-size: 0.72rem;
+  }
+  
+  .customization-service-image-container {
+    height: 200px;
+    margin-bottom: 22px;
+  }
+  
+  .customization-service-details-card {
+    padding: 22px;
+  }
+  
+  .customization-service-details-icon {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .customization-service-details-title {
+    font-size: 1.4rem;
+  }
+  
+  .customization-service-details-subtitle {
+    font-size: 0.85rem;
+  }
+  
+  .customization-service-details-description {
+    font-size: 0.9rem;
+  }
+  
+  .customization-features-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  
+  .customization-feature-card {
+    height: 150px;
+    min-height: 150px;
+    max-height: 150px;
+  }
+  
+  .customization-color-options-container {
+    height: 150px;
+    min-height: 150px;
+    max-height: 150px;
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .customization-services-badge {
+    padding: 10px 24px;
+    font-size: 0.74rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 24px;
+    border-radius: 30px;
+  }
+  
+  .customization-services-section {
+    padding: 60px 0;
+  }
+  
+  .customization-services-container {
+    padding: 0 2rem;
+  }
+  
+  .customization-services-header {
+    margin-bottom: 55px;
+  }
+  
+  .customization-services-title {
+    font-size: 1.8rem;
+    margin-bottom: 18px;
+  }
+  
+  .customization-services-description {
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+  
+  .customization-services-main {
+    grid-template-columns: 280px 1fr;
+    gap: 35px;
+    margin-bottom: 60px;
+  }
+  
+  .customization-services-nav-title {
+    text-align: left;
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+  }
+  
+  .customization-service-nav-item {
+    padding: 20px;
+    gap: 15px;
+    border-radius: 15px;
+  }
+  
+  .customization-service-nav-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .customization-service-nav-title {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+  
+  .customization-service-nav-subtitle {
+    font-size: 0.75rem;
+  }
+  
+  .customization-service-image-container {
+    height: 250px;
+    margin-bottom: 25px;
+  }
+  
+  .customization-service-details-card {
+    padding: 25px;
+  }
+  
+  .customization-service-details-header {
+    gap: 18px;
+  }
+  
+  .customization-service-details-icon {
+    width: 58px;
+    height: 58px;
+  }
+  
+  .customization-service-details-title {
+    font-size: 1.45rem;
+  }
+  
+  .customization-service-details-subtitle {
+    font-size: 0.88rem;
+  }
+  
+  .customization-service-details-description {
+    font-size: 0.92rem;
+  }
+  
+  .customization-features-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  
+  .customization-feature-card {
+    height: 160px;
+    min-height: 160px;
+    max-height: 160px;
+  }
+  
+  .customization-color-options-container {
+    height: 160px;
+    min-height: 160px;
+    max-height: 160px;
+  }
+}
+
+/* Desktop Small (1024px - 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .customization-services-badge {
+    padding: 10px 24px;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 24px;
+    border-radius: 30px;
+  }
+  
+  .customization-services-section {
+    padding: 70px 0;
+  }
+  
+  .customization-services-container {
+    padding: 0 2rem;
+    max-width: 1100px;
+  }
+  
+  .customization-services-header {
+    margin-bottom: 65px;
+  }
+  
+  .customization-services-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .customization-services-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
+  .customization-services-main {
+    grid-template-columns: 320px 1fr;
+    gap: 40px;
+    margin-bottom: 70px;
+  }
+  
+  .customization-services-nav-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+  
+  .customization-service-nav-item {
+    padding: 20px;
+    gap: 15px;
+    border-radius: 15px;
+  }
+  
+  .customization-service-nav-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .customization-service-nav-title {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+  
+  .customization-service-nav-subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .customization-service-image-container {
+    height: 280px;
+    margin-bottom: 30px;
+  }
+  
+  .customization-service-details-card {
+    padding: 30px;
+  }
+  
+  .customization-service-details-header {
+    gap: 20px;
+  }
+  
+  .customization-service-details-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .customization-service-details-title {
+    font-size: 1.5rem;
+  }
+  
+  .customization-service-details-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .customization-service-details-description {
+    font-size: 0.95rem;
+  }
+  
+  .customization-features-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  
+  .customization-feature-card {
+    height: 150px;
+    min-height: 150px;
+    max-height: 150px;
+  }
+  
+  .customization-color-options-container {
+    height: 150px;
+    min-height: 150px;
+    max-height: 150px;
+  }
+}
+
+/* Desktop Large (1200px+) */
+@media (min-width: 1200px) {
+  .customization-services-badge {
+    padding: 10px 24px;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 24px;
+    border-radius: 30px;
+  }
+  
+  .customization-services-section {
+    padding: 75px 0;
+  }
+  
+  .customization-services-container {
+    padding: 0 2rem;
+    max-width: 1200px;
+  }
+  
+  .customization-services-header {
+    margin-bottom: 80px;
+  }
+  
+  .customization-services-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .customization-services-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
+  .customization-services-main {
+    grid-template-columns: 350px 1fr;
+    gap: 50px;
+    margin-bottom: 80px;
+  }
+  
+  .customization-services-nav-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+  
+  .customization-service-nav-item {
+    padding: 20px;
+    gap: 15px;
+    border-radius: 15px;
+  }
+  
+  .customization-service-nav-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .customization-service-nav-title {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+  
+  .customization-service-nav-subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .customization-service-image-container {
+    height: 300px;
+    margin-bottom: 30px;
+  }
+  
+  .customization-service-details-card {
+    padding: 30px;
+  }
+  
+  .customization-service-details-header {
+    gap: 20px;
+  }
+  
+  .customization-service-details-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .customization-service-details-title {
+    font-size: 1.5rem;
+  }
+  
+  .customization-service-details-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .customization-service-details-description {
+    font-size: 0.95rem;
+  }
+  
+  .customization-features-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  
+  .customization-feature-card {
+    height: 150px;
+    min-height: 150px;
+    max-height: 150px;
+  }
+  
+  .customization-color-options-container {
+    height: 150px;
+    min-height: 150px;
+    max-height: 150px;
+  }
+  
+  /* Enhanced background image display for desktop */
+  .customization-feature-card.with-background {
+    background-attachment: scroll;
+    background-blend-mode: normal;
+  }
+  
+  .customization-feature-card.with-background::before {
+    background: rgba(0, 0, 0, 0.4);
+  }
+  
+  .customization-color-options-container {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+  }
+  
+  .customization-feature-card.with-background .customization-color-options-container {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* Large Desktop (1440px+) */
+@media (min-width: 1440px) {
+  .customization-services-container {
+    max-width: 1300px;
+  }
+  
+  .customization-services-title {
+    font-size: 2.8rem;
+  }
+  
+  .customization-services-description {
+    font-size: 1rem;
+  }
+  
+  .customization-services-main {
+    grid-template-columns: 380px 1fr;
+    gap: 60px;
+  }
+  
+  .customization-feature-card {
+    height: 170px;
+    min-height: 170px;
+    max-height: 170px;
+  }
+  
+  .customization-color-options-container {
+    height: 170px;
+    min-height: 170px;
+    max-height: 170px;
+  }
+  
+  /* Enhanced background display for large screens */
+  .customization-feature-card.with-background {
+    background-attachment: scroll;
+    background-blend-mode: multiply;
+  }
+  
+  .customization-feature-card.with-background::before {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  
+  .customization-feature-card.with-background .customization-color-options-title {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 4px 12px;
+    border-radius: 15px;
+    display: inline-block;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .customization-service-nav-item:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--customization-border-gold-light);
+  }
+  
+  .customization-feature-card:hover {
+    transform: none;
+    border-color: var(--customization-border-gold-light);
+  }
+  
+  .customization-color-option:hover {
+    border-color: transparent;
+    background: transparent;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .customization-services-title,
+  .customization-services-nav-title,
+  .customization-service-details-title {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Landscape Orientation on Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .customization-services-section {
+    padding: 40px 0;
+  }
+  
+  .customization-services-header {
+    margin-bottom: 30px;
+  }
+  
+  .customization-services-main {
+    gap: 25px;
+    margin-bottom: 50px;
+  }
+  
+  .customization-service-image-container {
+    height: 200px;
+  }
+  
+  .customization-features-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .customization-feature-card {
+    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
+  }
+  
+  .customization-color-options-container {
+    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
+  }
+}

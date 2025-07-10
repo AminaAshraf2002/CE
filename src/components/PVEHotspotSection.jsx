@@ -28,7 +28,7 @@ const PVEHotspotSection = () => {
       x: 85, // Fixed x position for vertical alignment
       y: 10, // Top
       icon: <Zap size={16} />,
-      title: 'Gearless Motor Version 2',
+      title: 'Gearless Motor ',
       subtitle: 'Absolute Silence & Performance',
       description: 'Engineered for absolute silence and performance with advanced gearless technology for superior elevator operation.',
       features: ['Absolute Silence Operation', 'Enhanced Performance', 'Energy Efficient Design', 'Extended Lifespan'],

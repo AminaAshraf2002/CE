@@ -11,8 +11,8 @@ import './About.css';
 
 // Import assets (you'll need to add these to your assets folder)
 import aboutHeroVideo from '../assets/about.mp4'; // Main hero video
-import aboutBannerImage from '../assets/aboutus.png'; // Center banner image
-import whoWeAreImage from '../assets/who.jpeg';
+import aboutBannerImage from '../assets/13.jpeg';
+import whoWeAreImage from '../assets/about0.jpeg';
 import missionImage from '../assets/miss.jpeg';
 import visionImage from '../assets/vission.jpeg';
 import whyChooseUsImage from '../assets/choose.jpeg';

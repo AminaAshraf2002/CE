@@ -305,7 +305,7 @@
 }
 
 .services-nav-btn.active {
-  background: linear-gradient(135deg, var(--primary-gold), var(--gold-light));
+  background: linear-gradient(135deg, var(--primary-gold), var(--gold-light)) !important;
   color: var(--black);
   border-color: var(--primary-gold);
 }

@@ -10,12 +10,12 @@ import bannerVideo from '../assets/home.mp4';
 
 // Import residential elevator images - Update these paths to match your actual image locations
 import classicImage1 from '../assets/class.jpeg';
-import classicImage2 from '../assets/class0.jpeg';
+import classicImage2 from '../assets/classic2.jpeg';
 import classicImage3 from '../assets/classic3.jpeg';
 
 import grandeurImage1 from '../assets/grandeur.jpeg';
-import grandeurImage2 from '../assets/grandeur2.jpeg';
-import grandeurImage3 from '../assets/grandeur.jpeg';
+import grandeurImage2 from '../assets/class0.jpeg';
+import grandeurImage3 from '../assets/grandnew1.jpg';
 
 import grandeurSignatureImage1 from '../assets/sign.jpeg';
 import grandeurSignatureImage2 from '../assets/sign2.jpeg';

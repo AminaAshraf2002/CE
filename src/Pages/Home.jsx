@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Check, ArrowRight, Phone, Mail, MapPin, Play, X, Settings, Shield, Zap, Star, Volume2, Wrench, Monitor, ChevronRight, Users, Heart, Globe, Building, Award, Clock, Send, User, MessageSquare, CheckCircle } from 'lucide-react';
+import { ChevronDown, Check, ArrowRight, Phone, Mail, MapPin, Play, X, Settings, Shield, Zap, Star, Volume2, Wrench, Monitor, ChevronRight, Users, Heart, Globe, Building, Award, Clock, Send, User, MessageSquare, CheckCircle, AlertTriangle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import { gsap } from 'gsap';
@@ -10,20 +10,20 @@ import Footer from '../components/Footer';
 import ShaftSelectionSection from '../components/ShaftSelectionSection';
 import TechnicalSpecifications from '../components/TechnicalSpecifications';
 import ServicesSection from '../components/ServicesSection';
-import PVEHotspotSection from '../components/PVEHotspotSection'; // Import the PVE component
+import PVEHotspotSection from '../components/PVEHotspotSection';
 import './Home.css';
 
 // Import assets
 import bannerVideo from '../assets/banner.mp4';
 import commercialImage from '../assets/commercial.jpg';
 import residentialImage from '../assets/residential.jpg';
-import aboutImage from '../assets/about.jpg';
+import aboutImage from '../assets/16.jpeg';
 import worldMapImage from '../assets/map.png';
 import indiaFlag from '../assets/India.png';
 import uaeFlag from '../assets/uae.png';
 
 const Home = () => {
-  // All States (removed PVE-related states since they're now in the component)
+  // All States
   const [hoveredProduct, setHoveredProduct] = useState(null);
   const [scrollY, setScrollY] = useState(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -31,6 +31,7 @@ const Home = () => {
   const [aboutVisible, setAboutVisible] = useState(false);
   const [globalVisible, setGlobalVisible] = useState(false);
   const [contactVisible, setContactVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [activeLocation, setActiveLocation] = useState(null);
   const [animatedStats, setAnimatedStats] = useState({
     experience: 0,
@@ -48,14 +49,16 @@ const Home = () => {
     name: '',
     email: '',
     phone: '',
+    country: '',
     company: '',
     projectType: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [phoneError, setPhoneError] = useState('');
 
-  // All Refs (removed PVE-related refs)
+  // All Refs
   const heroRef = useRef(null);
   const videoRef = useRef(null);
   const productsRef = useRef(null);
@@ -74,6 +77,89 @@ const Home = () => {
   const locations = [
     { id: 'india', name: 'India', city: 'Kerala', x: 80, y: 51, flag: '🇮🇳', flagImage: indiaFlag, offices: 5, projects: 250, code: 'IN' },
     { id: 'uae', name: 'UAE', city: 'Dubai', x: 65, y: 40, flag: '🇦🇪', flagImage: uaeFlag, offices: 2, projects: 80, code: 'AE' },
+  ];
+
+  const countries = [
+    { 
+      code: '+91', 
+      name: 'India', 
+      pattern: /^[6-9]\d{9}$/, 
+      placeholder: 'Enter 10-digit number (e.g., 9876543210)', 
+      example: '9876543210',
+      description: '10 digits starting with 6-9'
+    },
+    { 
+      code: '+971', 
+      name: 'UAE', 
+      pattern: /^[5]\d{8}$/, 
+      placeholder: 'Enter 9-digit number (e.g., 501234567)', 
+      example: '501234567',
+      description: '9 digits starting with 5'
+    },
+    { 
+      code: '+1', 
+      name: 'USA', 
+      pattern: /^[2-9]\d{9}$/, 
+      placeholder: 'Enter 10-digit number (e.g., 2125551234)', 
+      example: '2125551234',
+      description: '10 digits starting with 2-9'
+    },
+    { 
+      code: '+44', 
+      name: 'UK', 
+      pattern: /^[1-9]\d{9,10}$/, 
+      placeholder: 'Enter 10-11 digit number (e.g., 2012345678)', 
+      example: '2012345678',
+      description: '10-11 digits starting with 1-9'
+    },
+    { 
+      code: '+33', 
+      name: 'France', 
+      pattern: /^[1-9]\d{8}$/, 
+      placeholder: 'Enter 9-digit number (e.g., 123456789)', 
+      example: '123456789',
+      description: '9 digits starting with 1-9'
+    },
+    { 
+      code: '+49', 
+      name: 'Germany', 
+      pattern: /^[1-9]\d{9,11}$/, 
+      placeholder: 'Enter 10-12 digit number (e.g., 1712345678)', 
+      example: '1712345678',
+      description: '10-12 digits starting with 1-9'
+    },
+    { 
+      code: '+81', 
+      name: 'Japan', 
+      pattern: /^[1-9]\d{9,10}$/, 
+      placeholder: 'Enter 10-11 digit number (e.g., 9012345678)', 
+      example: '9012345678',
+      description: '10-11 digits starting with 1-9'
+    },
+    { 
+      code: '+86', 
+      name: 'China', 
+      pattern: /^[1]\d{10}$/, 
+      placeholder: 'Enter 11-digit number (e.g., 13812345678)', 
+      example: '13812345678',
+      description: '11 digits starting with 1'
+    },
+    { 
+      code: '+61', 
+      name: 'Australia', 
+      pattern: /^[4]\d{8}$/, 
+      placeholder: 'Enter 9-digit number (e.g., 412345678)', 
+      example: '412345678',
+      description: '9 digits starting with 4'
+    },
+    { 
+      code: '+65', 
+      name: 'Singapore', 
+      pattern: /^[8-9]\d{7}$/, 
+      placeholder: 'Enter 8-digit number (e.g., 81234567)', 
+      example: '81234567',
+      description: '8 digits starting with 8 or 9'
+    }
   ];
 
   const contactInfo = [
@@ -107,7 +193,7 @@ const Home = () => {
 
   const products = [
     {
-      id: 'Home Lifts',
+      id: 'residential',
       title: 'Home Lift',
       subtitle: 'Luxury, Accessibility, and Innovation',
       image: residentialImage,
@@ -170,18 +256,143 @@ const Home = () => {
 
   const handleLocationEnter = (locationId) => setActiveLocation(locationId);
   const handleLocationLeave = () => setActiveLocation(null);
+
+  // Enhanced Phone Validation Functions
+  const validatePhoneNumber = (phone, countryCode) => {
+    if (!phone || !countryCode) return false;
+    
+    const selectedCountry = countries.find(c => c.code === countryCode);
+    if (!selectedCountry) return false;
+    
+    // Remove formatting characters
+    const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+    
+    // Must contain only digits
+    if (!/^\d+$/.test(cleanPhone)) {
+      return false;
+    }
+    
+    // Must match country-specific pattern
+    return selectedCountry.pattern.test(cleanPhone);
+  };
+
+  const getSelectedCountryInfo = () => {
+    return countries.find(c => c.code === formData.country);
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    if (name === 'phone') {
+      // Only allow digits, spaces, hyphens, and parentheses
+      let cleanValue = value.replace(/[^\d\s\-\(\)]/g, '');
+      
+      // Additional check: if the input contains letters, show immediate error
+      if (/[a-zA-Z]/.test(value)) {
+        const selectedCountry = getSelectedCountryInfo();
+        setPhoneError(`Phone number must contain only digits. Please enter a valid ${selectedCountry?.name || ''} phone number.`);
+      }
+      
+      setFormData(prev => ({ ...prev, [name]: cleanValue }));
+      
+      // Real-time validation
+      if (formData.country && cleanValue) {
+        const isValid = validatePhoneNumber(cleanValue, formData.country);
+        const selectedCountry = getSelectedCountryInfo();
+        
+        // Check if contains only digits (after removing formatting)
+        const digitsOnly = cleanValue.replace(/[\s\-\(\)]/g, '');
+        if (!/^\d+$/.test(digitsOnly)) {
+          setPhoneError(`Phone number must contain only digits. Please enter a valid ${selectedCountry?.name || ''} phone number.`);
+        } else if (!isValid && selectedCountry) {
+          setPhoneError(`Please enter a valid ${selectedCountry.name} phone number. Example: ${selectedCountry.example}`);
+        } else if (isValid) {
+          setPhoneError(''); // Clear error for valid numbers
+        }
+      } else if (formData.country && !cleanValue) {
+        setPhoneError('Phone number is required');
+      }
+    } else if (name === 'country') {
+      setFormData(prev => ({ ...prev, [name]: value }));
+      setPhoneError(''); // Reset phone error when country changes
+      
+      // Re-validate existing phone number with new country
+      if (formData.phone) {
+        const isValid = validatePhoneNumber(formData.phone, value);
+        const selectedCountry = countries.find(c => c.code === value);
+        
+        const digitsOnly = formData.phone.replace(/[\s\-\(\)]/g, '');
+        if (!/^\d+$/.test(digitsOnly)) {
+          setPhoneError(`Phone number must contain only digits. Please enter a valid ${selectedCountry?.name || ''} phone number.`);
+        } else if (!isValid && selectedCountry) {
+          setPhoneError(`Please enter a valid ${selectedCountry.name} phone number. Example: ${selectedCountry.example}`);
+        } else if (isValid) {
+          setPhoneError('');
+        }
+      }
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Reset errors
+    setPhoneError('');
+    let hasErrors = false;
+    
+    // Validate required fields
+    if (!formData.name?.trim()) {
+      hasErrors = true;
+    }
+    
+    if (!formData.email?.trim()) {
+      hasErrors = true;
+    }
+    
+    if (!formData.message?.trim()) {
+      hasErrors = true;
+    }
+    
+    // Phone validation
+    if (!formData.phone?.trim()) {
+      setPhoneError('Phone number is required');
+      hasErrors = true;
+    } else if (!formData.country) {
+      setPhoneError('Please select a country code');
+      hasErrors = true;
+    } else {
+      // Check if phone contains only digits (after removing formatting)
+      const digitsOnly = formData.phone.replace(/[\s\-\(\)]/g, '');
+      if (!/^\d+$/.test(digitsOnly)) {
+        const selectedCountry = getSelectedCountryInfo();
+        setPhoneError(`Phone number must contain only digits. Please enter a valid ${selectedCountry?.name || ''} phone number.`);
+        hasErrors = true;
+      } else {
+        // Validate against country pattern
+        const isValid = validatePhoneNumber(formData.phone, formData.country);
+        if (!isValid) {
+          const selectedCountry = getSelectedCountryInfo();
+          setPhoneError(`Please enter a valid ${selectedCountry?.name || ''} phone number. Example: ${selectedCountry?.example || ''}`);
+          hasErrors = true;
+        }
+      }
+    }
+    
+    // Stop submission if there are any errors
+    if (hasErrors) {
+      return;
+    }
+    
     setIsSubmitting(true);
+    
+    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', company: '', projectType: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', country: '', company: '', projectType: '', message: '' });
+      setPhoneError('');
       setTimeout(() => setIsSubmitted(false), 5000);
     }, 2000);
   };
@@ -191,12 +402,41 @@ const Home = () => {
     if (videoRef.current) videoRef.current.play();
   };
 
-  const handleTitleMouseEnter = (productId) => setHoveredProduct(productId);
-  const handleTitleMouseLeave = () => setHoveredProduct(null);
+  // Updated mobile-responsive hover handlers
+  const handleTitleMouseEnter = (productId) => {
+    if (!isMobile) {
+      setHoveredProduct(productId);
+    }
+  };
 
-  // UseEffect for all observers and animations (removed PVE observer)
+  const handleTitleMouseLeave = () => {
+    if (!isMobile) {
+      setHoveredProduct(null);
+    }
+  };
+
+  const handleProductClick = (productId) => {
+    if (isMobile) {
+      setHoveredProduct(hoveredProduct === productId ? null : productId);
+    }
+  };
+
+  // Check if device is mobile
+  const checkIsMobile = () => {
+    const mobile = window.innerWidth <= 1023;
+    setIsMobile(mobile);
+    return mobile;
+  };
+
+  // Get selected country info for placeholder
+  const selectedCountryInfo = getSelectedCountryInfo();
+
+  // UseEffect for all observers and animations
   useEffect(() => {
     AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, mirror: false });
+
+    // Check if mobile on load
+    checkIsMobile();
 
     if (videoRef.current) {
       setIsVideoPlaying(true);
@@ -214,7 +454,7 @@ const Home = () => {
       stagger: { each: 0.3, from: "random" }
     });
 
-    // All Observers (removed PVE observer)
+    // All Observers
     const createObserver = (ref, setState, callback) => {
       return new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
@@ -265,8 +505,15 @@ const Home = () => {
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
+    const handleResize = () => checkIsMobile();
+    
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (
@@ -311,7 +558,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="hero-buttons">
+          <div className="hero-buttons" ref={heroButtonsRef}>
             <Link to="/products/home"><button className="btn-primary-large">Explore Collection</button></Link>
             <Link to="/contact"><button className="btn-secondary-large">Get Quote</button></Link>
           </div>
@@ -320,7 +567,7 @@ const Home = () => {
         <div className="scroll-indicator"><ChevronDown size={28} /></div>
       </section>
 
-      {/* Featured Products Section */}
+      {/* Featured Products Section - Updated for Mobile */}
       <section id="products" ref={productsRef} className="featured-products-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
@@ -334,65 +581,91 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="elite-products-container">
-            <div className={`elite-products-wrapper ${hoveredProduct ? 'has-active' : ''}`}>
-              {/* Residential Product - Full image hover */}
-              <div
-                className={`elite-product-item left ${hoveredProduct === 'residential' ? 'active' : ''}`}
-                data-product="residential"
-                onMouseEnter={() => handleTitleMouseEnter('residential')}
-                onMouseLeave={handleTitleMouseLeave}
-              >
-                <div className="elite-product-image">
-                  <img src={products[0].image} alt={products[0].title} />
+          {isMobile ? (
+            // Mobile Layout - Individual sections for each product
+            <div className="elite-products-container">
+              {products.map((product, index) => (
+                <div key={product.id} className="mobile-product-section" data-aos="fade-up" data-aos-delay={index * 200}>
+                  <div className="elite-product-item" onClick={() => handleProductClick(product.id)}>
+                    <div className="elite-product-image">
+                      <img src={product.image} alt={product.title} />
+                    </div>
+                    <div className="elite-product-label">
+                      <h4>{product.id === 'residential' ? 'Home Lift' : 'Commercial'}</h4>
+                    </div>
+                  </div>
+                  
+                  <div className="elite-content-panel">
+                    <div className="elite-product-content">
+                      <div className="elite-content-inner">
+                        <h3 className="elite-content-title">{product.title}</h3>
+                        <h4 className="elite-content-subtitle-gold">{product.subtitle}</h4>
+                        <p className="elite-content-description">{product.description}</p>
+                        
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="elite-product-label">
-                  <h4>Home Lift</h4>
-                </div>
-              </div>
-
-              {/* Commercial Product - Full image hover */}
-              <div
-                className={`elite-product-item right ${hoveredProduct === 'commercial' ? 'active' : ''}`}
-                data-product="commercial"
-                onMouseEnter={() => handleTitleMouseEnter('commercial')}
-                onMouseLeave={handleTitleMouseLeave}
-              >
-                <div className="elite-product-image">
-                  <img src={products[1].image} alt={products[1].title} />
-                </div>
-                <div className="elite-product-label">
-                  <h4>Commercial</h4>
-                </div>
-              </div>
+              ))}
             </div>
+          ) : (
+            // Desktop Layout - Original hover interaction
+            <div className="elite-products-container">
+              <div className={`elite-products-wrapper ${hoveredProduct ? 'has-active' : ''}`}>
+                {/* Residential Product - Full image hover */}
+                <div
+                  className={`elite-product-item left ${hoveredProduct === 'residential' ? 'active' : ''}`}
+                  data-product="residential"
+                  onMouseEnter={() => handleTitleMouseEnter('residential')}
+                  onMouseLeave={handleTitleMouseLeave}
+                >
+                  <div className="elite-product-image">
+                    <img src={products[0].image} alt={products[0].title} />
+                  </div>
+                  <div className="elite-product-label">
+                    <h4>Home Lift</h4>
+                  </div>
+                </div>
 
-            <div className="elite-content-panel">
-              {/* Residential Content */}
-              <div className={`elite-product-content ${hoveredProduct === 'residential' ? 'active' : ''}`}>
-                <div className="elite-content-inner">
-                  <h3 className="elite-content-title">{products[0].title}</h3>
-                  <h4 className="elite-content-subtitle-gold">{products[0].subtitle}</h4>
-                  <p className="elite-content-description">{products[0].description}</p>
-                  <div className="elite-read-more-section">
-                    
+                {/* Commercial Product - Full image hover */}
+                <div
+                  className={`elite-product-item right ${hoveredProduct === 'commercial' ? 'active' : ''}`}
+                  data-product="commercial"
+                  onMouseEnter={() => handleTitleMouseEnter('commercial')}
+                  onMouseLeave={handleTitleMouseLeave}
+                >
+                  <div className="elite-product-image">
+                    <img src={products[1].image} alt={products[1].title} />
+                  </div>
+                  <div className="elite-product-label">
+                    <h4>Commercial</h4>
                   </div>
                 </div>
               </div>
 
-              {/* Commercial Content */}
-              <div className={`elite-product-content ${hoveredProduct === 'commercial' ? 'active' : ''}`}>
-                <div className="elite-content-inner">
-                  <h3 className="elite-content-title">{products[1].title}</h3>
-                  <h4 className="elite-content-subtitle-gold">{products[1].subtitle}</h4>
-                  <p className="elite-content-description">{products[1].description}</p>
-                  <div className="elite-read-more-section">
+              <div className="elite-content-panel">
+                {/* Residential Content */}
+                <div className={`elite-product-content ${hoveredProduct === 'residential' ? 'active' : ''}`}>
+                  <div className="elite-content-inner">
+                    <h3 className="elite-content-title">{products[0].title}</h3>
+                    <h4 className="elite-content-subtitle-gold">{products[0].subtitle}</h4>
+                    <p className="elite-content-description">{products[0].description}</p>
+                    
+                  </div>
+                </div>
+
+                {/* Commercial Content */}
+                <div className={`elite-product-content ${hoveredProduct === 'commercial' ? 'active' : ''}`}>
+                  <div className="elite-content-inner">
+                    <h3 className="elite-content-title">{products[1].title}</h3>
+                    <h4 className="elite-content-subtitle-gold">{products[1].subtitle}</h4>
+                    <p className="elite-content-description">{products[1].description}</p>
                     
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
@@ -403,7 +676,7 @@ const Home = () => {
 
       <TechnicalSpecifications />
 
-      {/* PVE Style Interactive Hotspot Section - Now using the component */}
+      {/* PVE Style Interactive Hotspot Section */}
       <PVEHotspotSection />
 
       {/* About Us Section */}
@@ -652,6 +925,7 @@ const Home = () => {
                   </div>
                 ) : (
                   <form className="contact-form" onSubmit={handleSubmit}>
+                    {/* Row 1: Name and Email */}
                     <div className="form-row">
                       <div className="form-group">
                         <label htmlFor="name">Full Name *</label>
@@ -669,23 +943,51 @@ const Home = () => {
                       </div>
                     </div>
 
+                    {/* Row 2: Country Code and Phone Number */}
                     <div className="form-row">
                       <div className="form-group">
-                        <label htmlFor="phone">Phone Number</label>
-                        <div className="input-wrapper">
-                          <Phone size={18} className="input-icon" />
-                          <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Enter your phone number" />
+                        <label htmlFor="country">Country Code *</label>
+                        <div className="select-wrapper">
+                          <select id="country" name="country" value={formData.country} onChange={handleInputChange} required>
+                            <option value="">Select country code</option>
+                            {countries.map((country, index) => (
+                              <option key={index} value={country.code}>
+                                {country.code} - {country.name}
+                              </option>
+                            ))}
+                          </select>
                         </div>
                       </div>
                       <div className="form-group">
-                        <label htmlFor="company">Company Name</label>
+                        <label htmlFor="phone">Phone Number *</label>
                         <div className="input-wrapper">
-                          <Building size={18} className="input-icon" />
-                          <input type="text" id="company" name="company" value={formData.company} onChange={handleInputChange} placeholder="Enter company name" />
+                          <Phone size={18} className="input-icon" />
+                          <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleInputChange}
+                            required
+                            placeholder={selectedCountryInfo ? selectedCountryInfo.placeholder : "Select country code first"}
+                            disabled={!formData.country}
+                          />
                         </div>
+                        {phoneError && (
+                          <div className="phone-error-message">
+                            <AlertTriangle size={16} />
+                            <span>{phoneError}</span>
+                          </div>
+                        )}
+                        {selectedCountryInfo && (
+                          <div className="phone-help-text">
+                            Format: {selectedCountryInfo.code} {selectedCountryInfo.example}
+                          </div>
+                        )}
                       </div>
                     </div>
 
+                    {/* Row 3: Project Type (full width) */}
                     <div className="form-group">
                       <label htmlFor="projectType">Project Type</label>
                       <div className="select-wrapper">
@@ -698,6 +1000,7 @@ const Home = () => {
                       </div>
                     </div>
 
+                    {/* Message Field */}
                     <div className="form-group">
                       <label htmlFor="message">Message *</label>
                       <div className="textarea-wrapper">
@@ -706,7 +1009,7 @@ const Home = () => {
                       </div>
                     </div>
 
-                    <button type="submit" className="submit-button" disabled={isSubmitting}>
+                    <button type="submit" className="submit-button" disabled={isSubmitting || phoneError}>
                       {isSubmitting ? (
                         <>
                           <div className="spinner"></div>
@@ -725,8 +1028,6 @@ const Home = () => {
             </div>
 
             <div className="contact-info-section">
-
-
               <div className="contact-info-cards">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="contact-info-card">
@@ -741,21 +1042,6 @@ const Home = () => {
                   </div>
                 ))}
               </div>
-
-              {/* <div className="contact-cta">
-                <h3>Need Immediate Assistance?</h3>
-                <p>Our elevator experts are ready to help you find the perfect solution.</p>
-                <div className="cta-buttons">
-                  <a href="tel:+919876543210" className="cta-button primary">
-                    <Phone size={16} />
-                    Call Now
-                  </a>
-                  <a href="mailto:info@capricornelevators.com" className="cta-button secondary">
-                    <Mail size={16} />
-                    Email Us
-                  </a>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>

@@ -439,7 +439,6 @@
   border-radius: 15px;
   padding: 20px;
   color: white;
-  animation: float 6s ease-in-out infinite;
   z-index: 10;
 }
 
