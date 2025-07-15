@@ -4859,3 +4859,188 @@ body {
     animation: none !important;
   }
 }
+/* =============================================================================
+   Additional CSS for EmailJS Integration - Error Messages
+   Add this to the end of your existing Home.css file
+============================================================================= */
+
+/* General Error Message Styling */
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: 8px;
+  color: #ff9999;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  animation: errorSlideIn 0.3s ease-out;
+}
+
+.error-message svg {
+  flex-shrink: 0;
+  color: #ff6b6b;
+}
+
+@keyframes errorSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Company Input Icon Styling (since we added Building icon) */
+.input-wrapper .input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(212, 179, 71, 0.6);
+  z-index: 2;
+}
+
+/* Enhanced Form Validation States */
+.form-group.has-error .input-wrapper input,
+.form-group.has-error .select-wrapper select,
+.form-group.has-error .textarea-wrapper textarea {
+  border-color: rgba(255, 107, 107, 0.6);
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.form-group.has-success .input-wrapper input,
+.form-group.has-success .select-wrapper select,
+.form-group.has-success .textarea-wrapper textarea {
+  border-color: rgba(212, 179, 71, 0.6);
+  box-shadow: 0 0 0 3px rgba(212, 179, 71, 0.1);
+}
+
+/* Loading State for Submit Button */
+.submit-button .spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid #000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced Focus States for Better UX */
+.input-wrapper input:focus,
+.select-wrapper select:focus,
+.textarea-wrapper textarea:focus {
+  outline: none;
+  border-color: #d4b347;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 18px rgba(212, 179, 71, 0.3);
+}
+
+/* Submit Button Disabled State */
+.submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+  background: linear-gradient(135deg, #999, #666);
+}
+
+/* Success Message Enhanced Animation */
+.success-message {
+  text-align: center;
+  padding: 32px 16px;
+  animation: successSlideIn 0.6s ease-out;
+}
+
+@keyframes successSlideIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.success-icon {
+  color: #d4b347;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: center;
+  animation: successIconBounce 0.8s ease-out 0.3s both;
+}
+
+@keyframes successIconBounce {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive Error Messages */
+@media (max-width: 768px) {
+  .error-message {
+    padding: 10px;
+    font-size: 0.75rem;
+    gap: 6px;
+  }
+
+  .error-message svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .error-message {
+    padding: 8px;
+    font-size: 0.7rem;
+    gap: 5px;
+  }
+
+  .error-message svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  .error-message,
+  .success-message,
+  .success-icon {
+    animation: none !important;
+  }
+}
+
+/* Enhanced Focus Visibility for Accessibility */
+.input-wrapper input:focus-visible,
+.select-wrapper select:focus-visible,
+.textarea-wrapper textarea:focus-visible,
+.submit-button:focus-visible {
+  outline: 2px solid #d4b347;
+  outline-offset: 2px;
+}

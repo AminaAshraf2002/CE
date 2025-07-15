@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import emailjs from '@emailjs/browser'; // Add EmailJS import
 import 'aos/dist/aos.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -21,6 +22,13 @@ import aboutImage from '../assets/16.jpeg';
 import worldMapImage from '../assets/map.png';
 import indiaFlag from '../assets/India.png';
 import uaeFlag from '../assets/uae.png';
+
+// EmailJS Configuration
+const EMAILJS_CONFIG = {
+  serviceId: 'service_1ek8u4y',
+  templateId: 'template_6b8ubiq',
+  publicKey: 'Hz19e9XYQ6Y93PH_b'
+};
 
 const Home = () => {
   // All States
@@ -57,6 +65,7 @@ const Home = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [phoneError, setPhoneError] = useState('');
+  const [submitError, setSubmitError] = useState(''); // Add error state
 
   // All Refs
   const heroRef = useRef(null);
@@ -72,6 +81,11 @@ const Home = () => {
 
   // Register GSAP plugins
   gsap.registerPlugin(ScrollTrigger);
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(EMAILJS_CONFIG.publicKey);
+  }, []);
 
   // Data Arrays
   const locations = [
@@ -335,11 +349,13 @@ const Home = () => {
     }
   };
 
+  // Updated handleSubmit function with EmailJS integration
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Reset errors
     setPhoneError('');
+    setSubmitError('');
     let hasErrors = false;
     
     // Validate required fields
@@ -363,14 +379,12 @@ const Home = () => {
       setPhoneError('Please select a country code');
       hasErrors = true;
     } else {
-      // Check if phone contains only digits (after removing formatting)
       const digitsOnly = formData.phone.replace(/[\s\-\(\)]/g, '');
       if (!/^\d+$/.test(digitsOnly)) {
         const selectedCountry = getSelectedCountryInfo();
         setPhoneError(`Phone number must contain only digits. Please enter a valid ${selectedCountry?.name || ''} phone number.`);
         hasErrors = true;
       } else {
-        // Validate against country pattern
         const isValid = validatePhoneNumber(formData.phone, formData.country);
         if (!isValid) {
           const selectedCountry = getSelectedCountryInfo();
@@ -380,21 +394,66 @@ const Home = () => {
       }
     }
     
-    // Stop submission if there are any errors
     if (hasErrors) {
       return;
     }
     
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Prepare email data for EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: `${formData.country} ${formData.phone}`,
+        company: formData.company || 'Not specified',
+        project_type: formData.projectType || 'Not specified',
+        message: formData.message
+      };
+
+      console.log('Sending email with params:', templateParams);
+
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateId,
+        templateParams,
+        EMAILJS_CONFIG.publicKey
+      );
+
+      console.log('Email sent successfully:', result);
+      
+      // Success - show success message
       setIsSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', country: '', company: '', projectType: '', message: '' });
+      setFormData({ 
+        name: '', 
+        email: '', 
+        phone: '', 
+        country: '', 
+        company: '', 
+        projectType: '', 
+        message: '' 
+      });
       setPhoneError('');
+      
+      // Hide success message after 5 seconds
       setTimeout(() => setIsSubmitted(false), 5000);
-    }, 2000);
+      
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      
+      if (error.text) {
+        setSubmitError(`Failed to send message: ${error.text}`);
+      } else if (error.status === 400) {
+        setSubmitError('Please check your form data and try again.');
+      } else if (error.status === 401) {
+        setSubmitError('Email service configuration error. Please try again later.');
+      } else {
+        setSubmitError('Failed to send message. Please try again or contact us directly.');
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handlePlayVideo = () => {
@@ -925,6 +984,14 @@ const Home = () => {
                   </div>
                 ) : (
                   <form className="contact-form" onSubmit={handleSubmit}>
+                    {/* Add error message display */}
+                    {submitError && (
+                      <div className="error-message">
+                        <AlertTriangle size={20} />
+                        <span>{submitError}</span>
+                      </div>
+                    )}
+
                     {/* Row 1: Name and Email */}
                     <div className="form-row">
                       <div className="form-group">
@@ -987,16 +1054,32 @@ const Home = () => {
                       </div>
                     </div>
 
-                    {/* Row 3: Project Type (full width) */}
-                    <div className="form-group">
-                      <label htmlFor="projectType">Project Type</label>
-                      <div className="select-wrapper">
-                        <select id="projectType" name="projectType" value={formData.projectType} onChange={handleInputChange}>
-                          <option value="">Select project type</option>
-                          {projectTypes.map((type, index) => (
-                            <option key={index} value={type}>{type}</option>
-                          ))}
-                        </select>
+                    {/* Row 3: Company and Project Type */}
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label htmlFor="company">Company (Optional)</label>
+                        <div className="input-wrapper">
+                          <Building size={18} className="input-icon" />
+                          <input 
+                            type="text" 
+                            id="company" 
+                            name="company" 
+                            value={formData.company} 
+                            onChange={handleInputChange} 
+                            placeholder="Enter your company name" 
+                          />
+                        </div>
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="projectType">Project Type</label>
+                        <div className="select-wrapper">
+                          <select id="projectType" name="projectType" value={formData.projectType} onChange={handleInputChange}>
+                            <option value="">Select project type</option>
+                            {projectTypes.map((type, index) => (
+                              <option key={index} value={type}>{type}</option>
+                            ))}
+                          </select>
+                        </div>
                       </div>
                     </div>
 
